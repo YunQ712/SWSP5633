@@ -51,7 +51,7 @@
     main { padding-bottom: 80px; }
     .hero {
       padding: 70px 0 58px;
-      display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: end;
+      display: block;
     }
     .eyebrow { margin: 0 0 12px; color: var(--muted); font-size: 16px; font-weight: 650; letter-spacing: 1.3px; text-transform: uppercase; }
     h1, h2, h3 { margin-top: 0; }
@@ -62,7 +62,6 @@
       min-height: 110px; border: 1.5px dashed #bfc9b8; border-radius: 12px;
       background: rgba(255, 254, 249, .58);
     }
-    .hero .empty { min-height: 148px; }
     .positioning { max-width: 650px; margin: 0; color: var(--muted); font-size: 20px; line-height: 1.5; }
     section { padding: 56px 0; border-top: 1px solid var(--line); }
     .section-head { display: grid; grid-template-columns: 150px 1fr; gap: 24px; align-items: start; margin-bottom: 28px; }
@@ -110,8 +109,25 @@
     .m1s1-ee-card h5 { margin: 0 0 8px; font-size: 21px; }
     .m1s1-ee-card p { margin: 0 0 10px; font-size: 18px; }
     .m1s1-ee-card p:last-child { margin-bottom: 0; }
-    .m1s1-reflection { background: #f6f5ef; }
+    .m1s1-reflection { margin-top: 12px; padding: 12px 16px; background: #f6f5ef; }
+    .m1s1-reflection h5 { margin: 0; font-size: 20px; }
+    .m1s1-reflection p { margin-top: 4px; }
     .m1s1-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .m1s2-card { grid-column: 1 / -1; scroll-margin-top: 94px; }
+    .m1s2-intro { margin: 0 0 24px; font-size: 18px; }
+    .m1s2-group { margin-top: 28px; }
+    .m1s2-group h4 { margin: 0 0 14px; font-size: 25px; }
+    .m1s2-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+    .m1s2-item { min-height: 190px; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+    .m1s2-item h5 { margin: 12px 0 8px; font-size: 21px; line-height: 1.3; }
+    .m1s2-item p { margin: 0; font-size: 18px; }
+    .m1s2-icon { display: block; width: 32px; height: 32px; color: var(--ink); }
+    .m1s2-icon svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .m1s2-citation, .m1s2-overlap { margin: 14px 0 0; font-size: 18px; }
+    .m1s2-references { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .m1s2-references h4 { margin-bottom: 10px; font-size: 22px; }
+    .m1s2-references ol { margin: 0; padding-left: 26px; }
+    .m1s2-references li { padding: 5px 0 5px 4px; font-size: 18px; overflow-wrap: anywhere; }
     .panel {
       padding: 26px; border: 1px solid var(--line); border-radius: 14px;
       background: var(--surface); box-shadow: var(--shadow);
@@ -154,10 +170,11 @@
     .reflection-grid .empty { min-height: 140px; }
     footer { border-top: 1px solid var(--line); padding: 24px 0 42px; color: var(--muted); font-size: 16px; }
     @media (max-width: 800px) {
-      .hero { grid-template-columns: 1fr; gap: 24px; padding-top: 48px; }
+      .hero { padding-top: 48px; }
       .section-head { grid-template-columns: 1fr; gap: 8px; }
       .scenario-grid { grid-template-columns: 1fr; }
       .module-grid { grid-template-columns: 1fr; }
+      .m1s2-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .scenario-card { min-height: 145px; }
       .blank-row { grid-template-columns: 1fr; gap: 8px; }
       .decision-grid { grid-template-columns: 1fr; }
@@ -167,6 +184,7 @@
       .topbar { padding: 14px 0; align-items: flex-start; flex-direction: column; }
       nav { gap: 10px 18px; }
       .two-col, .submodule-grid, .reflection-grid { grid-template-columns: 1fr; }
+      .m1s2-cards, .m1s1-ees { grid-template-columns: 1fr; }
       section { padding: 42px 0; }
       .panel { padding: 20px; }
     }
@@ -192,7 +210,6 @@
         <h1>SWSP5633 · Interactive trauma-informed social work learning site</h1>
         <p class="positioning">A learning space to understand trauma-informed practice.</p>
       </div>
-      <div class="empty" aria-label="Overview visual area reserved"></div>
     </div>
 
     <section id="module-01">
@@ -201,7 +218,6 @@
         <div>
           <p class="eyebrow">Module 01</p>
           <h2>01 · Understanding Trauma</h2>
-          <div class="empty section-intro" aria-label="Module one introduction area reserved"></div>
         </div>
       </div>
       <div class="submodule-grid">
@@ -259,10 +275,76 @@
             <div class="m1s1-actions">
               <button class="m1s1-button secondary" id="m1s1-back" type="button">← Back</button>
               <button class="m1s1-button secondary" id="m1s1-restart" type="button">Restart</button>
+              <button class="m1s1-button" id="m1s1-complete" type="button" aria-controls="m1s2" aria-expanded="false">Finish Submodule 1 and continue →</button>
             </div>
           </div>
         </article>
-        <article class="submodule-card"><h3>Types and Sources of Trauma</h3><div class="empty" aria-label="Types and Sources of Trauma content reserved"></div></article>
+        <article class="submodule-card m1s2-card" id="m1s2" hidden>
+          <p class="eyebrow">Submodule 2 · Information cards</p>
+          <h3 id="m1s2-heading" tabindex="-1">Types and Sources of Trauma</h3>
+          <p class="m1s2-intro">Trauma can take different forms depending on the nature, duration, and context of traumatic experiences.</p>
+          <div class="m1s2-group">
+            <h4>Types of Trauma</h4>
+            <div class="m1s2-cards">
+              <article class="m1s2-item">
+                <span class="m1s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"></circle><path d="M16 8v8l5 3"></path></svg></span>
+                <h5>Acute Trauma</h5>
+                <p>Results from a single distressing event, such as a serious accident or natural disaster.</p>
+              </article>
+              <article class="m1s2-item">
+                <span class="m1s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M25 11a11 11 0 0 0-19-2L4 12"></path><path d="M4 6v6h6"></path><path d="M7 21a11 11 0 0 0 19 2l2-3"></path><path d="M28 26v-6h-6"></path></svg></span>
+                <h5>Chronic Trauma</h5>
+                <p>Develops through repeated or prolonged exposure to distressing experiences, such as ongoing violence or abuse.</p>
+              </article>
+              <article class="m1s2-item">
+                <span class="m1s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="8" cy="9" r="3"></circle><circle cx="24" cy="9" r="3"></circle><circle cx="16" cy="24" r="3"></circle><path d="m10.5 11 4 10M21.5 11l-4 10M11 9h10"></path></svg></span>
+                <h5>Complex Trauma</h5>
+                <p>Involves multiple or repeated traumatic experiences, often occurring within interpersonal relationships during childhood, potentially affecting development and attachment.</p>
+              </article>
+            </div>
+            <p class="m1s2-citation">Sources: <a href="https://www.nctsn.org/what-is-child-trauma-infographic" target="_blank" rel="noopener noreferrer">National Child Traumatic Stress Network (NCTSN, 2025)</a>; <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">Levenson (2020)</a>.</p>
+          </div>
+          <div class="m1s2-group">
+            <h4>Common Sources of Trauma</h4>
+            <div class="m1s2-cards">
+              <article class="m1s2-item">
+                <span class="m1s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4 27 8v8c0 7-5 11-11 13C10 27 5 23 5 16V8z"></path><path d="m11 16 3 3 7-7"></path></svg></span>
+                <h5>Abuse &amp; Neglect</h5>
+                <p>Physical, emotional, or sexual abuse and neglect.</p>
+              </article>
+              <article class="m1s2-item">
+                <span class="m1s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="11" cy="11" r="4"></circle><circle cx="22" cy="12" r="3"></circle><path d="M3 26c0-5 3-8 8-8s8 3 8 8M19 19c5-2 10 1 10 6"></path></svg></span>
+                <h5>Domestic &amp; Community Violence</h5>
+                <p>Domestic and community violence.</p>
+              </article>
+              <article class="m1s2-item">
+                <span class="m1s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="m4 14 12-9 12 9"></path><path d="M7 13v14h18V13M13 27v-8h6v8"></path></svg></span>
+                <h5>War, Displacement &amp; Disasters</h5>
+                <p>War, forced displacement, and natural disasters.</p>
+              </article>
+              <article class="m1s2-item">
+                <span class="m1s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"></circle><path d="M16 9v14M9 16h14"></path></svg></span>
+                <h5>Accidents, Illness &amp; Loss</h5>
+                <p>Serious accidents, life-threatening illness, or sudden loss.</p>
+              </article>
+              <article class="m1s2-item">
+                <span class="m1s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"></circle><path d="M10 12h12M10 20h12M16 9v14"></path></svg></span>
+                <h5>Discrimination &amp; Oppression</h5>
+                <p>Discrimination, racism, and other forms of systemic oppression.</p>
+              </article>
+            </div>
+            <p class="m1s2-citation">Sources: <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">SAMHSA (2014)</a>; <a href="https://www.nctsn.org/what-is-child-trauma-infographic" target="_blank" rel="noopener noreferrer">NCTSN (2025)</a>.</p>
+            <p class="m1s2-overlap">These experiences may overlap, and their effects vary between individuals.</p>
+          </div>
+          <div class="m1s2-references">
+            <h4>References</h4>
+            <ol>
+              <li>Levenson, J. (2020). Translating trauma-informed principles into social work practice. <em>Social Work, 65</em>(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
+              <li>National Child Traumatic Stress Network. (2025). <em>What is child trauma?</em> <a href="https://www.nctsn.org/what-is-child-trauma-infographic" target="_blank" rel="noopener noreferrer">https://www.nctsn.org/what-is-child-trauma-infographic</a></li>
+              <li>Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em> (HHS Publication No. SMA 14-4884). <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">https://library.samhsa.gov/sites/default/files/sma14-4884.pdf</a></li>
+            </ol>
+          </div>
+        </article>
         <article class="submodule-card"><h3>Impacts of Trauma on Individuals and Relationships</h3><div class="empty" aria-label="Impacts of Trauma content reserved"></div></article>
         <article class="submodule-card"><h3>Trauma, Loss and Grief</h3><div class="empty" aria-label="Trauma, Loss and Grief content reserved"></div></article>
         <article class="submodule-card"><h3>Individual Differences, Culture and Resilience</h3><div class="empty" aria-label="Individual Differences, Culture and Resilience content reserved"></div></article>
@@ -369,6 +451,7 @@
       const input = document.getElementById('m1s1-reflection-input');
       const stepOne = document.getElementById('m1s1-step-one');
       const stepTwo = document.getElementById('m1s1-step-two');
+      const submoduleTwo = document.getElementById('m1s2');
       const response = document.getElementById('m1s1-response-text');
       const progress = document.getElementById('m1s1-progress');
       const showStepOne = () => {
@@ -387,6 +470,12 @@
       });
       document.getElementById('m1s1-edit').addEventListener('click', showStepOne);
       document.getElementById('m1s1-back').addEventListener('click', showStepOne);
+      document.getElementById('m1s1-complete').addEventListener('click', () => {
+        submoduleTwo.hidden = false;
+        document.getElementById('m1s1-complete').setAttribute('aria-expanded', 'true');
+        submoduleTwo.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        document.getElementById('m1s2-heading').focus({ preventScroll: true });
+      });
       document.getElementById('m1s1-restart').addEventListener('click', () => {
         input.value = '';
         response.textContent = '';
