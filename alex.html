@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Alex's NDIS Assessment — Interactive Simulation V2</title>
+  <style>
+    :root {
+      --ink:#21323a;--muted:#62747b;--border:#dbe4e3;--paper:#f6f8f7;
+      --white:#ffffff;--sage:#306f68;--sage-pale:#eaf4f0;--sage-line:#94c0b1;
+      --purple:#654c7c;--purple-pale:#f3eef8;--amber-pale:#fbf5e9;
+      --shadow:0 8px 28px rgba(25,58,61,.045);--round:16px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink);font-size:15px;line-height:1.65}
+    button,input,textarea{font:inherit}
+    button{cursor:pointer}
+    button:disabled{cursor:not-allowed;opacity:.52}
+    :focus-visible{outline:3px solid #4b9b89;outline-offset:3px}
+    .site-header{background:white;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1110px;margin:auto;padding:15px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{display:block;color:inherit;text-decoration:none;font-weight:750;font-size:14px;letter-spacing:.012em}
+    .header-right{font-size:12px;color:var(--muted);text-align:right}
+    .header-right a{color:var(--sage);font-weight:750;text-decoration:none}
+    .header-right a:hover{text-decoration:underline}
+    .shell{max-width:1110px;margin:auto;padding:31px 24px 70px}
+    .eyebrow{text-transform:uppercase;letter-spacing:.12em;color:var(--sage);font-size:11px;font-weight:800}
+    .hero{margin-bottom:27px}
+    h1{font-size:clamp(27px,4vw,42px);line-height:1.17;letter-spacing:-.037em;margin:8px 0 13px;max-width:900px}
+    .hero p{max-width:760px;color:var(--muted);font-size:15px;margin:0 0 13px}
+    .pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
+    .pill{border:1px solid var(--border);background:var(--white);font-weight:650;font-size:11.5px;padding:5px 10px;border-radius:100px;color:#4c666b}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 278px;align-items:start;gap:23px}
+    .panel{background:var(--white);border:1px solid var(--border);border-radius:var(--round);box-shadow:var(--shadow);overflow:hidden}
+    .panel-main{padding:27px 28px 24px}
+    .steps{display:flex;gap:6px;margin:0 0 29px;list-style:none;padding:0}
+    .steps li{flex:1;height:6px;border-radius:6px;background:#e8eeed}
+    .steps li.done{background:#9cc9b8}
+    .steps li.current{background:var(--sage)}
+    .steps li[aria-current="step"]{background:var(--sage)}
+    .scene-label{color:var(--muted);font-weight:750;font-size:11px;letter-spacing:.085em;text-transform:uppercase;margin-bottom:5px}
+    h2{font-size:clamp(21px,3vw,27px);line-height:1.24;letter-spacing:-.027em;margin:0 0 21px}
+    h3{font-size:16px;line-height:1.4;margin:0 0 12px;letter-spacing:-.012em}
+    h4{font-size:13px;margin:0 0 7px}
+    p{margin:0 0 12px}
+    .para:last-child,p:last-child{margin-bottom:0}
+    .narrative{font-size:14px;line-height:1.76}
+    .narrative p{margin-bottom:11px}
+    .scene-box{border:1px solid #dce9e4;background:#f2f8f5;border-radius:12px;padding:17px 18px;margin:15px 0 0}
+    .box-eyebrow{color:#4c6e6b;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;margin-bottom:9px}
+    .dialogue{white-space:pre-line;font-size:14px;line-height:1.76}
+    .context{font-size:13px;color:#526b69;margin-top:9px;line-height:1.62}
+    hr{border:0;border-top:1px solid var(--border);margin:24px 0}
+    .choice-fieldset{margin:0;padding:0;border:0;min-width:0}
+    .choice-fieldset legend{font-size:17px;letter-spacing:-.01em;font-weight:750;margin-bottom:13px;padding:0}
+    .choice-list{display:grid;gap:10px}
+    .choice{display:flex;gap:13px;align-items:flex-start;background:#fff;padding:14px 15px;border:1.5px solid #d6e2df;border-radius:12px;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
+    .choice:hover{border-color:#89b4a6;box-shadow:0 5px 15px rgba(31,96,77,.07);transform:translateY(-1px)}
+    .choice:has(input:focus-visible){outline:3px solid #4b9b89;outline-offset:2px}
+    .choice:has(input:checked){background:var(--sage-pale);border-color:var(--sage);box-shadow:inset 0 0 0 .5px var(--sage)}
+    .choice input{accent-color:var(--sage);margin:5px 0 0;flex-shrink:0;width:17px;height:17px}
+    .letter{font-size:12px;font-weight:850;min-width:16px;color:var(--sage)}
+    .choice-text{font-size:13.5px;line-height:1.56;font-weight:570}
+    .reveal{margin-top:23px;animation:rise .23s ease both}
+    .response{border:1px solid #d9e2e1;background:white;padding:17px 18px;border-radius:12px}
+    .response .dialogue{white-space:pre-line}
+    .consequence{border:1px solid #dce9e4;background:var(--sage-pale);padding:17px 18px;border-radius:12px;margin-top:10px}
+    .feedback{margin-top:17px;border-left:3px solid #b5a6ce;padding:3px 0 2px 14px}
+    .feedback strong{color:var(--purple);font-size:12px;display:block;margin-bottom:6px}
+    .feedback p{font-size:13px;color:#4b555d;line-height:1.7}
+    .buttons{display:flex;justify-content:space-between;gap:12px;margin-top:25px;padding-top:20px;border-top:1px solid var(--border)}
+    .btn{border:1px solid var(--sage);border-radius:10px;padding:11px 16px;font-weight:750;font-size:13px;min-height:42px;background:var(--sage);color:#fff;transition:filter .16s,transform .16s}
+    .btn:hover:not(:disabled){filter:brightness(.95);transform:translateY(-1px)}
+    .btn.secondary{background:white;color:var(--sage);border-color:#a4c9bd}
+    .sidebar{padding:21px;position:sticky;top:22px}
+    .sidebar h3{margin:0 0 14px}
+    .sidebar-intro{font-size:12.5px;line-height:1.65;color:var(--muted);margin-bottom:16px}
+    .history{display:grid;gap:14px;margin:0;padding:0;list-style:none}
+    .history li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
+    .hnum{width:28px;height:28px;border-radius:8px;background:#edf2f0;color:#607574;display:grid;place-items:center;font-size:12px;font-weight:800}
+    .history li.completed .hnum{background:#e0f0e8;color:var(--sage)}
+    .history li.active .hnum{border:1px solid var(--sage);color:var(--sage);background:white}
+    .hname{font-size:12px;font-weight:750;line-height:1.35}
+    .hchoice{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:3px}
+    .small-divider{height:1px;background:var(--border);margin:19px 0}
+    .sidebar-note{font-size:12px;color:var(--muted);line-height:1.72}
+    .sidebar-note b{color:#3d585b}
+    .outcome-label{display:inline-block;font-size:11px;letter-spacing:.06em;font-weight:800;text-transform:uppercase;color:var(--sage);margin-bottom:7px}
+    .outcome-title{font-size:29px;letter-spacing:-.035em;line-height:1.2;margin:0 0 10px}
+    .ending-card{border-radius:14px;border:1px solid #a6c6bd;background:var(--sage-pale);padding:23px;margin:15px 0 25px}
+    .ending-card.mixed{background:#f7f5fb;border-color:#c6b4d4}
+    .ending-card.difficult{background:var(--amber-pale);border-color:#e6d1a5}
+    .ending-card p{font-size:14px;line-height:1.75}
+    .history-end{display:grid;gap:12px;list-style:none;padding:0;margin:0}
+    .history-end li{display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.55}
+    .tick{color:var(--sage);font-weight:850}
+    .history-end small{display:block;font-size:11px;color:var(--muted);font-weight:750;margin-bottom:2px}
+    .attention{padding:16px 18px;border:1px solid #e5ded0;border-radius:12px;background:#faf8f3;margin-top:17px}
+    .attention ul{padding-left:17px;margin:7px 0 0;font-size:13px;color:#5f5b54}
+    .attention li{margin:0 0 8px}
+    .reflection{border:1px solid var(--border);border-radius:12px;padding:17px 18px;margin-top:17px;font-size:13px;line-height:1.72}
+    .fineprint{font-size:12px;color:var(--muted);line-height:1.7;margin-top:17px}
+    .footer{margin-top:26px;font-size:12px;color:var(--muted);line-height:1.7}
+    .footer strong{color:#536b6e}
+    .hidden{display:none!important}
+    @keyframes rise{from{opacity:.3;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:850px){.layout{grid-template-columns:minmax(0,1fr)}.sidebar{position:static}.sidebar .history{grid-template-columns:repeat(2,minmax(0,1fr))}.shell{padding-top:24px}}
+    @media(max-width:530px){.shell{padding:20px 13px 44px}.header-inner{padding:14px 13px}.header-right{font-size:10.5px}.panel-main{padding:22px 17px}.sidebar{padding:19px}.sidebar .history{grid-template-columns:1fr}.choice{padding:12px 11px;gap:9px}.buttons{gap:8px}.btn{padding:10px 13px}.hero{margin-bottom:20px}.hname{font-size:12px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+    @media print{.sidebar,.buttons,.choice-list{display:none}.layout{display:block}.panel{box-shadow:none}.shell{padding:12px}.site-header{display:none}}
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="./index.html">Trauma-Informed Practice · Interactive Learning</a>
+    <div class="header-right"><a href="./index.html#module-04">Back to Interactive Simulations</a><br>Module 04 · Simulation 01<br>V2 · Peer playtest draft</div>
+  </div>
+</header>
+<main class="shell">
+  <div class="hero">
+    <div class="eyebrow">Social Work Practice Simulation</div>
+    <h1>Alex's NDIS Assessment</h1>
+    <p>Explore how your communication, assessment choices and professional judgement can shape an adult client's experience of an NDIS-related functional assessment.</p>
+    <div class="pills"><span class="pill">4 decision points</span><span class="pill">Choices carry forward</span><span class="pill">3 outcome types</span><span class="pill">Fictional learning scenario</span></div>
+  </div>
+  <div class="layout">
+    <article class="panel panel-main" id="simulation" aria-label="Interactive simulation">
+      <ol class="steps" id="progress" aria-label="Simulation progress"></ol>
+      <div id="stage" aria-live="polite" aria-atomic="false"></div>
+    </article>
+    <aside class="panel sidebar" aria-label="Decision history">
+      <h3>Your journey</h3>
+      <p class="sidebar-intro">Your choices affect later conversations. A difficult moment may be repairable, but it does not simply disappear.</p>
+      <ol class="history" id="history"></ol>
+      <div class="small-divider"></div>
+      <div class="sidebar-note"><b>Learning focus</b><br>Safety · Transparency · Voice and choice · Collaborative assessment · Avoiding re-traumatisation</div>
+    </aside>
+  </div>
+  <div class="footer">
+    <strong>Educational prototype — not an official NDIA tool.</strong> The scenario is fictional and designed for social work student discussion. Endings describe the assessment interaction, not NDIS eligibility, funding or an NDIA decision. References/learning feedback require final academic review before publication.
+  </div>
+</main>
+<script>
+/*
+  MODULE 04 — ALEX'S NDIS ASSESSMENT (V2)
+  Single-file, dependency-free handoff for the website developer.
+
+  Integration:
+  - Keep this file intact for peer playtesting, or migrate the state and data
+    into the team's website framework.
+  - All narrative content is in SCENES, OPTIONS and ACTIONS below.
+  - Narrative continuity is handled by openingFor(), historyContext(),
+    responseFor() and finalSceneFor().
+  - Ending classification is an intentionally provisional learning-design
+    rule, not a validated measure of ethical/TIP competency.
+  - Before publication: peer playtest, academic source mapping, and review
+    of NDIS-specific wording, consent and supported decision making.
+*/
+(() => {
+  'use strict';
+  const SCENES = [
+    'The First Concern',
+    'Whose Voice Is Being Heard?',
+    'The Previous Assessment',
+    'Finding a Way Forward'
+  ];
+  const OPTIONS = [
+    [
+      {id:'A',label:'Explain why the assessment needs to discuss difficulties.'},
+      {id:'B',label:"Acknowledge Alex's concern and clarify how the assessment will work."},
+      {id:'C',label:'Offer to leave difficult questions for another time.'}
+    ],
+    [
+      {id:'A',label:'Ask Sarah for more examples to clarify the support provided.'},
+      {id:'B',label:"Invite Alex's perspective and agree on how Sarah can contribute."},
+      {id:'C',label:'Ask Sarah to stop answering so Alex can speak alone.'}
+    ],
+    [
+      {id:'A',label:'Ask permission to explore what went wrong during the previous assessment.'},
+      {id:'B',label:'Clarify what information is needed, acknowledge earlier mistakes and offer choices.'},
+      {id:'C',label:"Respect Alex's reluctance and move on to practical questions."}
+    ],
+    [
+      {id:'A',label:"Prioritise Sarah's examples to demonstrate the need for support."},
+      {id:'B',label:'Document strengths, functional difficulties and both perspectives transparently.'},
+      {id:'C',label:'Leave out examples Alex is uncomfortable including.'}
+    ]
+  ];
+  const ACTIONS = [
+    {
+      A:{spoken:'I understand, but the assessment needs to identify your difficulties so we can understand what support you may need.',effect:'Alex nods but says little more. Sarah begins explaining the difficulties she observes at home.',feedback:"Explaining assessment requirements is legitimate, but Alex's concern about being misrepresented has not been addressed."},
+      B:{spoken:"We need to understand where support is needed, but also what you manage independently and what helps you. If something doesn't reflect your experience, please tell me.",effect:'Alex: “Okay. I just don’t want people to think I’m helpless.” Sarah looks concerned about whether the support she provides will be recognised.',feedback:"You acknowledge Alex's concern while remaining clear about the purpose of the assessment. Trust will still depend on how you act next."},
+      C:{spoken:'Of course. We can focus on your strengths today and leave the difficult questions for another time.',effect:'Alex looks relieved. Sarah hesitates: “But I thought we needed to explain what support Alex needs?”',feedback:"You have tried to reduce discomfort, but the promise may not be realistic. The assessment's purpose and expectations have become unclear."}
+    },
+    {
+      A:{spoken:'Sarah, could you give me a recent example of what happens when plans change unexpectedly?',effect:'Sarah offers useful examples, but Alex contributes very little to the discussion.',feedback:"Family observations may be relevant, but they must not automatically replace the adult client's own account."},
+      B:{spoken:"Thank you, Sarah. Alex, I'd like to understand how you experience these situations. Are you comfortable with Sarah adding her observations as well?",effect:"Alex describes using reminders and routines to manage many tasks independently, while sometimes needing additional support. Sarah contributes an example with Alex's agreement.",feedback:"You invite both perspectives without assuming they must be identical. Alex's preferences about family involvement are made explicit."},
+      C:{spoken:'Sarah, please stop answering for Alex. I need Alex to speak without anyone else contributing right now.',effect:'Sarah falls silent. Alex hesitates: “I do want Mum here. I just want to speak for myself too.”',feedback:"Creating space for Alex is important. However, abruptly excluding Sarah without checking Alex's wishes has created another problem."}
+    },
+    {
+      A:{spoken:'Would you be comfortable telling me a little about what happened last time? It might help me understand what went wrong.',effect:'Alex: “I’d rather not explain all of it again. I just don’t want the same thing to happen.” You accept this and do not press for further details.',feedback:'Asking permission is preferable to demanding disclosure, but the immediate priority is understanding what Alex needs from the current process. A detailed trauma narrative is not required.'},
+      B:{spoken:"You don't have to describe your previous assessment in detail. We do need to understand your support needs, but we can discuss how to approach those questions. Would you prefer a break? And how would you like Sarah involved?",effect:'Alex: “I’d like to explain things first. Mum can add information, but I want to know what’s being written down.” Sarah: “That’s fair. I just want to make sure nothing important is missed.”',feedback:'You provide choices about the process rather than requiring disclosure. Where relevant, you also acknowledge previous mistakes instead of pretending they did not occur.'},
+      C:{spoken:"We don't need to revisit that. Let's continue with the practical questions about your daily routines. You can tell me if you need to stop.",effect:'Alex nods and answers the next question. However, the concern about how the assessment will be conducted and recorded remains.',feedback:"Respecting Alex's wish not to discuss the past is appropriate. But moving on does not necessarily resolve concerns about the present assessment."}
+    },
+    {
+      A:{spoken:"I think we should use Sarah's examples because they show where support is needed. Alex, please let me know if any facts are incorrect.",effect:'Sarah offers more examples. Alex says quietly: “But some of those things aren’t really what it’s like for me.”',feedback:"Sarah's observations may be valuable, but giving them priority can marginalise Alex's perspective and overlook contextual differences."},
+      B:{spoken:"Let's describe what you manage independently, what becomes difficult in particular situations, and what support helps. I'd like to check how you want Sarah's observations included. If your accounts differ, we can record that clearly. I'll explain how the information will be used and the opportunities to clarify it.",effect:'Alex explains how reminders help with university while unexpected changes sometimes require extra support. Sarah adds a relevant example. You clarify both accounts and discuss the next steps.',feedback:'This supports a balanced, evidence-based assessment while respecting autonomy, transparency and the preferences of the adult client.'},
+      C:{spoken:"I don't want you to feel misrepresented. We can leave out the examples you're uncomfortable with and focus on the things you both agree about.",effect:'Alex: “Some things Mum helps with are actually difficult for me. I just don’t want them written like I can’t do anything.”',feedback:"Client comfort matters, but omitting relevant information without discussion could create an incomplete report. The better response is to negotiate how experiences can be represented accurately."}
+    }
+  ];
+
+  // State consists only of the active scene, the chosen option on that scene,
+  // and the prior committed decisions. This is sufficient to restore continuity.
+  let step=0;
+  let selection='';
+  let history=['','','',''];
+  const stage=document.getElementById('stage');
+  const progress=document.getElementById('progress');
+  const historyPanel=document.getElementById('history');
+  const el=(tag,cls,txt)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e;};
+  const add=(parent,tag,cls,txt)=>{const e=el(tag,cls,txt);parent.append(e);return e;};
+
+  function openingFor(d1) {
+    return {
+      A:'Sarah: “When Alex’s plans change, I sometimes have to step in.”\n\nAlex looks down. “Yeah, I guess.”',
+      B:'Sarah: “When plans change, Alex can become overwhelmed.”\n\nAlex: “Sometimes, yes. But I manage better if I have some warning.”',
+      C:'Sarah: “I thought we needed to explain the difficulties Alex has.”\n\nAlex: “But you said we could leave the difficult questions for another time.”'
+    }[d1];
+  }
+  function historyContext(d1,d2) {
+    const contexts={
+      A:{A:'Sarah has provided most of the information. Alex has become quieter.',B:'After an uncertain start, Alex has begun contributing, although trust is still developing.',C:'Sarah has withdrawn after being interrupted. Alex seems uncomfortable about the tension.'},
+      B:{A:'You encouraged Alex to speak earlier, but then directed most questions to Sarah. Alex noticed this inconsistency.',B:'Alex and Sarah have both contributed. Their perspectives sometimes differ, but the conversation has remained collaborative.',C:'Alex has explained that they want Sarah involved, but also want to speak for themselves.'},
+      C:{A:'Your earlier promise about avoiding difficult questions remains unresolved. Alex is unsure what the assessment requires.',B:'You clarified your earlier promise. Alex agreed to continue, although some uncertainty remains.',C:'Your earlier promise remains unresolved, and Sarah was abruptly excluded from the conversation.'}
+    };
+    return contexts[d1][d2];
+  }
+  function responseFor(scene,id) {
+    const a=Object.assign({},ACTIONS[scene][id]);
+    const d1=history[0],d2=history[1];
+    if(scene===1&&id==='B'&&d1==='C') {
+      a.spoken='I need to clarify what I said earlier. We do need to discuss support needs, but we can agree on how to approach that. Alex, would you like to explain your experience first? And are you comfortable with Sarah adding her observations?';
+      a.feedback='You have corrected an earlier misunderstanding and invited Alex to participate. The relationship may improve, but the repair needs to be followed by consistent action.';
+    }
+    if(scene===2&&id==='B') {
+      const repair=[];
+      if(d1==='C'&&d2!=='B')repair.push("I also need to correct something I said earlier. I shouldn't have promised we could leave out all difficult questions. I can explain which information is necessary and why.");
+      if(d2==='A')repair.push("I realise I've spent more time asking Sarah than hearing from you. I should have checked how you wanted her involved.");
+      if(d2==='C')repair.push("I interrupted Sarah without checking how you wanted her involved. I'm sorry about that.");
+      repair.push(ACTIONS[2].B.spoken);
+      a.spoken=repair.join('\n\n');
+    }
+    return a;
+  }
+  function finalSceneFor(d3) {
+    return {
+      A:'Alex: “If I don’t want to talk about last time, how will you decide what goes into the report?”\n\nSarah: “I want the support I give Alex to be recognised, but I don’t want to make things worse.”',
+      B:'Alex: “Can we check how you’re going to describe what I can do and what I need help with?”\n\nSarah: “I’d appreciate that too. Sometimes we describe things differently.”',
+      C:'Sarah: “There’s something else I help Alex with that might be relevant.”\n\nAlex: “Can I at least understand how you’re deciding what information goes into the report?”'
+    }[d3];
+  }
+  function carryForwardFlags() {
+    const [d1,d2,d3]=history;
+    const notes=[];
+    if(d1==='C'&&d2!=='B'&&d3!=='B')notes.push('Your earlier promise about avoiding difficult questions has still not been clarified.');
+    if(d2==='A'&&d3!=='B')notes.push("Alex's limited participation earlier remains an unresolved concern.");
+    if(d2==='C'&&d3!=='B')notes.push("There is still tension about Sarah's involvement.");
+    return notes;
+  }
+  function ending() {
+    const [d1,d2,d3,d4]=history;
+    const scores=[{A:0,B:1,C:-1},{A:-1,B:2,C:-1},{A:0,B:2,C:0},{A:-2,B:3,C:-2}];
+    const score=history.reduce((total,v,i)=>total+scores[i][v],0);
+    const kind=d4==='B'?(score>=3?'collaborative':'mixed'):(score>=1?'mixed':'difficult');
+    const title={collaborative:'Collaborative Progress',mixed:'Partial Progress',difficult:'Difficult Continuation'}[kind];
+    const message={
+      collaborative:'Alex and Sarah have been able to contribute to a more balanced assessment process. Even if earlier tensions occurred, the worker has established a clearer way forward. Any repair still requires consistent follow-through.',
+      mixed:'The assessment has made some progress, but important questions about participation, communication or documentation remain. The worker needs to address them before assuming the process is fully collaborative.',
+      difficult:'The assessment process has become difficult to continue collaboratively. Alex may need a pause, clearer information, or a renegotiated approach. The professional response is to examine and repair the process rather than label Alex as uncooperative.'
+    }[kind];
+    const watch=[];
+    if(d1==='C'&&d2!=='B'&&d3!=='B')watch.push('Clarify the earlier promise about avoiding difficult questions.');
+    if(d2==='A'&&d3!=='B')watch.push('Acknowledge that Alex had limited opportunities to contribute.');
+    if(d2==='C'&&d3!=='B')watch.push("Revisit Alex's wishes about Sarah's involvement.");
+    if(d3==='C'&&d4!=='B')watch.push('Explain the current assessment process without requiring disclosure of the past.');
+    if(d4==='A')watch.push("Check how Alex's own account will be represented alongside Sarah's observations.");
+    if(d4==='C')watch.push('Discuss how to document relevant, disputed information accurately.');
+    return {kind,title,message,watch};
+  }
+  function paintProgress() {
+    progress.replaceChildren();
+    for(let i=0;i<4;i++){
+      const item=el('li',step===i?'current':step>i?'done':'');
+      item.setAttribute('aria-label',`Scene ${i+1}: ${step>i?'completed':step===i?'current':'upcoming'}`);
+      if(step===i)item.setAttribute('aria-current','step');
+      progress.append(item);
+    }
+  }
+  function paintHistory() {
+    historyPanel.replaceChildren();
+    SCENES.forEach((name,i)=>{
+      const li=el('li',history[i]?'completed':step===i?'active':'');
+      add(li,'span','hnum',history[i]?'✓':String(i+1));
+      const wrap=add(li,'div');
+      add(wrap,'div','hname',name);
+      add(wrap,'div','hchoice',history[i] ? `Choice ${history[i]} · ${OPTIONS[i].find(o=>o.id===history[i]).label}` : step===i?'Current decision':'Not yet reached');
+      historyPanel.append(li);
+    });
+  }
+  function renderOpening() {
+    const body=add(stage,'div','narrative');
+    if(step===0){
+      add(body,'div','box-eyebrow','The setting');
+      add(body,'p','',"You are a social worker helping prepare an NDIS-related functional assessment report. Alex is a 20-year-old autistic university student. Their mother, Sarah, has accompanied them with Alex's agreement.");
+      add(body,'p','',"You explain that the assessment will explore daily activities, support needs and existing strengths.");
+      const scene=add(body,'div','scene-box');
+      add(scene,'div','box-eyebrow','Alex');
+      add(scene,'div','dialogue',"“I know I need help with some things. But I don't want the report to make it sound like I can't do anything for myself.”");
+    } else if(step===1){
+      add(body,'p','',"Sarah begins describing how she supports Alex with daily routines.");
+      const box=add(body,'div','scene-box');
+      add(box,'div','box-eyebrow','The conversation');
+      add(box,'div','dialogue',openingFor(history[0]));
+      add(body,'p','context',"Alex's participation is now affected by how you handled the first concern.");
+    } else if(step===2){
+      const box=add(body,'div','scene-box');
+      add(box,'div','box-eyebrow','What has happened so far?');
+      add(box,'div','dialogue',historyContext(history[0],history[1]));
+      add(body,'p','',"The conversation turns to Alex's previous experiences with assessment services.");
+      const quote=add(body,'div','scene-box');
+      add(quote,'div','box-eyebrow','Alex');
+      add(quote,'div','dialogue',"“Last time, I felt like everyone was deciding things about me. I don't want to go through all of that again. Do I have to tell you exactly what happened?”");
+    } else if(step===3){
+      add(body,'p','',"You now need to decide how the assessment information will be documented and what should happen next.");
+      const box=add(body,'div','scene-box');
+      add(box,'div','box-eyebrow','The final conversation');
+      add(box,'div','dialogue',finalSceneFor(history[2]));
+      carryForwardFlags().forEach(t=>add(body,'p','context',t));
+    }
+  }
+  function reveal() {
+    document.getElementById('reveal')?.remove();
+    if(!selection)return;
+    const a=responseFor(step,selection);
+    const root=add(stage,'div','reveal');root.id='reveal';
+    const response=add(root,'div','response');
+    add(response,'div','box-eyebrow','Your response');
+    add(response,'div','dialogue',`“${a.spoken}”`);
+    const consequence=add(root,'div','consequence');
+    add(consequence,'div','box-eyebrow','What happens next?');
+    add(consequence,'p','',a.effect);
+    const feed=add(root,'div','feedback');
+    add(feed,'strong','','Learning feedback');
+    add(feed,'p','',a.feedback);
+  }
+  function renderScene() {
+    stage.replaceChildren();
+    add(stage,'div','scene-label',`Decision point ${step+1}`);
+    add(stage,'h2','',SCENES[step]);
+    renderOpening();
+    stage.append(el('hr'));
+    const fieldset=add(stage,'fieldset','choice-fieldset');
+    add(fieldset,'legend','','What would you do next?');
+    const choices=add(fieldset,'div','choice-list');
+    OPTIONS[step].forEach(option=>{
+      const label=add(choices,'label','choice');
+      const radio=add(label,'input');radio.type='radio';radio.name='current-choice';radio.value=option.id;radio.checked=selection===option.id;
+      radio.setAttribute('aria-label',`${option.id}. ${option.label}`);
+      add(label,'span','letter',option.id);
+      add(label,'span','choice-text',option.label);
+      radio.addEventListener('change',()=>{selection=option.id;reveal();next.disabled=false;});
+    });
+    const nav=add(stage,'div','buttons');
+    const back=add(nav,'button','btn secondary','← Back');back.type='button';back.disabled=step===0;
+    const next=add(nav,'button','btn',step===3?'See your outcome →':'Continue →');next.type='button';next.disabled=!selection;
+    back.addEventListener('click',()=>goBack());
+    next.addEventListener('click',()=>goNext());
+    if(selection)reveal();
+  }
+  function renderEnd() {
+    stage.replaceChildren();
+    add(stage,'div','scene-label','Simulation complete');
+    add(stage,'h2','','Your Assessment Outcome');
+    add(stage,'p','context','Based on the decisions you made across all four scenes.');
+    const result=ending();
+    const endingCard=add(stage,'div',`ending-card ${result.kind}`);
+    add(endingCard,'div','outcome-label','Your outcome');
+    add(endingCard,'div','outcome-title',result.title);
+    add(endingCard,'p','',result.message);
+    add(stage,'h3','','Your decision history');
+    const list=add(stage,'ol','history-end');
+    history.forEach((p,i)=>{
+      const li=add(list,'li');add(li,'span','tick','✓');
+      const wrap=add(li,'div');add(wrap,'small','',`D${i+1} · ${SCENES[i]}`);add(wrap,'span','',OPTIONS[i].find(o=>o.id===p).label);
+    });
+    if(result.watch.length){
+      const card=add(stage,'div','attention');
+      add(card,'h3','','What still needs attention');
+      const ul=add(card,'ul');result.watch.forEach(x=>add(ul,'li','',x));
+    }
+    const reflect=add(stage,'div','reflection');
+    add(reflect,'h3','','Professional reflection');
+    if(history[3]==='B')add(reflect,'p','',"Your final approach recognised that an accurate assessment can include both independent abilities and support needs. Earlier difficulties may still require follow-through, but the reporting process is more transparent.");
+    else add(reflect,'p','',"Your final decision raises questions about whose information is prioritised and how support needs will be documented. Consider how a social worker can protect client participation without compromising assessment accuracy.");
+    add(reflect,'p','',"A positive process does not guarantee NDIS eligibility or funding. The outcome here reflects the quality of the assessment interaction, not an NDIA decision.");
+    const nav=add(stage,'div','buttons');
+    const back=add(nav,'button','btn secondary','← Revise D4');back.type='button';back.addEventListener('click',goBack);
+    const again=add(nav,'button','btn','↻ Play Again');again.type='button';again.addEventListener('click',restart);
+  }
+  function scrollToGame(){document.getElementById('simulation').scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
+  function render(){paintProgress();paintHistory();if(step===4)renderEnd();else renderScene();}
+  function goNext(){
+    if(step>=4||!selection)return;
+    history[step]=selection;
+    for(let i=step+1;i<4;i++)history[i]='';
+    step++;
+    selection='';
+    render();scrollToGame();
+  }
+  function goBack(){
+    if(step===0)return;
+    const prior=step-1;
+    const old=history[prior];
+    for(let i=prior;i<4;i++)history[i]='';
+    step=prior;
+    selection=old;
+    render();scrollToGame();
+  }
+  function restart(){step=0;selection='';history=['','','',''];render();scrollToGame();}
+  render();
+})();
+</script>
+</body>
+</html>

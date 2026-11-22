@@ -1,0 +1,423 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f8f7">
+  <meta name="description" content="An unscored youth care-planning simulation about client priorities, shared decision-making and service limits.">
+  <title>Marko: Whose Plan Is It? · Interactive Simulation</title>
+  <style>
+    :root {
+      --ink:#21323a;--muted:#52666d;--border:#d8e2df;--paper:#f5f7f5;
+      --white:#ffffff;--sage:#306f68;--sage-pale:#eaf4f0;--sage-line:#94c0b1;
+      --purple:#654c7c;--purple-pale:#f3eef8;--amber-pale:#fbf5e9;
+      --shadow:0 8px 28px rgba(25,58,61,.055);--round:16px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--paper);font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink);font-size:16px;line-height:1.65}
+    button,input,textarea{font:inherit}
+    button{cursor:pointer}
+    button:disabled{cursor:not-allowed;opacity:.55}
+    :focus-visible{outline:3px solid #4b9b89;outline-offset:3px}
+    .site-header{background:white;border-bottom:1px solid var(--border)}
+    .header-inner{max-width:1160px;margin:auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{font-weight:750;font-size:17px;letter-spacing:.01em;color:var(--ink);text-decoration:none}
+    .header-right{font-size:15px;color:var(--muted);text-align:right;line-height:1.55}
+    .header-right a{color:var(--sage);font-weight:750;text-decoration:none}
+    .header-right a:hover{text-decoration:underline}
+    .shell{max-width:1160px;margin:auto;padding:34px 24px 72px}
+    .eyebrow{text-transform:uppercase;letter-spacing:.1em;color:var(--sage);font-size:14px;font-weight:800}
+    .hero{margin-bottom:30px}
+    h1{font-size:clamp(34px,4.5vw,48px);line-height:1.16;letter-spacing:-.035em;margin:8px 0 13px;max-width:900px}
+    .hero p{max-width:850px;color:var(--muted);font-size:17px;margin:0 0 13px}
+    .pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}
+    .pill{border:1px solid var(--border);background:var(--white);font-weight:650;font-size:15px;padding:6px 12px;border-radius:100px;color:#405b60}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;align-items:start;gap:24px}
+    .panel{background:var(--white);border:1px solid var(--border);border-radius:var(--round);box-shadow:var(--shadow);overflow:hidden}
+    .panel-main{padding:28px 30px 26px}
+    .steps{display:flex;gap:8px;margin:0 0 30px;list-style:none;padding:0}
+    .steps li{flex:1;height:8px;border-radius:8px;background:#e6ecea}
+    .steps li.done{background:#9cc9b8}
+    .steps li.current{background:var(--sage)}
+    .steps li[aria-current="step"]{background:var(--sage)}
+    .scene-label{color:var(--muted);font-weight:800;font-size:14px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px}
+    h2{font-size:clamp(24px,3vw,30px);line-height:1.25;letter-spacing:-.025em;margin:0 0 20px}
+    h3{font-size:21px;line-height:1.35;margin:0 0 12px;letter-spacing:-.01em}
+    h4{font-size:18px;line-height:1.35;margin:0 0 9px}
+    p{margin:0 0 14px}
+    .narrative{font-size:16px;line-height:1.75}
+    .narrative p{margin-bottom:13px}
+    .scene-box{border:1px solid #dce9e4;background:#f2f8f5;border-radius:13px;padding:18px 20px;margin:16px 0}
+    .box-eyebrow{color:#426560;font-size:14px;letter-spacing:.07em;text-transform:uppercase;font-weight:800;margin-bottom:10px}
+    .dialogue{white-space:pre-line;font-size:16px;line-height:1.72;margin:0 0 14px}
+    .dialogue:last-child{margin-bottom:0}
+    .context{font-size:15px;color:#526b69;margin-top:10px;line-height:1.68}
+    .turn{padding:12px 0;border-top:1px solid rgba(48,111,104,.16)}
+    .turn:first-of-type{border-top:0;padding-top:0}
+    .speaker{display:block;color:var(--sage);font-size:15px;font-weight:800;margin:0 0 4px}
+    hr{border:0;border-top:1px solid var(--border);margin:25px 0}
+    .choice-fieldset{margin:0;padding:0;border:0;min-width:0}
+    .choice-fieldset legend{font-size:19px;letter-spacing:-.01em;font-weight:800;margin-bottom:14px;padding:0}
+    .choice-list{display:grid;gap:11px}
+    .choice{display:flex;gap:13px;align-items:flex-start;background:#fff;padding:15px 16px;border:1.5px solid #d6e2df;border-radius:12px;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
+    .choice:hover{border-color:#89b4a6;box-shadow:0 5px 15px rgba(31,96,77,.07);transform:translateY(-1px)}
+    .choice:has(input:focus-visible){outline:3px solid #4b9b89;outline-offset:2px}
+    .choice:has(input:checked){background:var(--sage-pale);border-color:var(--sage);box-shadow:inset 0 0 0 .5px var(--sage)}
+    .choice input{accent-color:var(--sage);margin:5px 0 0;flex-shrink:0;width:19px;height:19px}
+    .letter{font-size:15px;font-weight:850;min-width:19px;color:var(--sage)}
+    .choice-text{font-size:16px;line-height:1.55;font-weight:620}
+    .reveal{margin-top:22px;animation:rise .23s ease both}
+    .conversation{border:1px solid #d9e2e1;background:white;padding:18px 19px;border-radius:12px}
+    .practice-reflection{border:1px solid #dce9e4;border-left:4px solid #b5a6ce;background:var(--purple-pale);padding:17px 19px;border-radius:0 12px 12px 0;margin-top:12px}
+    .practice-reflection h3{font-size:18px;margin:0 0 8px;color:var(--purple)}
+    .practice-reflection p{font-size:16px;color:#414f57;line-height:1.7;margin:0}
+    .buttons{display:flex;justify-content:space-between;gap:12px;margin-top:25px;padding-top:20px;border-top:1px solid var(--border)}
+    .btn{border:1px solid var(--sage);border-radius:10px;padding:12px 17px;font-weight:750;font-size:16px;min-height:48px;background:var(--sage);color:#fff;transition:filter .16s,transform .16s}
+    .btn:hover:not(:disabled){filter:brightness(.95);transform:translateY(-1px)}
+    .btn.secondary{background:white;color:var(--sage);border-color:#a4c9bd}
+    .sidebar{padding:22px;position:sticky;top:22px}
+    .sidebar h3{margin:0 0 14px}
+    .sidebar-intro{font-size:15px;line-height:1.65;color:var(--muted);margin-bottom:17px}
+    .history{display:grid;gap:15px;margin:0;padding:0;list-style:none}
+    .history li{display:grid;grid-template-columns:30px 1fr;gap:11px;align-items:start}
+    .hnum{width:30px;height:30px;border-radius:8px;background:#edf2f0;color:#607574;display:grid;place-items:center;font-size:15px;font-weight:800}
+    .history li.completed .hnum{background:#e0f0e8;color:var(--sage)}
+    .history li.active .hnum{border:1px solid var(--sage);color:var(--sage);background:white}
+    .hname{font-size:15px;font-weight:750;line-height:1.4}
+    .hchoice{font-size:15px;color:var(--muted);line-height:1.5;margin-top:4px}
+    .small-divider{height:1px;background:var(--border);margin:20px 0}
+    .sidebar-note{font-size:15px;color:var(--muted);line-height:1.7}
+    .sidebar-note strong{color:#3d585b}
+    .plan-card{border-radius:14px;border:1px solid #a6c6bd;background:var(--sage-pale);padding:22px;margin:16px 0 26px}
+    .plan-card p{font-size:16px;line-height:1.75}
+    .reflection-list{margin:0;padding-left:24px}
+    .reflection-list li{font-size:16px;line-height:1.65;margin:0 0 12px}
+    .lens-card{border:1px solid #d8cee6;background:#f7f4fa;border-radius:13px;padding:19px 20px;margin:18px 0 24px}
+    .lens-card h3{color:var(--purple);font-size:19px;margin:0 0 8px}
+    .lens-card p{font-size:16px;line-height:1.75;margin:0}
+    .footer{margin-top:26px;font-size:15px;color:var(--muted);line-height:1.7}
+    .hidden{display:none!important}
+    @keyframes rise{from{opacity:.25;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:900px){.layout{grid-template-columns:minmax(0,1fr)}.sidebar{position:static}.sidebar .history{grid-template-columns:repeat(3,minmax(0,1fr))}.shell{padding-top:26px}}
+    @media(max-width:680px){.shell{padding:22px 15px 48px}.header-inner{padding:15px}.header-right{font-size:14px}.panel-main{padding:22px 18px}.sidebar{padding:20px}.sidebar .history{grid-template-columns:1fr}.choice{padding:13px 12px;gap:9px}.buttons{gap:9px}.btn{padding:11px 13px}.hero{margin-bottom:22px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+    @media print{.sidebar,.buttons,.choice-list{display:none}.layout{display:block}.panel{box-shadow:none}.shell{padding:12px}.site-header{display:none}}
+  </style>
+</head>
+<body>
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="./index.html">Trauma-Informed Practice · Interactive Learning</a>
+    <div class="header-right"><a href="./index.html#module-04">Back to Interactive Simulations</a><br>Module 04 · Simulation 03</div>
+  </div>
+</header>
+<main class="shell">
+  <div class="hero">
+    <div class="eyebrow">Social Work Practice Simulation</div>
+    <h1>Marko: Whose Plan Is It?</h1>
+    <p>Explore shared decision-making when a young person's housing priorities differ from a worker's preferred sequence of support.</p>
+    <div class="pills"><span class="pill">3 decision points</span><span class="pill">Unscored practice</span><span class="pill">Fictional learning scenario</span></div>
+  </div>
+  <div class="layout">
+    <article class="panel panel-main" id="simulation" aria-label="Marko care planning simulation">
+      <ol class="steps" id="progress" aria-label="Simulation progress"></ol>
+      <div id="stage" aria-live="polite" aria-atomic="false"></div>
+    </article>
+    <aside class="panel sidebar" aria-label="Decision history">
+      <h3>Your journey</h3>
+      <p class="sidebar-intro">Your choices shape the conversation and its reflection. They are not scored, and they do not determine whether housing is available.</p>
+      <ol class="history" id="history"></ol>
+      <div class="small-divider"></div>
+      <div class="sidebar-note"><strong>Practice focus</strong><br>Voice and choice · Collaboration · Transparency · Professional power · Service limits</div>
+    </aside>
+  </div>
+  <div class="footer">
+    <strong>Educational prototype.</strong> Marko is fictional. The youth service cannot allocate housing, and an external provider determines eligibility and availability. The simulation does not promise a housing outcome.
+  </div>
+</main>
+<script>
+(() => {
+  'use strict';
+  const SCENES = [
+    'Whose priorities shape the plan?',
+    'What can the worker promise?',
+    'What follow-up feels supportive?'
+  ];
+  const OPTIONS = [
+    [
+      {id:'A',label:'Listen and make room for housing first'},
+      {id:'B',label:'Make support a readiness test'},
+      {id:'C',label:'Record the goal but keep the agenda'}
+    ],
+    [
+      {id:'A',label:'Be transparent and offer a joint next step'},
+      {id:'B',label:'State the limit and stop there'},
+      {id:'C',label:'Offer an unverified promise'}
+    ],
+    [
+      {id:'A',label:'Negotiate contact and explain responsibilities'},
+      {id:'B',label:'Make weekly contact a condition'},
+      {id:'C',label:'Withdraw contact to avoid pressure'}
+    ]
+  ];
+  const ACTIONS = [
+    {
+      A:{
+        dialogue:[
+          ['Social Worker',"I can hear that I made it sound as if you have to prove you are ready before we take your goal seriously. Housing is your priority. Would you like to start by finding out what the housing process asks for?"],
+          ['Marko',"Yes. I want to know the real steps first. I might think about counselling later, but I do not want it to be the first thing on the plan."]
+        ],
+        reflection:"The worker acknowledges the impact of the earlier proposal, restores Marko’s priority and separates an optional support from a requirement. The next step is to explain what the service can and cannot do."
+      },
+      B:{
+        dialogue:[
+          ['Social Worker',"I understand, but counselling and regular appointments need to come first. We need to know you can manage independent housing."],
+          ['Marko',"So I have to show you I am stable before anyone takes my housing goal seriously?"]
+        ],
+        reflection:"This response presents the worker’s preference as a condition without establishing that it is a service or housing-provider requirement. It defines readiness for Marko and may reinforce the feeling that support depends on compliance."
+      },
+      C:{
+        dialogue:[
+          ['Social Worker',"I hear that housing is your priority. I will put it in the plan, and then we need to move on to the other supports I suggested."],
+          ['Marko',"You can write it down, but it still sounds as if the main plan is already decided."]
+        ],
+        reflection:"Recording a goal is not the same as sharing decisions about it. The worker has not yet explored which recommendations Marko finds useful or explained whether any are actual service requirements."
+      }
+    },
+    {
+      A:{
+        dialogue:[
+          ['Social Worker',"No. Those were options I suggested, not conditions for us to work on your housing goal. We can ask the housing service what its process requires before sharing information. Would you like to contact them together?"],
+          ['Marko',"Yes. I want to know what they actually need. I do not want you to call my family or my friend for details."],
+          ['Social Worker',"I will not contact them without your agreement unless a specific legal or safety responsibility means I have to act. If that comes up, I will explain what I can and involve you as much as possible."]
+        ],
+        reflection:"The worker states the service limit without making it Marko’s fault, offers an action within the worker’s role and checks before sharing information. Transparency includes explaining confidentiality limits clearly."
+      },
+      B:{
+        dialogue:[
+          ['Social Worker',"That decision is up to the housing provider. I cannot control it, so we may have to wait and see."],
+          ['Marko',"Then I still do not know what I can do now or what happens next."]
+        ],
+        reflection:"The worker is honest about limited control, but the response leaves Marko without a practical next step. The worker can still offer to ask about eligibility, required information and current availability with Marko’s consent."
+      },
+      C:{
+        dialogue:[
+          ['Social Worker',"If you complete the program and attend weekly check-ins, it may improve your chances of getting housing."],
+          ['Marko',"Has the housing provider actually said that? I do not want to agree to something based on a guess."]
+        ],
+        reflection:"The worker links service participation to a possible housing outcome without evidence from the provider. This can make an optional recommendation feel compulsory and weaken trust. Do not claim that a program changes eligibility unless the provider has confirmed it."
+      }
+    },
+    {
+      A:{
+        dialogue:[
+          ['Social Worker',"I do not want contact to feel like monitoring. What kind of follow-up would be useful, and what would feel like too much? I also want to be clear about how I would respond if I had a specific safety concern."],
+          ['Marko',"I could meet every two weeks, after I know my roster. If my shift changes, text me and I will reply when I can."],
+          ['Social Worker',"Let us put fortnightly check-ins in the plan and review them together. I will text about appointment changes. If I have a specific safety concern, I will explain what I have noticed and discuss next steps within the service’s responsibilities."]
+        ],
+        reflection:"The worker asks what contact works, agrees a proportionate arrangement and makes professional responsibilities visible. The plan can be reviewed if Marko’s circumstances or a specific safety concern changes."
+      },
+      B:{
+        dialogue:[
+          ['Social Worker',"Weekly check-ins are necessary. If you do not attend, I am not sure we can keep working on housing."],
+          ['Marko',"That is exactly what I mean. It does not feel like a choice."]
+        ],
+        reflection:"This response uses access to support as pressure to secure attendance. It risks turning a worker’s preferred contact schedule into an unverified service rule. The worker should distinguish actual requirements from concerns that can be discussed and negotiated."
+      },
+      C:{
+        dialogue:[
+          ['Social Worker',"All right. I will leave it to you to contact us whenever you want support."],
+          ['Marko',"That sounds easier, but I do not want the plan to disappear if I miss a shift."]
+        ],
+        reflection:"Removing all follow-up avoids imposing a schedule, but it also places the whole burden of maintaining contact on Marko. A collaborative plan should identify a workable contact method and clarify what will happen if circumstances change."
+      }
+    }
+  ];
+  const SHARED_PLAN = [
+    "A collaboratively reached plan could record independent housing as Marko’s first goal. Marko and the worker contact the housing service together this week to ask about eligibility, required information and current availability. They pause before sharing personal details. Marko decides whether to explore interim options after hearing what is available. The worker arranges a check-in after Marko receives their roster, texts about appointment changes and reviews the plan with Marko in two weeks. Counselling information remains available if Marko wants it; it is not a prerequisite. The worker does not contact Marko’s friend or family without agreement, subject to any specific legal or safety responsibility that must be explained.",
+    "The record should include Marko’s explanation that appointments clashed with late shift changes and distinguish Marko’s account from the worker’s assessment. The housing process remains uncertain; the plan does not promise a place or treat an external provider’s decision as evidence that Marko is not ready."
+  ];
+  const REFLECTION_QUESTIONS = [
+    'Whose priorities shaped the first version of the plan, and what changed after Marko challenged it?',
+    'Which parts of the worker’s proposal are confirmed requirements, and which are professional recommendations?',
+    'How can the worker respond to missed appointments without treating them as proof of risk or disengagement?',
+    'How can the worker be honest about housing limits while keeping Marko involved in practical next steps?',
+    'What makes follow-up collaborative while still allowing the worker to explain a specific safety concern?'
+  ];
+  const PRACTICE_LENS = 'The dialogue brings trauma-informed principles into the worker’s language and choices: safety, voice and choice, collaboration, transparency and empowerment. Marko’s hesitation is treated as meaningful information about the interaction, not as proof of a diagnosis or a reason to demand personal disclosure. An anti-oppressive lens asks who defines readiness, how professional records shape future decisions, and how limited housing availability restricts the choices that can be offered. The scenario does not suggest that one response removes these structural limits.';
+
+  let step=0;
+  let selection='';
+  let history=['','',''];
+  const stage=document.getElementById('stage');
+  const progress=document.getElementById('progress');
+  const historyPanel=document.getElementById('history');
+  const el=(tag,cls,txt)=>{const e=document.createElement(tag);if(cls)e.className=cls;if(txt!==undefined)e.textContent=txt;return e;};
+  const add=(parent,tag,cls,txt)=>{const e=el(tag,cls,txt);parent.append(e);return e;};
+  function addTurn(parent,speaker,text){
+    const turn=add(parent,'div','turn');
+    add(turn,'span','speaker',speaker);
+    add(turn,'p','dialogue',text);
+  }
+  function renderOpening(){
+    const body=add(stage,'div','narrative');
+    if(step===0){
+      add(body,'div','box-eyebrow','The setting');
+      add(body,'p','',"You are a social worker meeting Marko, 18, at a youth support service in Western Australia. Marko is staying in temporary accommodation and has brought a short list on their phone: independent housing, more predictable work and no family contact without their agreement.");
+      const opening=add(body,'div','scene-box');
+      add(opening,'div','box-eyebrow','Shared opening');
+      addTurn(opening,'Social Worker',"Before we start, I would like to hear what matters most to you. I can explain what the service can and cannot do, and we can keep your priorities visible as we make a plan.");
+      addTurn(opening,'Marko',"Do I actually get to choose what goes into it? I came because I want somewhere stable to live.");
+      addTurn(opening,'Social Worker',"Your goals should shape the plan. I may also need to record relevant service information or a specific safety concern, but I will explain what I am writing and distinguish your view from my professional assessment.");
+      const context=add(body,'div','scene-box');
+      add(context,'div','box-eyebrow','What Marko has explained');
+      add(context,'p','',"Housing and predictable work are connected for Marko: uncertainty about where they will stay makes routines and shifts harder to plan. Marko uses phone reminders, takes pride in being dependable at work and missed some appointments after shifts changed at short notice. Text is the easiest way to reach them. They do not want a friend or family member contacted without discussion.");
+      add(body,'p','',"You explain that the team is concerned about housing instability, missed appointments and Marko’s limited support network. You suggest counselling, weekly check-ins and a structured support program before focusing on independent housing.");
+      const challenge=add(body,'div','scene-box');
+      add(challenge,'div','box-eyebrow','Marko');
+      add(challenge,'div','dialogue',"Every time I tell someone what I want, they come back with a list of things I need to fix first. I thought this was supposed to be my plan.");
+    } else if(step===1){
+      add(body,'p','',"You explain that the youth service cannot allocate independent housing. An external provider makes its own eligibility and availability decisions, and the worker cannot promise an outcome.");
+      const question=add(body,'div','scene-box');
+      add(question,'div','box-eyebrow','Marko');
+      add(question,'div','dialogue',"So are you saying I shouldn’t even ask until I’ve done counselling or the program?");
+    } else if(step===2){
+      add(body,'p','',"The worker returns to follow-up and explains a wish to stay connected. Marko says that frequent contact feels like monitoring and questions whether their choices will be respected.");
+      const question=add(body,'div','scene-box');
+      add(question,'div','box-eyebrow','Marko');
+      add(question,'div','dialogue',"You keep saying I have choices, but it feels like I have to agree with whatever you suggest.");
+    }
+  }
+  function reveal(){
+    const existing=document.getElementById('reveal');
+    if(existing)existing.remove();
+    if(!selection)return;
+    const response=ACTIONS[step][selection];
+    const root=add(stage,'div','reveal');
+    root.id='reveal';
+    root.setAttribute('aria-live','polite');
+    root.setAttribute('aria-atomic','false');
+    const conversation=add(root,'div','conversation');
+    add(conversation,'div','box-eyebrow','How the conversation continues');
+    response.dialogue.forEach(turn=>addTurn(conversation,turn[0],turn[1]));
+    const reflection=add(root,'div','practice-reflection');
+    add(reflection,'h3','','Practice reflection');
+    add(reflection,'p','',response.reflection);
+  }
+  function renderScene(){
+    stage.replaceChildren();
+    add(stage,'div','scene-label','Decision point '+(step+1));
+    add(stage,'h2','',SCENES[step]);
+    renderOpening();
+    stage.append(el('hr'));
+    const fieldset=add(stage,'fieldset','choice-fieldset');
+    add(fieldset,'legend','','What would you do next?');
+    const choices=add(fieldset,'div','choice-list');
+    const nav=add(stage,'div','buttons');
+    const back=add(nav,'button','btn secondary','← Back');
+    back.type='button';
+    back.disabled=step===0;
+    const next=add(nav,'button','btn',step===2?'View the shared plan →':'Continue →');
+    next.type='button';
+    next.disabled=!selection;
+    OPTIONS[step].forEach(option=>{
+      const label=add(choices,'label','choice');
+      const radio=add(label,'input');
+      radio.type='radio';
+      radio.name='current-choice';
+      radio.value=option.id;
+      radio.checked=selection===option.id;
+      radio.setAttribute('aria-label',option.id+'. '+option.label);
+      add(label,'span','letter',option.id);
+      add(label,'span','choice-text',option.label);
+      radio.addEventListener('change',()=>{
+        selection=option.id;
+        reveal();
+        next.disabled=false;
+      });
+    });
+    back.addEventListener('click',goBack);
+    next.addEventListener('click',goNext);
+    if(selection)reveal();
+  }
+  function paintProgress(){
+    progress.replaceChildren();
+    for(let i=0;i<3;i++){
+      const item=el('li',step===i?'current':step>i?'done':'');
+      item.setAttribute('aria-label','Decision point '+(i+1)+': '+(step>i?'completed':step===i?'current':'upcoming'));
+      if(step===i)item.setAttribute('aria-current','step');
+      progress.append(item);
+    }
+  }
+  function paintHistory(){
+    historyPanel.replaceChildren();
+    SCENES.forEach((name,i)=>{
+      const li=el('li',history[i]?'completed':step===i?'active':'');
+      add(li,'span','hnum',history[i]?'✓':String(i+1));
+      const wrap=add(li,'div');
+      add(wrap,'div','hname',name);
+      add(wrap,'div','hchoice',history[i]?'Choice '+history[i]+' · '+OPTIONS[i].find(o=>o.id===history[i]).label:step===i?'Current decision':'Not yet reached');
+      historyPanel.append(li);
+    });
+  }
+  function renderEnd(){
+    stage.replaceChildren();
+    add(stage,'div','scene-label','Simulation complete');
+    add(stage,'h2','','Shared Care Plan and Reflection');
+    add(stage,'p','context','The route is not scored. The selections below show the path you explored; they do not determine housing eligibility or availability.');
+    const plan=add(stage,'section','plan-card');
+    add(plan,'h3','','Possible Shared Care Plan');
+    SHARED_PLAN.forEach(text=>add(plan,'p','',text));
+    const reflection=add(stage,'section','');
+    add(reflection,'h3','','Facilitator Reflection');
+    const list=add(reflection,'ul','reflection-list');
+    REFLECTION_QUESTIONS.forEach(question=>add(list,'li','',question));
+    const lens=add(stage,'section','lens-card');
+    add(lens,'h3','','Trauma-Informed and AOP Practice Lens');
+    add(lens,'p','',PRACTICE_LENS);
+    const nav=add(stage,'div','buttons');
+    const back=add(nav,'button','btn secondary','← Revise decision 3');
+    back.type='button';
+    back.addEventListener('click',goBack);
+    const again=add(nav,'button','btn','Play Again');
+    again.type='button';
+    again.addEventListener('click',restart);
+  }
+  function scrollToGame(){
+    document.getElementById('simulation').scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+  }
+  function render(){
+    paintProgress();
+    paintHistory();
+    if(step===3)renderEnd();
+    else renderScene();
+  }
+  function goNext(){
+    if(!selection)return;
+    history[step]=selection;
+    step++;
+    selection='';
+    render();
+    scrollToGame();
+  }
+  function goBack(){
+    if(step===0)return;
+    if(step===3)step=2;
+    else step--;
+    selection=history[step];
+    render();
+    scrollToGame();
+  }
+  function restart(){
+    step=0;
+    selection='';
+    history=['','',''];
+    render();
+    scrollToGame();
+  }
+  render();
+})();
+</script>
+</body>
+</html>

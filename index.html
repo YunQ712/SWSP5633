@@ -62,7 +62,9 @@
       min-height: 110px; border: 1.5px dashed #bfc9b8; border-radius: 12px;
       background: rgba(255, 254, 249, .58);
     }
-    .positioning { max-width: 650px; margin: 0; color: var(--muted); font-size: 20px; line-height: 1.5; }
+    .positioning { max-width: 920px; margin: 0; color: var(--muted); font-size: 19px; line-height: 1.55; }
+    .positioning p { margin: 0 0 14px; }
+    .positioning p:last-child { margin-bottom: 0; }
     section { padding: 56px 0; border-top: 1px solid var(--line); }
     .section-head { display: grid; grid-template-columns: 150px 1fr; gap: 24px; align-items: start; margin-bottom: 28px; }
     .section-number { color: var(--muted); font-size: 16px; font-weight: 650; letter-spacing: 1px; }
@@ -73,7 +75,8 @@
       padding: 22px; border: 1px solid var(--line); border-radius: 14px;
       background: var(--surface); box-shadow: var(--shadow);
     }
-    .m1s1-card { grid-column: 1 / -1; }
+    .m1s1-card { grid-column: 1 / -1; scroll-margin-top: 94px; }
+    .submodule-grid article[hidden], .m2-content article[hidden], .m2-references[hidden] { display: none; }
     .submodule-card h3 { margin: 0 0 14px; font-size: 19px; line-height: 1.4; }
     .submodule-card .empty { min-height: 94px; }
     .m1s1-card h3 { font-size: 25px; }
@@ -112,7 +115,7 @@
     .m1s1-reflection { margin-top: 12px; padding: 12px 16px; background: #f6f5ef; }
     .m1s1-reflection h5 { margin: 0; font-size: 20px; }
     .m1s1-reflection p { margin-top: 4px; }
-    .m1s1-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .m1-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
     .m1s2-card { grid-column: 1 / -1; scroll-margin-top: 94px; }
     .m1s2-intro { margin: 0 0 24px; font-size: 18px; }
     .m1s2-group { margin-top: 28px; }
@@ -128,6 +131,68 @@
     .m1s2-references h4 { margin-bottom: 10px; font-size: 22px; }
     .m1s2-references ol { margin: 0; padding-left: 26px; }
     .m1s2-references li { padding: 5px 0 5px 4px; font-size: 18px; overflow-wrap: anywhere; }
+    .m1s3-card, .m1s4-card { grid-column: 1 / -1; scroll-margin-top: 94px; }
+    .m1s3-card h3, .m1s4-card h3 { font-size: 25px; }
+    .m1s3-intro { margin: 0 0 24px; font-size: 18px; }
+    .m1s3-card h4, .m1s4-card h4 { margin: 24px 0 12px; font-size: 24px; }
+    .m1s3-instruction, .m1s3-citation, .m1s4-instruction, .m1s4-copy { font-size: 18px; }
+    .m1s3-options { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 12px; }
+    .m1s3-option, .m1s4-lens {
+      min-height: 128px; padding: 18px; border: 1px solid var(--line); border-radius: 12px;
+      background: var(--surface); color: var(--ink); font: inherit; text-align: left;
+      cursor: pointer; transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
+    }
+    .m1s3-option { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .m1s3-option:hover, .m1s4-lens:hover { transform: translateY(-2px) scale(1.01); box-shadow: var(--shadow); }
+    .m1s3-option:focus-visible, .m1s4-lens:focus-visible { outline: 3px solid #7a895d; outline-offset: 3px; }
+    .m1s3-option[aria-pressed="true"], .m1s4-lens[aria-pressed="true"] { border: 2px solid var(--ink); background: var(--sage); }
+    .m1s3-option-title, .m1s4-lens-title { display: block; font-size: 18px; font-weight: 650; line-height: 1.35; }
+    .m1s3-icon, .m1s4-icon { display: block; width: 30px; height: 30px; }
+    .m1s3-icon svg, .m1s4-icon svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+    .m1s3-panel, .m1s4-panel, .m1s3-resilience, .m1s4-scenario {
+      margin-top: 18px; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--sage);
+    }
+    .m1s3-panel { min-height: 132px; }
+    .m1s3-panel h5, .m1s4-panel h5, .m1s3-resilience h5, .m1s4-scenario h5 { margin: 0 0 8px; font-size: 21px; }
+    .m1s3-panel p, .m1s3-resilience p, .m1s4-panel p, .m1s4-scenario p { margin: 0; font-size: 18px; }
+    .m1s3-citation { margin: 14px 0 0; }
+    .m1s3-resilience { background: #f6f5ef; }
+    .m1s3-references, .m1s4-references { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
+    .m1s3-references h4, .m1s4-references h4 { margin: 0 0 10px; font-size: 22px; }
+    .m1s3-references ol, .m1s4-references ol { margin: 0; padding-left: 26px; }
+    .m1s3-references li, .m1s4-references li { padding: 5px 0 5px 4px; font-size: 18px; overflow-wrap: anywhere; }
+    .m1s4-definitions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .m1s4-definition { padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+    .m1s4-definition h5 { margin: 0 0 8px; font-size: 21px; }
+    .m1s4-definition p { margin: 0; font-size: 18px; }
+    .m1s4-explore-title { margin: 0 0 12px; font-size: 22px; }
+    .m1s4-scenario { background: #fff; }
+    .m1s4-scenario h6 { margin: 0 0 8px; font-size: 20px; }
+    .m1s4-scenario p + p { margin-top: 10px; }
+    .m1s4-instruction { margin: 20px 0 12px; font-weight: 650; }
+    .m1s4-lenses { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .m1s4-lens { min-height: 94px; display: flex; align-items: center; gap: 14px; }
+    .m1s4-lens-copy { flex: 1; }
+    .m1s4-lens-status { display: block; margin-top: 6px; font-size: 18px; }
+    .m1s4-panel { min-height: 122px; background: var(--surface); }
+    .m1s4-completion { margin: 12px 0 0; font-size: 18px; font-weight: 650; }
+    .m1s4-copy { margin: 0 0 12px; }
+    .m1s4-copy + .m1s4-copy { margin-top: 12px; }
+    .m1-actions .m1s1-button { flex: 0 0 auto; }
+    .m1-section-head { display: block; margin-bottom: 34px; text-align: center; }
+    .m1-section-head .section-number { display: none; }
+    .m1-section-head .eyebrow, .m1-section-head h2 { color: #1e6a84; }
+    .m1-submodule-menu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 0 0 38px; }
+    .m1-menu-card { width: 100%; padding: 0; border: 0; border-radius: 5px; background: transparent; color: #1e6a84; font: inherit; text-align: left; cursor: pointer; }
+    .m1-menu-card:focus-visible { outline: 3px solid #216b84; outline-offset: 6px; }
+    .m1-menu-visual { display: grid; height: 206px; place-items: center; overflow: hidden; transition: transform .18s ease, box-shadow .18s ease; }
+    .m1-menu-card:hover .m1-menu-visual { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .m1-menu-visual svg { display: block; width: min(86%, 340px); height: 165px; }
+    .m1-menu-caption { display: grid; grid-template-columns: minmax(0, 1fr) 46px; align-items: center; gap: 12px; padding: 16px 0 4px; }
+    .m1-menu-title { display: block; font-size: 23px; font-weight: 700; line-height: 1.2; }
+    .m1-menu-arrow { display: grid; width: 42px; height: 42px; place-items: center; border: 2px solid currentColor; border-radius: 50%; }
+    .m1-menu-arrow svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .18s ease; }
+    .m1-menu-card[aria-expanded="true"] .m1-menu-arrow svg { transform: rotate(180deg); }
     .panel {
       padding: 26px; border: 1px solid var(--line); border-radius: 14px;
       background: var(--surface); box-shadow: var(--shadow);
@@ -175,6 +240,8 @@
       .scenario-grid { grid-template-columns: 1fr; }
       .module-grid { grid-template-columns: 1fr; }
       .m1s2-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .m1s3-options { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .m1-submodule-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
       .scenario-card { min-height: 145px; }
       .blank-row { grid-template-columns: 1fr; gap: 8px; }
       .decision-grid { grid-template-columns: 1fr; }
@@ -185,8 +252,234 @@
       nav { gap: 10px 18px; }
       .two-col, .submodule-grid, .reflection-grid { grid-template-columns: 1fr; }
       .m1s2-cards, .m1s1-ees { grid-template-columns: 1fr; }
+      .m1s3-options, .m1s4-lenses, .m1s4-definitions { grid-template-columns: 1fr; }
+      .m1-submodule-menu { grid-template-columns: 1fr; gap: 22px; }
+      .m1-menu-visual { height: 190px; }
       section { padding: 42px 0; }
       .panel { padding: 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .m1s3-option, .m1s4-lens { transition: none; }
+      .m1s3-option:hover, .m1s4-lens:hover { transform: none; }
+      .m1-menu-visual, .m1-menu-card:hover .m1-menu-visual { transition: none; transform: none; }
+    }
+    .m2-section-head { display: block; margin-bottom: 34px; text-align: center; }
+    .m2-section-head .section-number { display: none; }
+    .m2-section-head h2 { color: #1e6a84; }
+    .m2-submodule-menu { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 0 0 42px; align-items: start; }
+    .m2-menu-card { display: block; width: 100%; padding: 0; border: 0; background: transparent; color: #1e6a84; font: inherit; text-align: left; cursor: pointer; }
+    .m2-menu-card:focus-visible { outline: 3px solid #216b84; outline-offset: 6px; }
+    .m2-menu-visual { display: grid; height: 206px; place-items: center; overflow: hidden; transition: transform .18s ease, box-shadow .18s ease; }
+    .m2-menu-card:hover .m2-menu-visual { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .m2-menu-visual svg { display: block; width: min(86%, 340px); height: 165px; fill: none; stroke: #243e65; stroke-width: 4; stroke-linecap: round; stroke-linejoin: round; }
+    .m2-menu-caption { display: grid; grid-template-columns: minmax(0, 1fr) 46px; align-items: center; gap: 12px; padding: 16px 0 4px; }
+    .m2-menu-title { display: block; font-size: 23px; font-weight: 700; line-height: 1.2; }
+    .m2-menu-arrow { display: grid; width: 42px; height: 42px; place-items: center; border: 2px solid currentColor; border-radius: 50%; }
+    .m2-menu-arrow svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 2; transition: transform .18s ease; }
+    .m2-menu-card[aria-expanded="true"] .m2-menu-arrow svg { transform: rotate(180deg); }
+    .m2-content { display: grid; gap: 24px; }
+    .m2-submodule { scroll-margin-top: 94px; padding: 26px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
+    .m2-submodule > h3 { margin: 0 0 14px; font-size: 28px; line-height: 1.25; }
+    .m2-submodule p { font-size: 18px; }
+    .m2-opening { max-width: 980px; margin: 0 0 24px; }
+    .m2-block { margin-top: 28px; }
+    .m2-block > h4 { margin: 0 0 12px; font-size: 24px; line-height: 1.3; }
+    .m2-definition, .m2-transition-card, .m2-practice-panel, .m2-analogy, .m2-ethics-statement { padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--sage); }
+    .m2-definition p:last-child, .m2-transition-card p:last-child, .m2-analogy p:last-child, .m2-ethics-statement p:last-child { margin-bottom: 0; }
+    .m2-source { margin: 18px 0 0; font-size: 18px; color: var(--muted); }
+    .m2-comparison-intro { margin: 0 0 18px; }
+    .m2-intake-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .m2-intake-card { min-height: 100%; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease; }
+    .m2-intake-card.routine:hover { border-color: #9cabb7; background: #eef2f5; transform: translateY(-2px); box-shadow: var(--shadow); }
+    .m2-intake-card.informed:hover { border-color: #88aa9b; background: #e8f2ee; transform: translateY(-2px); box-shadow: var(--shadow); }
+    .m2-intake-card h5 { margin: 0 0 12px; font-size: 23px; }
+    .m2-intake-card ul { margin: 0; padding-left: 24px; }
+    .m2-intake-card li { padding: 5px 0; font-size: 18px; }
+    .m2-transition-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .m2-transition-card { min-height: 112px; background: var(--surface); }
+    .m2-transition-card h5 { margin: 0 0 8px; font-size: 21px; }
+    .m2-transition-card p { margin: 0; }
+    .m2s2-fourrs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+    .m2s2-card { padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease; }
+    .m2s2-card:hover { transform: translateY(-3px) scale(1.008); border-color: #9da9be; background: #f1f1f8; box-shadow: var(--shadow); }
+    .m2s2-card h5 { margin: 0 0 8px; font-size: 22px; }
+    .m2s2-card p { margin: 0; }
+    .m2s2-icon, .m2s3-icon { display: block; width: 32px; height: 32px; margin-bottom: 12px; color: #1e6a84; }
+    .m2s2-icon svg, .m2s3-icon svg, .m2s5-icon svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .m2s2-selector .m2s2-icon { display: inline-block; width: 28px; height: 28px; margin: 0 9px 0 0; vertical-align: middle; }
+    .m2s2-practice-scenario { padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: #f5f1e7; }
+    .m2s2-practice-scenario strong { display: block; margin-bottom: 6px; font-size: 18px; letter-spacing: .04em; }
+    .m2s2-practice-scenario p { margin: 0; }
+    .m2s2-instruction { margin: 18px 0 12px; }
+    .m2s2-selectors { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+    .m2s2-selector { min-height: 72px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); color: var(--ink); font: inherit; font-size: 18px; font-weight: 650; text-align: left; cursor: pointer; transition: background .18s ease, border-color .18s ease, box-shadow .18s ease; }
+    .m2s2-selector:hover, .m2s2-selector:focus-visible, .m2s2-selector[aria-pressed="true"] { outline: none; border-color: #688e9d; background: #e8f1f4; box-shadow: var(--shadow); }
+    .m2s2-selector:focus-visible { outline: 3px solid #216b84; outline-offset: 3px; }
+    .m2s2-panel { min-height: 138px; margin-top: 14px; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
+    .m2s2-panel h5 { margin: 0 0 8px; font-size: 22px; }
+    .m2s2-panel p { margin: 0; }
+    .m2s3-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+    .m2s3-card { min-height: 250px; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease; }
+    .m2s3-card:hover { transform: translateY(-3px) scale(1.008); border-color: #9caeb4; box-shadow: var(--shadow); }
+    .m2s3-card:nth-child(1) { background: #e8f3f5; }
+    .m2s3-card:nth-child(2) { background: #edf0fc; }
+    .m2s3-card:nth-child(3) { background: #f2eefb; }
+    .m2s3-card:nth-child(4) { background: #e9f5ef; }
+    .m2s3-card:nth-child(5) { background: #fff2e8; }
+    .m2s3-card:nth-child(6) { background: #f9edf1; }
+    .m2s3-number { display: block; margin-bottom: 10px; color: #526f7b; font-size: 18px; font-weight: 700; letter-spacing: .06em; }
+    .m2s3-card h5 { margin: 0 0 10px; font-size: 22px; line-height: 1.3; }
+    .m2s3-card p { margin: 0 0 14px; }
+    .m2s3-example { padding-top: 12px; border-top: 1px solid rgba(35,72,61,.2); }
+    .m2s3-example strong { display: block; margin-bottom: 5px; }
+    .m2s3-closing { margin: 20px 0 0; padding: 18px 20px; border-left: 4px solid #779a8b; background: var(--sage); }
+    .m2s4-differences { display: grid; gap: 12px; }
+    .m2s4-difference-row { display: grid; grid-template-columns: 170px repeat(2, minmax(0, 1fr)); gap: 12px; align-items: stretch; }
+    .m2s4-label, .m2s4-cell { margin: 0; padding: 16px; border: 1px solid var(--line); border-radius: 10px; background: var(--surface); }
+    .m2s4-label { display: flex; align-items: center; font-size: 18px; font-weight: 700; background: var(--sage); }
+    .m2s4-cell p { margin: 0; }
+    .m2s4-cell-title { display: block; margin-bottom: 6px; font-weight: 700; }
+    .m2s4-analogy { margin-top: 28px; }
+    .m2s4-analogy blockquote { margin: 0 0 14px; padding: 16px 20px; border-left: 4px solid #789ca9; background: var(--sage); font-size: 19px; }
+    .m2s4-analogy p { margin: 0 0 14px; }
+    .m2s5-panels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .m2s5-panel { display: flex; flex-direction: column; min-height: 100%; padding: 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease, background .2s ease; }
+    .m2s5-panel.ethics:hover { transform: translateY(-3px); border-color: #78ad96; background: #e9f4ef; box-shadow: var(--shadow); }
+    .m2s5-panel.aop:hover { transform: translateY(-3px); border-color: #ac9cd0; background: #f0edfa; box-shadow: var(--shadow); }
+    .m2s5-tag { margin: 0 0 12px; font-size: 18px; font-weight: 700; letter-spacing: .05em; }
+    .m2s5-icon { display: inline-block; width: 32px; height: 32px; margin-right: 8px; vertical-align: middle; color: #1e6a84; }
+    .m2s5-panel h4 { margin: 0 0 12px; font-size: 23px; line-height: 1.3; }
+    .m2s5-panel p { margin: 0 0 14px; }
+    .m2s5-values { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 16px; padding: 0; list-style: none; }
+    .m2s5-values li { padding: 6px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 18px; }
+    .m2s5-statement { margin-top: auto !important; padding: 16px; border-radius: 10px; background: var(--sage); font-weight: 600; }
+    .m2s5-citation { margin-top: 12px !important; color: var(--muted); }
+    .m2-references { margin-top: 24px; padding: 22px; border-top: 1px solid var(--line); background: rgba(255,255,255,.42); }
+    .m2-references h3 { margin: 0 0 12px; font-size: 24px; }
+    .m2-references ol { margin: 0; padding-left: 26px; }
+    .m2-references li { margin: 0 0 12px; font-size: 18px; overflow-wrap: anywhere; }
+    .m2-references li:last-child { margin-bottom: 0; }
+    .m2-references a { overflow-wrap: anywhere; }
+    @media (max-width: 800px) {
+      .m2-submodule-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+      .m2s2-selectors { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .m2s3-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .m2s4-difference-row { grid-template-columns: 145px repeat(2, minmax(0, 1fr)); gap: 9px; }
+    }
+    @media (max-width: 620px) {
+      .m2s3-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (max-width: 560px) {
+      .m2-submodule-menu { grid-template-columns: 1fr; gap: 22px; }
+      .m2-menu-visual { height: 190px; }
+      .m2-intake-grid, .m2-transition-grid, .m2s5-panels { grid-template-columns: 1fr; }
+      .m2s4-difference-row { grid-template-columns: 1fr; gap: 8px; }
+      .m2s4-label { padding: 10px 14px; }
+      .m2-submodule { padding: 20px; }
+    }
+    @media (max-width: 425px) {
+      .m2s2-fourrs, .m2s2-selectors, .m2s3-grid { grid-template-columns: 1fr; }
+      .m2s2-selector { min-height: 56px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .m1-menu-arrow svg, .m2-menu-arrow svg, .m2-menu-visual, .m2-menu-card:hover .m2-menu-visual, .m2-intake-card, .m2s2-card, .m2s3-card, .m2s5-panel { transition: none; transform: none; }
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --paper: #171c1a; --surface: #232a27; --ink: #edf1ee; --muted: #b6c1ba; --line: #46534c; --sage: #2b3831; --accent: #8da48d; --shadow: 0 14px 36px rgba(0,0,0,.24); }
+      body { color-scheme: dark; }
+      header { background: rgba(23,28,26,.96); }
+      .m2-section-head h2 { color: #80c7dc; }
+      .m2-menu-card { color: #80c7dc; }
+      .m1s1-button { background: #50745f; color: #fff; }
+      .m1s1-button.secondary { background: transparent; color: var(--ink); }
+      .empty { background: rgba(35,42,39,.6); }
+      .m1s1-textarea, .m1s1-response, .m1s4-scenario { background: var(--surface); color: var(--ink); }
+      .m1s1-reflection, .m1s3-resilience { background: var(--sage); }
+      .m2-intake-card.routine:hover { background: #293440; border-color: #8297a5; }
+      .m2-intake-card.informed:hover { background: #263a33; border-color: #83aa98; }
+      .m2s2-card:hover { background: #30313d; border-color: #a6a6c2; }
+      .m2s2-practice-scenario { background: #332e24; }
+      .m2s2-selector:hover, .m2s2-selector:focus-visible, .m2s2-selector[aria-pressed="true"] { background: #263943; border-color: #8ab3c0; }
+      .m2s3-card:nth-child(1) { background: #25383c; }
+      .m2s3-card:nth-child(2) { background: #2b2e43; }
+      .m2s3-card:nth-child(3) { background: #362d42; }
+      .m2s3-card:nth-child(4) { background: #26392e; }
+      .m2s3-card:nth-child(5) { background: #3a3028; }
+      .m2s3-card:nth-child(6) { background: #3b2d34; }
+      .m2s3-number { color: #c0d2d6; }
+      .m2s3-example { border-color: rgba(237,241,238,.2); }
+      .m2s4-analogy blockquote { border-left-color: #8bb4c1; }
+      .m2s5-panel.ethics:hover { background: #263a32; border-color: #86b89e; }
+      .m2s5-panel.aop:hover { background: #332e43; border-color: #b5a7d8; }
+      .m2s5-values li, .m2-references { background: var(--surface); }
+    }
+    .m3-section-head { display: block; margin-bottom: 34px; text-align: center; }
+    .m3-section-head .section-number { display: none; }
+    .m3-section-head h2 { color: #1e6a84; }
+    .m3-submodule-menu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; max-width: 1080px; margin: 0 auto 42px; align-items: start; }
+    .m3-menu-card { display: block; width: 100%; padding: 0; border: 0; background: transparent; color: #1e6a84; font: inherit; text-align: left; cursor: pointer; }
+    .m3-menu-card:focus-visible { outline: 3px solid #216b84; outline-offset: 6px; }
+    .m3-menu-card:hover .m2-menu-visual { transform: translateY(-2px); box-shadow: var(--shadow); }
+    .m3-menu-card[aria-expanded="true"] .m2-menu-arrow svg { transform: rotate(180deg); }
+    .m3-content { display: grid; gap: 24px; }
+    .m3-content article[hidden] { display: none; }
+    .m3-submodule { scroll-margin-top: 94px; padding: 26px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface); box-shadow: var(--shadow); }
+    .m3-submodule > h3 { margin: 0 0 24px; font-size: 28px; line-height: 1.25; }
+    .m3-actions { margin-bottom: 36px; }
+    .m3-actions > h4 { margin: 0 0 10px; font-size: 23px; }
+    .m3-action-row { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 14px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+    .m3-action-row:last-child { border-bottom: 0; }
+    .m3-action-check { display: block; width: 25px; height: 25px; margin-top: 2px; color: #438361; }
+    .m3-action-check svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+    .m3-action-row h5 { margin: 0 0 5px; font-size: 20px; line-height: 1.3; }
+    .m3-action-row p { margin: 0; font-size: 18px; }
+    .m3-scenario { margin-top: 34px; padding-top: 28px; border-top: 1px solid var(--line); }
+    .m3-scenario h4 { margin: 0 0 12px; font-size: 23px; }
+    .m3-scenario > p { margin: 0 0 12px; font-size: 18px; }
+    .m3-client-quote { margin: 16px 0 18px; padding: 18px 20px; border-left: 4px solid #8aab9a; border-radius: 0 10px 10px 0; background: var(--sage); font-size: 19px; }
+    .m3-question { margin: 0 0 12px !important; font-weight: 700; }
+    .m3-options { display: grid; gap: 10px; }
+    .m3-option-wrap { min-width: 0; }
+    .m3-option { display: grid; grid-template-columns: 38px minmax(0, 1fr) 28px; gap: 12px; align-items: center; width: 100%; min-height: 64px; padding: 14px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); color: var(--ink); font: inherit; text-align: left; cursor: pointer; transition: border-color .16s ease, background .16s ease, box-shadow .16s ease; }
+    .m3-option:hover { border-color: #87a394; box-shadow: var(--shadow); }
+    .m3-option:focus-visible { outline: 3px solid #216b84; outline-offset: 3px; }
+    .m3-option[aria-pressed="true"] { border: 2px solid #567c6d; background: var(--sage); }
+    .m3-option-marker { display: grid; width: 34px; height: 34px; place-items: center; border: 1px solid var(--line); border-radius: 50%; background: var(--paper); font-size: 18px; font-weight: 700; text-align: center; }
+    .m3-option-copy { font-size: 18px; line-height: 1.4; }
+    .m3-option-indicator { display: block; width: 24px; height: 24px; color: #477963; }
+    .m3-option-indicator svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 2; }
+    .m3-option-indicator .m3-selected-dot { fill: currentColor; opacity: 0; }
+    .m3-option[aria-pressed="true"] .m3-option-indicator .m3-selected-dot { opacity: 1; }
+    .m3-feedback { margin: 8px 0 0 50px; padding: 16px 18px; border: 1px solid var(--line); border-left: 4px solid #8aab9a; border-radius: 0 10px 10px 0; background: var(--sage); }
+    .m3-feedback[hidden] { display: none; }
+    .m3-feedback h5 { margin: 0 0 6px; font-size: 19px; }
+    .m3-feedback p { margin: 0; font-size: 18px; }
+    .m3-references { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); }
+    .m3-references h4 { margin: 0 0 12px; font-size: 22px; }
+    .m3-references ol { margin: 0; padding-left: 26px; }
+    .m3-references li { margin: 0 0 12px; font-size: 18px; overflow-wrap: anywhere; }
+    .m3-references li:last-child { margin-bottom: 0; }
+    .m3-references a { overflow-wrap: anywhere; }
+    @media (max-width: 800px) {
+      .m3-submodule-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+    }
+    @media (max-width: 560px) {
+      .m3-submodule-menu { grid-template-columns: 1fr; gap: 22px; }
+      .m3-submodule { padding: 20px; }
+      .m3-feedback { margin-left: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .m3-menu-card:hover .m2-menu-visual, .m3-option { transition: none; transform: none; }
+    }
+    @media (prefers-color-scheme: dark) {
+      .m3-section-head h2, .m3-menu-card { color: #80c7dc; }
+      .m3-action-check { color: #8bc8a7; }
+      .m3-client-quote { border-left-color: #8bc8a7; }
+      .m3-option:hover { border-color: #8bc8a7; }
+      .m3-option[aria-pressed="true"] { border-color: #8bc8a7; }
+      .m3-option-indicator { color: #8bc8a7; }
+      .m3-feedback { border-left-color: #8bc8a7; }
     }
   </style>
 </head>
@@ -208,22 +501,52 @@
       <div>
         <p class="eyebrow">For social work students and early-career social workers</p>
         <h1>SWSP5633 · Interactive trauma-informed social work learning site</h1>
-        <p class="positioning">A learning space to understand trauma-informed practice.</p>
+        <div class="positioning">
+          <p>This website is a beginner-friendly learning resource designed for social work students and emerging practitioners who want to understand and apply trauma-informed practice (TIP).</p>
+          <p>Through four interactive modules, we guide you from understanding trauma and its impacts to exploring key principles, applying them in real-world practice scenarios, and reflecting on your professional approach.</p>
+          <p>Our goal is to bridge the gap between theory and practice, making trauma-informed principles accessible, practical, and relevant to everyday social work.</p>
+          <p>Designed specifically for beginners, this website offers a supportive starting point to build foundational knowledge, develop practical awareness, and begin your journey towards trauma-informed social work practice.</p>
+        </div>
       </div>
     </div>
 
     <section id="module-01">
-      <div class="section-head">
+      <div class="section-head m1-section-head">
         <span class="section-number">01</span>
         <div>
-          <p class="eyebrow">Module 01</p>
           <h2>01 · Understanding Trauma</h2>
         </div>
       </div>
+      <nav class="m1-submodule-menu" aria-label="Module 01 submodules">
+        <button class="m1-menu-card" type="button" data-target="m1s1" aria-controls="m1s1" aria-expanded="false">
+          <span class="m1-menu-visual" style="background:#f2ead8" aria-hidden="true">
+            <svg viewBox="0 0 360 180"><circle cx="88" cy="90" r="48" fill="#f2a23a"/><circle cx="180" cy="90" r="48" fill="#c8b8dc"/><circle cx="272" cy="90" r="48" fill="#f4c542"/><path d="M73 102 96 76l15 16-23 26zM89 90l10 10M164 106c-13-9-21-18-21-29a12 12 0 0 1 22-7 12 12 0 0 1 22 7c0 11-8 20-21 29zM253 76h17v17h-17zM280 76h17v17h-17zM253 103h17v17h-17zM278 105l7 7 14-17" fill="none" stroke="#243e65" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="m1-menu-caption"><span class="m1-menu-title">What is Trauma?</span><span class="m1-menu-arrow" aria-hidden="true"><svg class="m1-menu-chevron" viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+        </button>
+        <button class="m1-menu-card" type="button" data-target="m1s2" aria-controls="m1s2" aria-expanded="false">
+          <span class="m1-menu-visual" style="background:#ddd3e9" aria-hidden="true">
+            <svg viewBox="0 0 360 180"><circle cx="90" cy="90" r="48" fill="#f2a23a"/><circle cx="180" cy="90" r="48" fill="#c8b8dc"/><circle cx="270" cy="90" r="48" fill="#f4c542"/><circle cx="90" cy="90" r="22" fill="none" stroke="#243e65" stroke-width="4"/><path d="M90 76v15l11 7M158 88a24 24 0 0 1 40-16M200 72v14h-14M202 99a24 24 0 0 1-40 16M160 115v-14h14M259 70l22 20-22 20M281 90h-27M268 74v32" fill="none" stroke="#243e65" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="m1-menu-caption"><span class="m1-menu-title">Types and Sources of Trauma</span><span class="m1-menu-arrow" aria-hidden="true"><svg class="m1-menu-chevron" viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+        </button>
+        <button class="m1-menu-card" type="button" data-target="m1s3" aria-controls="m1s3" aria-expanded="false">
+          <span class="m1-menu-visual" style="background:#f7d4df" aria-hidden="true">
+            <svg viewBox="0 0 360 180"><circle cx="90" cy="90" r="48" fill="#ed9a85"/><circle cx="180" cy="90" r="48" fill="#d0c1e4"/><circle cx="270" cy="90" r="48" fill="#f5ac27"/><path d="M90 115S65 99 65 82a14 14 0 0 1 25-8 14 14 0 0 1 25 8c0 17-25 33-25 33zM170 81a10 10 0 1 1 20 0M158 116c0-16 8-25 22-25s22 9 22 25M260 65l23 8v19c0 15-10 25-23 31-13-6-23-16-23-31V73zM251 91h18M260 82v18" fill="none" stroke="#243e65" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="m1-menu-caption"><span class="m1-menu-title">Impacts of Trauma on Individuals and Relationships</span><span class="m1-menu-arrow" aria-hidden="true"><svg class="m1-menu-chevron" viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+        </button>
+        <button class="m1-menu-card" type="button" data-target="m1s4" aria-controls="m1s4" aria-expanded="false">
+          <span class="m1-menu-visual" style="background:#dcecf2" aria-hidden="true">
+            <svg viewBox="0 0 360 180"><circle cx="90" cy="90" r="48" fill="#78bfcc"/><circle cx="180" cy="90" r="48" fill="#f3bd39"/><circle cx="270" cy="90" r="48" fill="#b7d19d"/><path d="m66 91 24-20 24 20M73 88v29h34V88M164 105c-13-9-21-18-21-29a12 12 0 0 1 22-7 12 12 0 0 1 22 7c0 11-8 20-21 29zM258 73a11 11 0 0 1 18 8v18a11 11 0 0 1-18 8M280 73a11 11 0 0 0-18 8M260 88h18M260 98h18" fill="none" stroke="#243e65" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+          <span class="m1-menu-caption"><span class="m1-menu-title">Trauma, Loss and Grief</span><span class="m1-menu-arrow" aria-hidden="true"><svg class="m1-menu-chevron" viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+        </button>
+      </nav>
       <div class="submodule-grid">
-        <article class="submodule-card m1s1-card" id="m1s1">
+        <article class="submodule-card m1s1-card" id="m1s1" hidden>
           <p class="eyebrow">Submodule 1 · Reflection activity</p>
-          <h3>What is Trauma?</h3>
+          <h3 tabindex="-1">What is Trauma?</h3>
           <div class="m1s1-step" id="m1s1-step-one" aria-labelledby="m1s1-step-one-title">
             <p class="m1s1-progress" id="m1s1-progress" aria-live="polite">Step 1 of 2</p>
             <h4 id="m1s1-step-one-title" tabindex="-1">What does trauma mean to you?</h4>
@@ -272,10 +595,9 @@
               <p>Looking at both definitions, is there anything you would add to or reconsider about your initial understanding?</p>
             </div>
             <p class="m1s1-note">Reference: Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em> (HHS Publication No. SMA 14-4884). <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">View the report</a>.</p>
-            <div class="m1s1-actions">
+            <div class="m1-actions">
               <button class="m1s1-button secondary" id="m1s1-back" type="button">← Back</button>
               <button class="m1s1-button secondary" id="m1s1-restart" type="button">Restart</button>
-              <button class="m1s1-button" id="m1s1-complete" type="button" aria-controls="m1s2" aria-expanded="false">Finish Submodule 1 and continue →</button>
             </div>
           </div>
         </article>
@@ -344,49 +666,1073 @@
               <li>Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em> (HHS Publication No. SMA 14-4884). <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">https://library.samhsa.gov/sites/default/files/sma14-4884.pdf</a></li>
             </ol>
           </div>
+          <div class="m1-actions">
+          </div>
         </article>
-        <article class="submodule-card"><h3>Impacts of Trauma on Individuals and Relationships</h3><div class="empty" aria-label="Impacts of Trauma content reserved"></div></article>
-        <article class="submodule-card"><h3>Trauma, Loss and Grief</h3><div class="empty" aria-label="Trauma, Loss and Grief content reserved"></div></article>
-        <article class="submodule-card"><h3>Individual Differences, Culture and Resilience</h3><div class="empty" aria-label="Individual Differences, Culture and Resilience content reserved"></div></article>
+        <article class="submodule-card m1s3-card" id="m1s3" hidden>
+          <p class="eyebrow">Submodule 3 · Interactive impact explorer</p>
+          <h3 id="m1s3-heading" tabindex="-1">Impacts of Trauma on Individuals and Relationships</h3>
+          <p class="m1s3-intro">Trauma can influence multiple aspects of a person's life, extending beyond immediate emotional distress.</p>
+          <h4>Explore the Impacts</h4>
+          <p class="m1s3-instruction">Select an area below to explore how trauma may affect different aspects of life.</p>
+          <div class="m1s3-options" role="group" aria-label="Areas of impact">
+            <button class="m1s3-option" type="button" data-impact="0" aria-pressed="true" aria-controls="m1s3-impact-panel">
+              <span class="m1s3-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 27S5 20 5 12a6 6 0 0 1 11-3 6 6 0 0 1 11 3c0 8-11 15-11 15Z"></path></svg></span>
+              <span class="m1s3-option-title">Emotional and Psychological Well-being</span>
+            </button>
+            <button class="m1s3-option" type="button" data-impact="1" aria-pressed="false" aria-controls="m1s3-impact-panel">
+              <span class="m1s3-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"></circle><path d="M10 17h4l2-5 3 9 2-4h3"></path></svg></span>
+              <span class="m1s3-option-title">Cognitive and Physical Functioning</span>
+            </button>
+            <button class="m1s3-option" type="button" data-impact="2" aria-pressed="false" aria-controls="m1s3-impact-panel">
+              <span class="m1s3-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="11" cy="10" r="4"></circle><circle cx="22" cy="11" r="3"></circle><path d="M3 27c0-6 3-9 8-9s8 3 8 9M19 20c5-2 10 1 10 7"></path></svg></span>
+              <span class="m1s3-option-title">Relationships</span>
+            </button>
+            <button class="m1s3-option" type="button" data-impact="3" aria-pressed="false" aria-controls="m1s3-impact-panel">
+              <span class="m1s3-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4 27 8v8c0 7-5 11-11 13C10 27 5 23 5 16V8z"></path><path d="M12 16h8M16 12v8"></path></svg></span>
+              <span class="m1s3-option-title">Behaviour and Coping</span>
+            </button>
+            <button class="m1s3-option" type="button" data-impact="4" aria-pressed="false" aria-controls="m1s3-impact-panel">
+              <span class="m1s3-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"></circle><path d="m20 12-3 7-5 2 2-5zM16 4v3M28 16h-3M16 28v-3M4 16h3"></path></svg></span>
+              <span class="m1s3-option-title">Sense of Control</span>
+            </button>
+          </div>
+          <div class="m1s3-panel" id="m1s3-impact-panel" aria-live="polite" aria-atomic="true">
+            <h5 id="m1s3-impact-title">Emotional and Psychological Well-being</h5>
+            <p id="m1s3-impact-description">Anxiety, fear, shame, emotional numbness, or heightened alertness.</p>
+          </div>
+          <p class="m1s3-citation">Sources: Harris &amp; Fallot (2001); Levenson (2020); SAMHSA (2014).</p>
+          <div class="m1s3-resilience">
+            <h5>Resilience and Recovery</h5>
+            <p>Importantly, trauma does not affect everyone in the same way. Supportive relationships, appropriate services, and personal strengths can promote resilience and recovery (SAMHSA, 2014).</p>
+          </div>
+          <div class="m1s3-references">
+            <h4>References</h4>
+            <ol>
+              <li>Harris, M., &amp; Fallot, R. D. (2001). Envisioning a trauma-informed service system: A vital paradigm shift. <em>New Directions for Mental Health Services, 2001</em>(89), 3–22. <a href="https://doi.org/10.1002/yd.23320018903" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/yd.23320018903</a></li>
+              <li>Levenson, J. (2020). Translating trauma-informed principles into social work practice. <em>Social Work, 65</em>(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
+              <li>Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em> (HHS Publication No. SMA 14-4884). <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">https://library.samhsa.gov/sites/default/files/sma14-4884.pdf</a></li>
+            </ol>
+          </div>
+          <div class="m1-actions">
+          </div>
+        </article>
+        <article class="submodule-card m1s4-card" id="m1s4" hidden>
+          <p class="eyebrow">Submodule 4 · One Story, Three Lenses</p>
+          <h3 id="m1s4-heading" tabindex="-1">Trauma, Loss and Grief</h3>
+          <p class="m1s4-copy">Trauma, loss and grief are closely connected because traumatic experiences may involve significant losses, while some experiences of loss may also be traumatic. However, these are distinct concepts and should not be treated as interchangeable.</p>
+          <h4>Understanding Loss and Grief</h4>
+          <div class="m1s4-definitions">
+            <article class="m1s4-definition">
+              <h5>Loss</h5>
+              <p>The experience of losing something valued, such as a loved one, relationship, health, identity, sense of security or future opportunities. Loss is not limited to death.</p>
+            </article>
+            <article class="m1s4-definition">
+              <h5>Grief</h5>
+              <p>A personal and multidimensional response to actual, perceived or anticipated loss. It may involve emotional, physical and social changes (Goldsworthy, 2005).</p>
+            </article>
+          </div>
+          <h4>Exploring Trauma, Loss and Grief</h4>
+          <h5 class="m1s4-explore-title" id="m1s4-explore-title">Explore Jamie's Experience</h5>
+          <div class="m1s4-scenario" aria-labelledby="m1s4-meet-jamie-title">
+            <h6 id="m1s4-meet-jamie-title">Meet Jamie</h6>
+            <p>Jamie is 17. After a major flood, Jamie's family had to move to another town. Jamie misses their old home and friends.</p>
+            <p>Some days, Jamie feels sad and withdrawn. On other days, they enjoy exploring their new neighbourhood.</p>
+            <p>Jamie hasn't spoken much about the flood itself.</p>
+          </div>
+          <p class="m1s4-instruction">Tap or click a card to explore a different perspective.</p>
+          <div class="m1s4-lenses" role="group" aria-label="Choose a perspective on Jamie's experience">
+            <button class="m1s4-lens" type="button" data-lens="loss" aria-pressed="false" aria-controls="m1s4-lens-panel">
+              <span class="m1s4-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="m4 14 12-9 12 9"></path><path d="M7 13v14h18V13M13 27v-8h6v8"></path></svg></span>
+              <span class="m1s4-lens-copy"><span class="m1s4-lens-title">Loss</span><span class="m1s4-lens-status">Explore →</span></span>
+            </button>
+            <button class="m1s4-lens" type="button" data-lens="grief" aria-pressed="false" aria-controls="m1s4-lens-panel">
+              <span class="m1s4-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 27S5 20 5 12a6 6 0 0 1 11-3 6 6 0 0 1 11 3c0 8-11 15-11 15Z"></path></svg></span>
+              <span class="m1s4-lens-copy"><span class="m1s4-lens-title">Grief</span><span class="m1s4-lens-status">Explore →</span></span>
+            </button>
+            <button class="m1s4-lens" type="button" data-lens="trauma" aria-pressed="false" aria-controls="m1s4-lens-panel">
+              <span class="m1s4-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="8" cy="9" r="3"></circle><circle cx="24" cy="9" r="3"></circle><circle cx="16" cy="24" r="3"></circle><path d="m10.5 11 4 10M21.5 11l-4 10M11 9h10"></path></svg></span>
+              <span class="m1s4-lens-copy"><span class="m1s4-lens-title">Trauma</span><span class="m1s4-lens-status">Explore →</span></span>
+            </button>
+          </div>
+          <div class="m1s4-panel" id="m1s4-lens-panel" aria-live="polite" aria-atomic="true">
+            <h5 id="m1s4-lens-title">Choose a lens above to reveal an explanation.</h5>
+            <p id="m1s4-lens-description" hidden></p>
+          </div>
+          <p class="m1s4-completion" id="m1s4-completion" hidden>You’ve explored all three perspectives.</p>
+          <h4>Grief Is Not a Linear Process</h4>
+          <p class="m1s4-copy">Grief does not follow a fixed sequence of stages or a universal timeline. Responses are shaped by personal meaning, relationships and sociocultural context (Goldsworthy, 2005; Neimeyer, 2016).</p>
+          <p class="m1s4-copy">Some people maintain meaningful connections with deceased loved ones as part of their grieving process, although the role of these continuing bonds varies between individuals (Stroebe et al., 2010).</p>
+          <div class="m1s4-references">
+            <h4>References (APA 7)</h4>
+            <ol>
+              <li>Goldsworthy, K. (2005). Grief and loss theory in social work practice: All changes involve loss, just as all losses require change. <em>Australian Social Work, 58</em>(2), 167–178. <a href="https://doi.org/10.1111/j.1447-0748.2005.00201.x" target="_blank" rel="noopener noreferrer">https://doi.org/10.1111/j.1447-0748.2005.00201.x</a></li>
+              <li>Neimeyer, R. A. (2016). Meaning reconstruction in the wake of loss: Evolution of a research program. <em>Behaviour Change, 33</em>(2), 65–79. <a href="https://doi.org/10.1017/bec.2016.4" target="_blank" rel="noopener noreferrer">https://doi.org/10.1017/bec.2016.4</a></li>
+              <li>Stroebe, M., Schut, H., &amp; Boerner, K. (2010). Continuing bonds in adaptation to bereavement: Toward theoretical integration. <em>Clinical Psychology Review, 30</em>(2), 259–268. <a href="https://doi.org/10.1016/j.cpr.2009.11.007" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.cpr.2009.11.007</a></li>
+            </ol>
+          </div>
+        </article>
       </div>
     </section>
 
     <section id="module-02">
-      <div class="section-head">
+      <div class="section-head m2-section-head">
         <span class="section-number">02</span>
-        <div>
-          <p class="eyebrow">Module 02</p>
-          <h2>02 · Understanding Trauma-Informed Practice</h2>
-          <div class="empty section-intro" aria-label="Module two introduction area reserved"></div>
-        </div>
+        <div><h2>02 · Understanding Trauma-Informed Practice</h2></div>
       </div>
-      <div class="submodule-grid">
-        <article class="submodule-card"><h3>What is TIP?</h3><div class="empty" aria-label="What is TIP content reserved"></div></article>
-        <article class="submodule-card"><h3>Why Does TIP Matter in Social Work?</h3><div class="empty" aria-label="Why TIP matters in social work content reserved"></div></article>
-        <article class="submodule-card"><h3>SAMHSA's Six Principles</h3><div class="empty" aria-label="SAMHSA's Six Principles content reserved"></div></article>
-        <article class="submodule-card"><h3>The Four Rs of a Trauma-Informed Approach</h3><div class="empty" aria-label="The Four Rs content reserved"></div></article>
-        <article class="submodule-card"><h3>TIP vs Trauma-Specific Interventions</h3><div class="empty" aria-label="TIP versus trauma-specific interventions content reserved"></div></article>
+      <nav class="m2-submodule-menu" aria-label="Module 02 submodules">
+        <button class="m2-menu-card" type="button" data-target="m2s1" aria-controls="m2s1" aria-expanded="false">
+          <span class="m2-menu-visual" style="background:#f2ead8" aria-hidden="true"><svg viewBox="0 0 360 180"><circle cx="110" cy="90" r="48" fill="#f2a23a" stroke="none"/><circle cx="250" cy="90" r="48" fill="#c8b8dc" stroke="none"/><path d="M85 99c15-23 34-31 54-22 8 4 11 13 7 21-6 11-20 18-33 24M230 91c0-13 10-23 22-23 6 0 12 3 16 8 4-5 10-8 16-8 13 0 23 10 23 23 0 18-20 31-39 45-18-14-38-27-38-45z"/></svg></span>
+          <span class="m2-menu-caption"><span class="m2-menu-title">What Is TIP?</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+        </button>
+        <button class="m2-menu-card" type="button" data-target="m2s2" aria-controls="m2s2" aria-expanded="false">
+          <span class="m2-menu-visual" style="background:#ddd3e9" aria-hidden="true"><svg viewBox="0 0 360 180"><circle cx="104" cy="90" r="35" fill="#f2a23a" stroke="none"/><circle cx="180" cy="55" r="35" fill="#c8b8dc" stroke="none"/><circle cx="256" cy="90" r="35" fill="#f4c542" stroke="none"/><circle cx="180" cy="130" r="35" fill="#78bfcc" stroke="none"/><path d="m133 75 19-9m56 0 19 9m-92 27 27 16m48 0 27-16"/></svg></span>
+          <span class="m2-menu-caption"><span class="m2-menu-title">The Four Rs of a Trauma-Informed Approach</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+        </button>
+        <button class="m2-menu-card" type="button" data-target="m2s3" aria-controls="m2s3" aria-expanded="false">
+          <span class="m2-menu-visual" style="background:#f7d4df" aria-hidden="true"><svg viewBox="0 0 360 180"><path d="M180 28 256 55v48c0 44-32 67-76 88-44-21-76-44-76-88V55z" fill="#d7c8e7" stroke="none"/><path d="M180 63v69m-35-35h70m-56-25 42 46m0-46-42 46"/></svg></span>
+          <span class="m2-menu-caption"><span class="m2-menu-title">SAMHSA's Six Principles</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+        </button>
+        <button class="m2-menu-card" type="button" data-target="m2s4" aria-controls="m2s4" aria-expanded="false">
+          <span class="m2-menu-visual" style="background:#dcecf2" aria-hidden="true"><svg viewBox="0 0 360 180"><rect x="45" y="50" width="112" height="80" rx="10" fill="#78bfcc" stroke="none"/><rect x="203" y="50" width="112" height="80" rx="10" fill="#f4c542" stroke="none"/><path d="M75 77h53m-53 23h37m98-23h53m-53 23h37M163 89h34m-10-12 12 12-12 12"/></svg></span>
+          <span class="m2-menu-caption"><span class="m2-menu-title">TIP vs Trauma-Specific Interventions</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+        </button>
+        <button class="m2-menu-card" type="button" data-target="m2s5" aria-controls="m2s5" aria-expanded="false">
+          <span class="m2-menu-visual" style="background:#e6eddb" aria-hidden="true"><svg viewBox="0 0 360 180"><circle cx="115" cy="68" r="24" fill="#e99e80" stroke="none"/><circle cx="245" cy="68" r="24" fill="#c8b8dc" stroke="none"/><path d="M65 145c4-35 20-54 50-54s46 19 50 54m30 0c4-35 20-54 50-54s46 19 50 54M180 57v70m-25-25h50"/></svg></span>
+          <span class="m2-menu-caption"><span class="m2-menu-title">How Can TIP Support Social Work Practice?</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+        </button>
+      </nav>
+      <div class="m2-content">
+        <article class="m2-submodule" id="m2s1" hidden>
+          <h3 tabindex="-1">What Is Trauma-Informed Practice?</h3>
+          <p class="m2-opening">The Substance Abuse and Mental Health Services Administration (SAMHSA) is a US government agency working in mental health and substance use. In 2014, SAMHSA published guidance that brought together research, professional knowledge and the perspectives of trauma survivors to establish a shared framework for trauma-informed services. This framework provides the foundation for the following submodules (SAMHSA, 2014).</p>
+          <section class="m2-block" aria-labelledby="m2s1-definition-title">
+            <h4 id="m2s1-definition-title">SAMHSA's Definition</h4>
+            <div class="m2-definition">
+              <p>SAMHSA describes a trauma-informed organisation or system as one that realises the widespread impact of trauma, recognises possible signs, responds by integrating trauma knowledge into policies and practices, and actively seeks to resist re-traumatisation.</p>
+              <p class="m2-source">Paraphrased from SAMHSA (2014, p. 9).</p>
+            </div>
+          </section>
+          <section class="m2-block" aria-labelledby="m2s1-comparison-title">
+            <h4 id="m2s1-comparison-title">What Changes in a Trauma-Informed Service?</h4>
+            <p class="m2-comparison-intro">Imagine someone attending their first appointment at a community support service. Compare how the appointment might be organised.</p>
+            <div class="m2-intake-grid">
+              <article class="m2-intake-card routine" aria-labelledby="m2s1-routine-title">
+                <h5 id="m2s1-routine-title">Routine Intake</h5>
+                <ul>
+                  <li>A standard form is provided before the appointment.</li>
+                  <li>The worker follows a fixed sequence of assessment questions.</li>
+                  <li>Adjustments depend mainly on individual staff discretion.</li>
+                </ul>
+              </article>
+              <article class="m2-intake-card informed" aria-labelledby="m2s1-informed-title">
+                <h5 id="m2s1-informed-title">Trauma-Informed Intake</h5>
+                <ul>
+                  <li>The appointment purpose, information use and available choices are clearly explained.</li>
+                  <li>Preferences for pacing, breaks and participation are discussed.</li>
+                  <li>Organisational policies and staff training support safe, flexible engagement.</li>
+                </ul>
+              </article>
+            </div>
+          </section>
+          <section class="m2-block" aria-labelledby="m2s1-framework-title">
+            <h4 id="m2s1-framework-title">Understanding the TIP Framework</h4>
+            <p>SAMHSA's approach is built on two complementary elements: four key assumptions and six guiding principles (SAMHSA, 2014).</p>
+            <div class="m2-transition-grid">
+              <article class="m2-transition-card"><h5>4 Rs — Key Assumptions</h5><p>Realise, Recognise, Respond and Resist re-traumatisation</p></article>
+              <article class="m2-transition-card"><h5>6 — Guiding Principles</h5><p>Principles that guide safety, trust, collaboration, empowerment and more</p></article>
+            </div>
+            <p>The next two submodules explore these elements in more detail.</p>
+          </section>
+          <p class="m2-source">Source: SAMHSA (2014).</p>
+        </article>
+        <article class="m2-submodule" id="m2s2" hidden>
+          <h3 tabindex="-1">The Four Rs of a Trauma-Informed Approach</h3>
+          <p class="m2-opening">SAMHSA (2014) identifies four key assumptions of a trauma-informed approach, known as the Four Rs. These are not four steps to follow in a fixed order. Instead, they describe how practitioners and organisations understand trauma, integrate this awareness into their work and seek to prevent re-traumatisation.</p>
+          <section class="m2-block" aria-labelledby="m2s2-overview-title">
+            <h4 id="m2s2-overview-title">Understanding the Four Rs</h4>
+            <p>Four interconnected assumptions that guide trauma-informed services.</p>
+            <div class="m2s2-fourrs">
+              <article class="m2s2-card">
+                <span class="m2s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4a11 11 0 0 0-6 20v4h12v-4a11 11 0 0 0-6-20zM12 14l3 3 6-7M12 24h8"/></svg></span>
+                <h5>Realise</h5><p>Understand the widespread impact of trauma on individuals, families, communities and organisations, including possible pathways to recovery.</p>
+              </article>
+              <article class="m2s2-card">
+                <span class="m2s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 16s5-9 13-9 13 9 13 9-5 9-13 9S3 16 3 16z"/><circle cx="16" cy="16" r="4"/></svg></span>
+                <h5>Recognise</h5><p>Recognise possible signs of trauma among people accessing services, families, staff and others, while avoiding unsupported assumptions.</p>
+              </article>
+              <article class="m2s2-card">
+                <span class="m2s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 17h6l4-8 5 14 4-8h4M4 27h24"/></svg></span>
+                <h5>Respond</h5><p>Integrate knowledge about trauma into everyday practice, organisational policies, procedures and staff support.</p>
+              </article>
+              <article class="m2s2-card">
+                <span class="m2s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 3 27 7v8c0 7-5 11-11 14C10 26 5 22 5 15V7z"/><path d="m11 16 4 4 7-8"/></svg></span>
+                <h5>Resist Re-traumatisation</h5><p>Actively identify and reduce practices or environments that may re-traumatise people receiving services or staff.</p>
+              </article>
+            </div>
+          </section>
+          <section class="m2-block" aria-labelledby="m2s2-practice-title">
+            <h4 id="m2s2-practice-title">The Four Rs in Practice</h4>
+            <div class="m2s2-practice-scenario">
+              <strong>EXAMPLE SCENARIO · ASSESSMENT</strong>
+              <p>During an assessment, a client becomes quiet and uncomfortable when asked to repeat sensitive personal information they have already shared with another worker.</p>
+            </div>
+            <p class="m2s2-instruction">Explore how each R can inform the response. Hover over or select a label below.</p>
+            <div class="m2s2-selectors" role="group" aria-label="Explore the Four Rs in practice">
+              <button class="m2s2-selector" type="button" data-m2r="realise" aria-pressed="true"><span class="m2s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4a11 11 0 0 0-6 20v4h12v-4a11 11 0 0 0-6-20zM12 14l3 3 6-7M12 24h8"/></svg></span>Realise</button>
+              <button class="m2s2-selector" type="button" data-m2r="recognise" aria-pressed="false"><span class="m2s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M3 16s5-9 13-9 13 9 13 9-5 9-13 9S3 16 3 16z"/><circle cx="16" cy="16" r="4"/></svg></span>Recognise</button>
+              <button class="m2s2-selector" type="button" data-m2r="respond" aria-pressed="false"><span class="m2s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M5 17h6l4-8 5 14 4-8h4M4 27h24"/></svg></span>Respond</button>
+              <button class="m2s2-selector" type="button" data-m2r="resist" aria-pressed="false"><span class="m2s2-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 3 27 7v8c0 7-5 11-11 14C10 26 5 22 5 15V7z"/><path d="m11 16 4 4 7-8"/></svg></span>Resist</button>
+            </div>
+            <div class="m2s2-panel" id="m2s2-practice-panel" aria-live="polite" aria-atomic="true">
+              <h5 id="m2s2-panel-title">Realise — Consider the Wider Context</h5>
+              <p id="m2s2-panel-copy">Previous experiences may influence how someone engages with services, even when their trauma history is unknown. This awareness helps the worker remain sensitive without presuming what the client has experienced.</p>
+            </div>
+            <p class="m2-source">Source: SAMHSA (2014, pp. 9–10). Practice scenario created for this learning resource.</p>
+          </section>
+        </article>
+
+        <article class="m2-submodule" id="m2s3" hidden>
+          <h3 tabindex="-1">SAMHSA's Six Principles</h3>
+          <p class="m2-opening">SAMHSA (2014) identifies six interconnected principles that guide a trauma-informed approach across services and organisations. Rather than prescribing specific techniques, these principles provide a foundation for how people are supported, decisions are made and services are delivered. They complement the Four Rs introduced in the previous submodule.</p>
+          <section class="m2-block" aria-labelledby="m2s3-principles-title">
+            <h4 id="m2s3-principles-title">Understanding the Six Principles</h4>
+            <div class="m2s3-grid">
+              <article class="m2s3-card">
+                <span class="m2s3-number">01</span><span class="m2s3-icon" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 32 32"><path d="M16 3 27 7v8c0 7-5 11-11 14C10 26 5 22 5 15V7z"/></svg></span>
+                <h5>Safety</h5><p>Create environments where people feel physically and psychologically safe, considering safety from their own perspectives.</p>
+                <p class="m2s3-example"><strong>In social work</strong>Consider privacy, the physical setting and what helps a person feel safe during an appointment.</p>
+              </article>
+              <article class="m2s3-card">
+                <span class="m2s3-number">02</span><span class="m2s3-icon" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 32 32"><path d="M4 7h24v18H4zM9 12h14M9 17h10M9 22h7"/></svg></span>
+                <h5>Trustworthiness and Transparency</h5><p>Build and maintain trust through honest, clear and consistent communication and organisational decision-making.</p>
+                <p class="m2s3-example"><strong>In social work</strong>Explain the purpose of an assessment and clarify how information may be shared.</p>
+              </article>
+              <article class="m2s3-card">
+                <span class="m2s3-number">03</span><span class="m2s3-icon" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 32 32"><circle cx="11" cy="11" r="4"/><circle cx="22" cy="12" r="3"/><path d="M3 27c0-6 3-9 8-9s8 3 8 9m1-6c5-2 9 1 9 6"/></svg></span>
+                <h5>Peer Support</h5><p>Recognise the value of mutual support among people with relevant lived experience in fostering hope, connection and recovery.</p>
+                <p class="m2s3-example"><strong>In social work</strong>Offer access to appropriate peer-led support where available and welcomed.</p>
+              </article>
+              <article class="m2s3-card">
+                <span class="m2s3-number">04</span><span class="m2s3-icon" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 32 32"><circle cx="8" cy="16" r="4"/><circle cx="24" cy="16" r="4"/><path d="M12 16h8M16 12l4 4-4 4"/></svg></span>
+                <h5>Collaboration and Mutuality</h5><p>Build partnerships, recognise everyone's contribution and address power differences through shared decision-making.</p>
+                <p class="m2s3-example"><strong>In social work</strong>Develop a care plan with a person rather than making decisions for them.</p>
+              </article>
+              <article class="m2s3-card">
+                <span class="m2s3-number">05</span><span class="m2s3-icon" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 32 32"><path d="M16 4v18M10 16l6 6 6-6M5 27h22"/></svg></span>
+                <h5>Empowerment, Voice and Choice</h5><p>Recognise strengths and support meaningful participation, choice and self-advocacy.</p>
+                <p class="m2s3-example"><strong>In social work</strong>Invite people to express their own needs, goals and preferences during assessment.</p>
+              </article>
+              <article class="m2s3-card">
+                <span class="m2s3-number">06</span><span class="m2s3-icon" aria-hidden="true"><svg width="34" height="34" viewBox="0 0 32 32"><circle cx="16" cy="16" r="12"/><path d="M4 16h24M16 4c4 4 6 8 6 12s-2 8-6 12c-4-4-6-8-6-12s2-8 6-12z"/></svg></span>
+                <h5>Cultural, Historical and Gender Issues</h5><p>Challenge stereotypes and discrimination, recognise historical trauma and respond to cultural and gender-related needs.</p>
+                <p class="m2s3-example"><strong>In social work</strong>Consider how cultural identity, discrimination or historical experiences may shape engagement with services.</p>
+              </article>
+            </div>
+            <p class="m2s3-closing">These six principles are interconnected and should guide both professional relationships and organisational practice.</p>
+            <p class="m2-source">Source: SAMHSA (2014, pp. 10–11). Examples developed for this learning resource.</p>
+          </section>
+        </article>
+        <article class="m2-submodule" id="m2s4" hidden>
+          <h3 tabindex="-1">Trauma-Informed Practice vs Trauma-Specific Interventions</h3>
+          <p class="m2-opening">When first encountering the term trauma-informed practice, it may be easy to assume that it refers to therapeutic interventions designed to treat trauma. Yet there is a fundamental distinction between trauma-informed practice and trauma-specific interventions.</p>
+          <p>Trauma-specific interventions are designed to directly address the psychological and emotional consequences of traumatic experiences. These may include therapeutic approaches that help individuals manage trauma-related symptoms, process distressing memories, and develop emotional regulation skills.</p>
+          <p>Trauma-informed practice, in contrast, is a broader approach to how services are designed and delivered. Rather than focusing primarily on treating trauma-related symptoms, it involves recognising the potential impact of trauma and creating service environments that promote safety, trust, participation, and recovery.</p>
+          <p>Harris and Fallot (2001) emphasise that trauma-informed services can be provided across different settings, including mental health services, housing support, and employment assistance, regardless of whether trauma treatment is their primary purpose.</p>
+          <section class="m2-block" aria-labelledby="m2s4-differences-title">
+            <h4 id="m2s4-differences-title">Key Differences</h4>
+            <p class="m2-source">Adapted from Harris &amp; Fallot (2001).</p>
+            <dl class="m2s4-differences">
+              <div class="m2s4-difference-row">
+                <dt class="m2s4-label">Primary goal</dt>
+                <dd class="m2s4-cell"><span class="m2s4-cell-title">Trauma-Informed Practice</span><p>To provide safe, responsive, and supportive services that recognise the impact of trauma.</p></dd>
+                <dd class="m2s4-cell"><span class="m2s4-cell-title">Trauma-Specific Interventions</span><p>To directly address trauma-related symptoms and consequences.</p></dd>
+              </div>
+              <div class="m2s4-difference-row">
+                <dt class="m2s4-label">Main focus</dt>
+                <dd class="m2s4-cell"><span class="m2s4-cell-title">Trauma-Informed Practice</span><p>How services are organised, delivered, and experienced by clients.</p></dd>
+                <dd class="m2s4-cell"><span class="m2s4-cell-title">Trauma-Specific Interventions</span><p>Therapeutic treatment of trauma-related difficulties.</p></dd>
+              </div>
+              <div class="m2s4-difference-row">
+                <dt class="m2s4-label">Approach</dt>
+                <dd class="m2s4-cell"><span class="m2s4-cell-title">Trauma-Informed Practice</span><p>Integrating trauma awareness into everyday interactions, organisational policies, and service delivery.</p></dd>
+                <dd class="m2s4-cell"><span class="m2s4-cell-title">Trauma-Specific Interventions</span><p>Using targeted therapeutic techniques, such as grounding, desensitisation, and emotional regulation strategies.</p></dd>
+              </div>
+              <div class="m2s4-difference-row">
+                <dt class="m2s4-label">Application</dt>
+                <dd class="m2s4-cell"><span class="m2s4-cell-title">Trauma-Informed Practice</span><p>Relevant across a wide range of services, whether or not they provide trauma treatment.</p></dd>
+                <dd class="m2s4-cell"><span class="m2s4-cell-title">Trauma-Specific Interventions</span><p>Provided when targeted treatment of trauma-related difficulties is appropriate.</p></dd>
+              </div>
+              <div class="m2s4-difference-row">
+                <dt class="m2s4-label">Who is involved?</dt>
+                <dd class="m2s4-cell"><span class="m2s4-cell-title">Trauma-Informed Practice</span><p>All levels of an organisation, including frontline workers, administrative staff, and management.</p></dd>
+                <dd class="m2s4-cell"><span class="m2s4-cell-title">Trauma-Specific Interventions</span><p>Practitioners with appropriate training in trauma-specific therapeutic interventions.</p></dd>
+              </div>
+            </dl>
+          </section>
+          <section class="m2s4-analogy" aria-labelledby="m2s4-analogy-title">
+            <h4 id="m2s4-analogy-title">An Analogy: “Disability-Informed”</h4>
+            <p>An analogy may help make this distinction clearer.</p>
+            <blockquote>Think about the ways public spaces accommodate people with disabilities. Museums provide wheelchair access, theatres offer sign-language interpreted performances, and restaurants reserve accessible parking spaces for people with mobility difficulties.</blockquote>
+            <p>These organisations are not providing disability-specific services or rehabilitation. Rather, they are adapting their environments and the way they deliver services to accommodate different needs. In this sense, they are becoming “disability-informed” (Harris &amp; Fallot, 2001, p. 5).</p>
+            <p>The same idea applies to trauma-informed practice.</p>
+            <p>A human service does not necessarily have to provide specialised trauma treatment to be trauma-informed. Instead, it can recognise how traumatic experiences may affect the people accessing its services and adapt its environment, policies, and everyday interactions accordingly.</p>
+            <p><strong>Being trauma-informed is not simply about what services are provided, but how they are provided.</strong></p>
+          </section>
+        </article>
+
+        <article class="m2-submodule" id="m2s5" hidden>
+          <h3 tabindex="-1">How Can TIP Support Social Work Practice?</h3>
+          <p class="m2-opening">Trauma-Informed Practice (TIP) can support social work in various ways. Two particularly relevant contributions are its alignment with professional ethics and its potential to inform anti-oppressive practice.</p>
+          <div class="m2s5-panels">
+            <article class="m2s5-panel ethics">
+              <p class="m2s5-tag"><span class="m2s5-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 4v23m-9-18h18M7 9l-5 10h10L7 9zm18 0-5 10h10L25 9zM10 27h12"/></svg></span>01 · PROFESSIONAL ETHICS</p>
+              <h4>Putting Social Work Values into Practice</h4>
+              <p>TIP aligns with the AASW's core ethical principles:</p>
+              <ul class="m2s5-values"><li>Respect for Persons</li><li>Social Justice</li><li>Professional Integrity</li></ul>
+              <p>It supports ethical practice by encouraging social workers to promote dignity, meaningful participation and the responsible use of professional authority.</p>
+              <p class="m2s5-statement">When professional responsibilities and client preferences create tensions, TIP provides guidance for approaching decisions transparently and collaboratively, without replacing professional ethical judgement.</p>
+              <p class="m2s5-citation">AASW (2020); Levenson (2020)</p>
+            </article>
+            <article class="m2s5-panel aop">
+              <p class="m2s5-tag"><span class="m2s5-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><circle cx="10" cy="10" r="4"/><circle cx="23" cy="11" r="3"/><path d="M3 28c0-7 3-11 8-11s8 4 8 11m1-7c5-2 9 1 9 7M20 4l8 2v6c0 5-3 8-7 10"/></svg></span>02 · CRITICAL PERSPECTIVE</p>
+              <h4>Recognising Power and Oppression</h4>
+              <p>Social work takes place within systems shaped by professional power, institutional rules and unequal access to resources.</p>
+              <p>TIP encourages practitioners to recognise power imbalances and support shared decision-making (SAMHSA, 2014; Levenson, 2020).</p>
+              <p class="m2s5-statement"><strong>A critical distinction:</strong> Trauma-informed approaches do not automatically address structural oppression. An anti-oppressive perspective encourages social workers to examine discrimination, inequality and institutional barriers, while critically reflecting on their own assumptions, values and position of power.</p>
+              <p class="m2s5-citation">Leotti &amp; Wahab (2025)</p>
+            </article>
+          </div>
+        </article>
+        <section class="m2-references" aria-labelledby="m2-references-title" hidden>
+          <h3 id="m2-references-title">Module 02 References</h3>
+          <ol>
+            <li>Australian Association of Social Workers. (2020). <em>Code of ethics 2020</em>. <a href="https://www.aasw.asn.au/about-aasw/ethics-standards/code-of-ethics/" target="_blank" rel="noopener noreferrer">https://www.aasw.asn.au/about-aasw/ethics-standards/code-of-ethics/</a></li>
+            <li>Harris, M., &amp; Fallot, R. D. (Eds.). (2001). <em>Using trauma theory to design service systems</em> (New Directions for Mental Health Services, No. 89). Jossey-Bass.</li>
+            <li>Leotti, S. M., &amp; Wahab, S. (2025). Mapping the landscape of trauma-informed care in social work: A critical scoping review. <em>Trauma, Violence, &amp; Abuse, 26</em>(4), 651–667. <a href="https://doi.org/10.1177/15248380241286810" target="_blank" rel="noopener noreferrer">https://doi.org/10.1177/15248380241286810</a></li>
+            <li>Levenson, J. (2020). Translating trauma-informed principles into social work practice. <em>Social Work, 65</em>(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
+            <li>Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em>. <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">https://library.samhsa.gov/sites/default/files/sma14-4884.pdf</a></li>
+          </ol>
+        </section>
       </div>
     </section>
 
     <section id="module-03">
-      <div class="section-head">
+      <div class="section-head m3-section-head">
         <span class="section-number">03</span>
-        <div>
-          <p class="eyebrow">Module 03</p>
-          <h2>03 · Applying TIP in Social Work</h2>
-          <div class="empty section-intro" aria-label="Module three introduction area reserved"></div>
-        </div>
+        <div><h2>03 · Applying TIP in Social Work</h2></div>
       </div>
-      <div class="submodule-grid">
-        <article class="submodule-card"><h3>Trauma-Informed Communication</h3><div class="empty" aria-label="Trauma-Informed Communication content reserved"></div></article>
-        <article class="submodule-card"><h3>Building Safety and Trust</h3><div class="empty" aria-label="Building Safety and Trust content reserved"></div></article>
-        <article class="submodule-card"><h3>Assessment and Responding to Disclosure</h3><div class="empty" aria-label="Assessment and Responding to Disclosure content reserved"></div></article>
-        <article class="submodule-card"><h3>Professional Power and Critical Reflection</h3><div class="empty" aria-label="Professional Power and Critical Reflection content reserved"></div></article>
+      <nav class="m3-submodule-menu" aria-label="Module 03 submodules">
+        <button class="m3-menu-card" type="button" data-target="m3s1" aria-controls="m3s1" aria-expanded="false">
+        <span class="m2-menu-visual" style="background:#f4ead7" aria-hidden="true"><svg viewBox="0 0 360 180"><circle cx="124" cy="76" r="43" fill="#f2a23a" stroke="none"/><circle cx="230" cy="76" r="43" fill="#c8b8dc" stroke="none"/><path d="M62 158c5-35 25-54 62-54s57 19 62 54M174 158c5-35 25-54 62-54s57 19 62 54"/><path d="M90 60h65m-65 17h45m72-2h55m-55 17h37"/><path d="M99 54l9-12 9 12m121-6 8 11 8-11"/></svg></span>
+        <span class="m2-menu-caption"><span class="m2-menu-title">1. Building Safe and Trusting Relationships</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+      </button>
+        <button class="m3-menu-card" type="button" data-target="m3s2" aria-controls="m3s2" aria-expanded="false">
+        <span class="m2-menu-visual" style="background:#ded5e9" aria-hidden="true"><svg viewBox="0 0 360 180"><path d="M55 145h250M82 145V91h196v54M104 91V65h152v26"/><circle cx="131" cy="45" r="17" fill="#f2a23a" stroke="none"/><circle cx="229" cy="45" r="17" fill="#78bfcc" stroke="none"/><path d="M112 69c0-12 9-20 19-20s19 8 19 20m60 0c0-12 9-20 19-20s19 8 19 20"/><path d="M142 116h73m-73 16h46"/><path d="m242 111 9 9 18-22"/></svg></span>
+        <span class="m2-menu-caption"><span class="m2-menu-title">2. Understanding and Responding to Client Behaviour</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+      </button>
+        <button class="m3-menu-card" type="button" data-target="m3s3" aria-controls="m3s3" aria-expanded="false">
+        <span class="m2-menu-visual" style="background:#f7d4df" aria-hidden="true"><svg viewBox="0 0 360 180"><rect x="106" y="25" width="148" height="138" rx="12" fill="#fffaf3"/><path d="M139 57h81m-81 25h60m-60 25h81m-81 25h47"/><circle cx="250" cy="127" r="29" fill="#f4c542" stroke="none"/><path d="m271 148 25 25m-54-48 9 9 19-22"/></svg></span>
+        <span class="m2-menu-caption"><span class="m2-menu-title">3. Conducting Trauma-Informed Assessments</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+      </button>
+        <button class="m3-menu-card" type="button" data-target="m3s4" aria-controls="m3s4" aria-expanded="false">
+        <span class="m2-menu-visual" style="background:#dcecf2" aria-hidden="true"><svg viewBox="0 0 360 180"><circle cx="180" cy="50" r="24" fill="#e99e80" stroke="none"/><circle cx="83" cy="111" r="23" fill="#f2a23a" stroke="none"/><circle cx="277" cy="111" r="23" fill="#78bfcc" stroke="none"/><path d="M132 104c4-27 19-40 48-40s44 13 48 40M37 163c3-27 18-40 46-40s43 13 46 40m106 0c3-27 18-40 46-40s43 13 46 40"/><path d="M111 107h138m-116-13 21 13-21 13m94-26-21 13 21 13"/><path d="M156 146h48m-24-16v32"/></svg></span>
+        <span class="m2-menu-caption"><span class="m2-menu-title">4. Supporting Client Autonomy and Shared Decision-Making</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
+      </button>
+      </nav>
+      <div class="m3-content">
+        <article class="m3-submodule" id="m3s1" hidden>
+          <h3 tabindex="-1">1. Building Safe and Trusting Relationships</h3>
+          <section class="m3-actions" aria-labelledby="m3s1-actions-title">
+            <h4 id="m3s1-actions-title">What can you do as a social worker?</h4>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Introduce yourself and clarify your role.</h5><p>Explain who you are, why you are meeting with the client and what they can expect from the conversation.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Ask how the client would like to be addressed.</h5><p>Check the name, title or pronouns the client prefers, rather than assuming. Use their chosen form of address consistently.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Use open-ended, non-judgemental questions.</h5><p>Invite clients to share their concerns in their own words, rather than making assumptions about their experiences or needs.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Listen actively and acknowledge feelings.</h5><p>Demonstrate genuine interest through attentive listening, appropriate responses and validation of the client&#x27;s feelings.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Allow clients to engage at their own pace.</h5><p>Respect silence, hesitation and discomfort. Avoid pressuring clients to share personal experiences before they feel ready, while explaining any information needed for immediate safety or service requirements.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Explain confidentiality and its limits clearly.</h5><p>Describe who may access their information, how records are used and the circumstances in which information may need to be shared. Check that the client has an opportunity to ask questions.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Communicate consistently and follow through on commitments.</h5><p>Agree on realistic follow-up arrangements, keep your promises and let the client know promptly when something changes or cannot be delivered.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Respect personal space and non-verbal cues.</h5><p>Notice signs of discomfort without making assumptions about their meaning. Avoid unnecessary physical proximity or touch, and ask about preferences when appropriate.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Set clear and supportive professional boundaries.</h5><p>Explain contact methods, availability and the scope of your role. Be warm and responsive without promising support beyond professional or service limits.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Acknowledge mistakes and address concerns openly.</h5><p>If you miss a commitment or make an error, acknowledge it without defensiveness, explain the next steps and take appropriate action to repair trust.</p></div>
+          </div>
+          </section>
+          <section class="m3-scenario" aria-labelledby="m3s1-scenario-1-title">
+            <h4 id="m3s1-scenario-1-title">Practice Scenario 1</h4>
+            <p>You are a social work student meeting a client, Alex, for the first time at a community support service.</p>
+<p>After introducing yourself, you notice that Alex avoids eye contact and responds to your questions with short answers.</p>
+<p>When you ask what brings them to the service, Alex shrugs and says:</p>
+            <blockquote class="m3-client-quote">“I don&#x27;t really know where to start.”</blockquote>
+            <p class="m3-question" id="m3s1-scenario-1-question">How would you respond?</p>
+            <div class="m3-options" role="group" aria-labelledby="m3s1-scenario-1-question">
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s1-scenario-1-feedback-a">
+                  <span class="m3-option-marker" aria-hidden="true">A</span>
+                  <span class="m3-option-copy">“That&#x27;s okay. Let&#x27;s start with some questions about your background so I can understand your situation.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s1-scenario-1-feedback-a" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Consider the client&#x27;s pace</h5><p>A structured assessment may be necessary, but immediately directing the conversation towards background questions could increase pressure before Alex feels comfortable. A trauma-informed approach allows space for rapport and invites the client to identify what feels manageable to discuss.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s1-scenario-1-feedback-b">
+                  <span class="m3-option-marker" aria-hidden="true">B</span>
+                  <span class="m3-option-copy">“That&#x27;s completely okay. We don&#x27;t have to cover everything today. Would you like to start with what&#x27;s most important to you right now?”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s1-scenario-1-feedback-b" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>A trauma-informed response</h5><p>This response acknowledges Alex&#x27;s uncertainty without judgement and reduces the pressure to disclose everything at once. It also uses an open-ended invitation that gives Alex a meaningful role in directing the conversation. This can help support both emotional safety and early trust.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s1-scenario-1-feedback-c">
+                  <span class="m3-option-marker" aria-hidden="true">C</span>
+                  <span class="m3-option-copy">“Don&#x27;t worry, there&#x27;s nothing to be nervous about. I&#x27;m just here to help.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s1-scenario-1-feedback-c" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Reassurance is not always enough</h5><p>Although the intention is supportive, this response assumes Alex is nervous and may minimise their uncertainty. Rather than telling clients how they should feel, trauma-informed engagement focuses on listening, acknowledging their experience and allowing them to express concerns in their own way.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="m3-scenario" aria-labelledby="m3s1-scenario-2-title">
+            <h4 id="m3s1-scenario-2-title">Practice Scenario 2</h4>
+            <p>You are meeting with Sam, a client who has recently started receiving support from your service.</p>
+<p>During the conversation, Sam notices that you are taking notes and asks:</p>
+            <blockquote class="m3-client-quote">“Are those notes private? Who else gets to see what I tell you?”</blockquote>
+            <p class="m3-question" id="m3s1-scenario-2-question">How would you respond?</p>
+            <div class="m3-options" role="group" aria-labelledby="m3s1-scenario-2-question">
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s1-scenario-2-feedback-a">
+                  <span class="m3-option-marker" aria-hidden="true">A</span>
+                  <span class="m3-option-copy">“Don&#x27;t worry, everything you tell me stays between us.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s1-scenario-2-feedback-a" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Avoid making absolute promises</h5><p>This response may sound reassuring, but it promises absolute confidentiality. Social workers have legal and professional responsibilities that can require information sharing in certain circumstances. Making promises that cannot always be kept may damage trust.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s1-scenario-2-feedback-b">
+                  <span class="m3-option-marker" aria-hidden="true">B</span>
+                  <span class="m3-option-copy">“That&#x27;s an important question. I can explain who may have access to your information, how we use it, and when I might need to share it. We can talk about any concerns before we continue.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s1-scenario-2-feedback-b" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>A trauma-informed response</h5><p>This response takes Sam&#x27;s concern seriously and offers clear, honest information without making unrealistic promises. Explaining confidentiality and its limits helps clients understand what to expect and make more informed choices about what they share. The explanation should reflect the service&#x27;s actual policies and legal obligations.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s1-scenario-2-feedback-c">
+                  <span class="m3-option-marker" aria-hidden="true">C</span>
+                  <span class="m3-option-copy">“It&#x27;s part of our normal procedure. We can go through the confidentiality details later.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s1-scenario-2-feedback-c" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Transparency should not be postponed</h5><p>Following organisational procedures is important, but postponing an answer to a direct question about privacy may increase uncertainty. Addressing Sam&#x27;s concern before continuing demonstrates respect and helps establish a more predictable and trustworthy relationship.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="m3-scenario" aria-labelledby="m3s1-scenario-3-title">
+            <h4 id="m3s1-scenario-3-title">Practice Scenario 3</h4>
+            <p>You have been working with Riley, a client receiving community support.</p>
+<p>Last week, you promised to send Riley information about a local support group, but you forgot.</p>
+<p>At your next meeting, Riley says:</p>
+            <blockquote class="m3-client-quote">“You said you&#x27;d send it, but I never heard from you. Maybe I should just have your personal number so I can reach you directly.”</blockquote>
+            <p class="m3-question" id="m3s1-scenario-3-question">How would you respond?</p>
+            <div class="m3-options" role="group" aria-labelledby="m3s1-scenario-3-question">
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s1-scenario-3-feedback-a">
+                  <span class="m3-option-marker" aria-hidden="true">A</span>
+                  <span class="m3-option-copy">“I&#x27;m sorry I missed that. I should have updated you. I&#x27;ll confirm when I can send the information, and we can go over the best way to contact me through the service.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s1-scenario-3-feedback-a" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>A trauma-informed response</h5><p>This response acknowledges the mistake without becoming defensive and takes responsibility for repairing trust. It also maintains a clear professional boundary while offering a reliable way to stay in contact. Transparency, accountability and consistent follow-through can help clients feel respected and secure in the helping relationship.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s1-scenario-3-feedback-b">
+                  <span class="m3-option-marker" aria-hidden="true">B</span>
+                  <span class="m3-option-copy">“I&#x27;ve been very busy, and sometimes things get delayed. I can&#x27;t give out my personal number, so you&#x27;ll need to contact reception.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s1-scenario-3-feedback-b" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Boundaries need to be supportive</h5><p>Maintaining professional contact arrangements is appropriate. However, focusing on how busy you have been can sound dismissive and does not acknowledge the missed commitment. A trauma-informed response combines clear boundaries with accountability, empathy and practical alternatives.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s1-scenario-3-feedback-c">
+                  <span class="m3-option-marker" aria-hidden="true">C</span>
+                  <span class="m3-option-copy">“I&#x27;m really sorry. I&#x27;ll give you my personal number so you can contact me directly if anything like this happens again.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s1-scenario-3-feedback-c" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Avoid compensating by crossing boundaries</h5><p>The intention is caring, but sharing personal contact details to compensate for a mistake may blur professional boundaries and create unrealistic expectations about availability. A more supportive response is to acknowledge the mistake, follow through on commitments and agree on appropriate contact arrangements.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="m3-references" aria-labelledby="m3s1-references-title">
+            <h4 id="m3s1-references-title">References</h4>
+            <ol><li>Levenson, J. S. (2020). Translating trauma-informed principles into social work practice. Social Work, 65(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
+<li>Substance Abuse and Mental Health Services Administration. (2014). SAMHSA’s concept of trauma and guidance for a trauma-informed approach (HHS Publication No. SMA 14-4884).</li>
+<li>Harris, M., &amp; Fallot, R. D. (2001). Envisioning a trauma-informed service system: A vital paradigm shift. New Directions for Mental Health Services, 2001(89), 3–22. <a href="https://doi.org/10.1002/yd.23320018903" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/yd.23320018903</a></li></ol>
+          </section>
+        </article>
+        <article class="m3-submodule" id="m3s2" hidden>
+          <h3 tabindex="-1">2. Understanding and Responding to Client Behaviour</h3>
+          <section class="m3-actions" aria-labelledby="m3s2-actions-title">
+            <h4 id="m3s2-actions-title">What can you do as a social worker?</h4>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Describe observable behaviour without labelling the client.</h5><p>Describe what the client does or says rather than using labels such as &quot;difficult&quot;, &quot;unmotivated&quot; or &quot;non-compliant&quot;. Separate your observations from your interpretations.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Consider the client&#x27;s circumstances before drawing conclusions about their behaviour.</h5><p>Explore current stressors, family circumstances and recent experiences that may help explain the client&#x27;s behaviour. Avoid making judgements based on a single interaction.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Explore how behaviour may function as a coping or protective strategy.</h5><p>Consider whether avoidance, withdrawal, anger or other responses might have helped the client manage difficult experiences. Explore these possibilities without assuming that every behaviour is trauma-related.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Ask about barriers before interpreting missed appointments as disengagement.</h5><p>Check whether transport, caring responsibilities, scheduling difficulties or previous negative service experiences have affected attendance before making assumptions about the client&#x27;s motivation.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Consider how systemic barriers, discrimination or unmet support needs may affect engagement.</h5><p>Explore whether difficulties with service access, experiences of discrimination, or unmet cultural, linguistic or practical needs may be influencing the client&#x27;s behaviour or participation. Avoid interpreting disengagement solely as an individual problem.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Respond to guardedness or resistance with curiosity rather than confrontation.</h5><p>Ask what may be making participation difficult instead of challenging the client&#x27;s attitude. Avoid responses that shame, threaten or escalate a power struggle.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Explore ambivalence without pressuring the client to change.</h5><p>Acknowledge that clients may have mixed feelings about changing familiar coping strategies. Invite them to discuss both the benefits and concerns associated with change.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Recognise signs of emotional distress and adjust your approach.</h5><p>Notice changes in tone, agitation, withdrawal or difficulty concentrating. Consider slowing the conversation, reducing demands or offering a pause when appropriate.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Use calm communication and offer practical options for de-escalation.</h5><p>Speak calmly, avoid threatening language or unnecessary physical contact, and offer manageable options such as taking a break or moving to a quieter space when safe and appropriate.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Validate feelings while maintaining appropriate safety limits.</h5><p>Acknowledge the client&#x27;s feelings without approving harmful behaviour. Explain any necessary safety boundaries respectfully and follow relevant safeguarding procedures.</p></div>
+          </div>
+          </section>
+          <section class="m3-scenario" aria-labelledby="m3s2-scenario-1-title">
+            <h4 id="m3s2-scenario-1-title">Practice Scenario 1</h4>
+            <p>You are a social worker at a family support service. A client, Talia, has missed two appointments.</p>
+<p>A colleague describes Talia as &quot;unmotivated&quot;. When you contact her, she explains:</p>
+            <blockquote class="m3-client-quote">“The letters are hard for me to understand, and my work shifts finish after your office closes.”</blockquote>
+            <p class="m3-question" id="m3s2-scenario-1-question">How would you respond?</p>
+            <div class="m3-options" role="group" aria-labelledby="m3s2-scenario-1-question">
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s2-scenario-1-feedback-a">
+                  <span class="m3-option-marker" aria-hidden="true">A</span>
+                  <span class="m3-option-copy">“I understand, but attending appointments is important. You need to make sure you come next time.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s2-scenario-1-feedback-a" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Look beyond attendance</h5><p>Although attendance expectations may need to be explained, this response does not explore the barriers Talia has identified. Focusing immediately on compliance may reinforce the assumption that attendance difficulties reflect a lack of motivation.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s2-scenario-1-feedback-b">
+                  <span class="m3-option-marker" aria-hidden="true">B</span>
+                  <span class="m3-option-copy">“It sounds like you might have had some difficult experiences with services before. Is that why you&#x27;ve been avoiding appointments?”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s2-scenario-1-feedback-b" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Avoid assuming trauma is the explanation</h5><p>Previous negative experiences could affect engagement, but Talia has already identified practical and communication barriers. Suggesting a trauma-related explanation without evidence may overlook her actual circumstances and needs.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s2-scenario-1-feedback-c">
+                  <span class="m3-option-marker" aria-hidden="true">C</span>
+                  <span class="m3-option-copy">“Thank you for explaining. It sounds like the letters and appointment times have made things difficult. Could you tell me more about those barriers so I can understand what&#x27;s happening?”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s2-scenario-1-feedback-c" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Explore the context before drawing conclusions</h5><p>This response takes Talia&#x27;s explanation seriously and explores the circumstances affecting her participation. It avoids labelling her as unmotivated and recognises that service accessibility, communication barriers and working conditions can influence engagement.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="m3-scenario" aria-labelledby="m3s2-scenario-2-title">
+            <h4 id="m3s2-scenario-2-title">Practice Scenario 2</h4>
+            <p>You are working with Sam, a client attending a court-mandated alcohol support programme.</p>
+<p>During a session, Sam says:</p>
+            <blockquote class="m3-client-quote">“I know drinking causes problems sometimes, but it&#x27;s the only thing that helps me switch off. I don&#x27;t want someone telling me to stop.”</blockquote>
+            <p class="m3-question" id="m3s2-scenario-2-question">How would you respond?</p>
+            <div class="m3-options" role="group" aria-labelledby="m3s2-scenario-2-question">
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s2-scenario-2-feedback-a">
+                  <span class="m3-option-marker" aria-hidden="true">A</span>
+                  <span class="m3-option-copy">“If you want things to improve, you&#x27;ll need to take the drinking problem seriously. Refusing to change won&#x27;t help.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s2-scenario-2-feedback-a" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Confrontation may increase defensiveness</h5><p>This response focuses on correcting the client rather than understanding their perspective. It may evoke shame or defensiveness and overlooks the possibility that alcohol has become a familiar way of coping with stress. Accountability can be discussed without confrontation.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s2-scenario-2-feedback-b">
+                  <span class="m3-option-marker" aria-hidden="true">B</span>
+                  <span class="m3-option-copy">“It sounds like drinking helps you manage stress, but you also have some concerns about it. What feels difficult about the idea of changing?”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s2-scenario-2-feedback-b" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Explore ambivalence with curiosity</h5><p>This response acknowledges the possible coping function of drinking without endorsing harmful use. It invites Sam to explore mixed feelings and concerns about change, rather than imposing a conclusion. Any mandated requirements and immediate safety concerns still need to be addressed.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s2-scenario-2-feedback-c">
+                  <span class="m3-option-marker" aria-hidden="true">C</span>
+                  <span class="m3-option-copy">“I understand. We don&#x27;t have to talk about your drinking if you&#x27;re not ready.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s2-scenario-2-feedback-c" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Acceptance does not mean avoiding difficult topics</h5><p>Respecting the client&#x27;s concerns is important, but completely avoiding the issue may overlook the purpose of the service and any mandatory requirements. A trauma-informed approach allows exploration of difficult topics without shaming or pressuring the client.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="m3-scenario" aria-labelledby="m3s2-scenario-3-title">
+            <h4 id="m3s2-scenario-3-title">Practice Scenario 3</h4>
+            <p>You are a school social worker meeting with Kai, a 15-year-old student referred after a conflict with a teacher.</p>
+<p>During the conversation, Kai becomes visibly agitated, raises their voice and stands up.</p>
+            <blockquote class="m3-client-quote">“Nobody at this school ever listens to me! I&#x27;m done talking!”</blockquote>
+            <p class="m3-question" id="m3s2-scenario-3-question">How would you respond?</p>
+            <div class="m3-options" role="group" aria-labelledby="m3s2-scenario-3-question">
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s2-scenario-3-feedback-a">
+                  <span class="m3-option-marker" aria-hidden="true">A</span>
+                  <span class="m3-option-copy">“I can see you&#x27;re very upset. We can pause for a moment. I&#x27;ll give you some space. Would you prefer to stay here quietly or move to a quieter area with support?”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s2-scenario-3-feedback-a" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Support de-escalation while attending to safety</h5><p>This response acknowledges the student&#x27;s distress, reduces immediate conversational demands and offers manageable options. It avoids confrontation and unnecessary pressure. The social worker should also assess immediate safety and follow relevant school safeguarding procedures.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s2-scenario-3-feedback-b">
+                  <span class="m3-option-marker" aria-hidden="true">B</span>
+                  <span class="m3-option-copy">“You need to calm down and take some deep breaths before we can continue.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s2-scenario-3-feedback-b" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Avoid directing the client&#x27;s emotional response</h5><p>Although breathing may help some people regulate distress, instructing Kai to calm down can feel dismissive or controlling. Strategies for regulation are better offered as options rather than imposed. First attend to safety and respond calmly to the student&#x27;s distress.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s2-scenario-3-feedback-c">
+                  <span class="m3-option-marker" aria-hidden="true">C</span>
+                  <span class="m3-option-copy">“If you walk out now, I&#x27;ll have to report that you refused to cooperate. Please sit down.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s2-scenario-3-feedback-c" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Threats can escalate the situation</h5><p>Emphasising consequences during a moment of distress may intensify fear, anger or a power struggle. Safety and school responsibilities still matter, but these should be addressed calmly, without unnecessary threats or humiliation.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="m3-references" aria-labelledby="m3s2-references-title">
+            <h4 id="m3s2-references-title">References</h4>
+            <ol><li>Levenson, J. S. (2020). Translating trauma-informed principles into social work practice. Social Work, 65(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
+<li>Harris, M., &amp; Fallot, R. D. (2001). Envisioning a trauma-informed service system: A vital paradigm shift. New Directions for Mental Health Services, 2001(89), 3–22. <a href="https://doi.org/10.1002/yd.23320018903" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/yd.23320018903</a></li>
+<li>Substance Abuse and Mental Health Services Administration. (2014). SAMHSA’s concept of trauma and guidance for a trauma-informed approach (HHS Publication No. SMA 14-4884).</li></ol>
+          </section>
+        </article>
+        <article class="m3-submodule" id="m3s3" hidden>
+          <h3 tabindex="-1">3. Conducting Trauma-Informed Assessments</h3>
+          <section class="m3-actions" aria-labelledby="m3s3-actions-title">
+            <h4 id="m3s3-actions-title">What can you do as a social worker?</h4>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Explain the purpose and process of the assessment.</h5><p>Tell clients why the assessment is needed, what information you will ask for and how it will be used. Explain what they can expect before beginning.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Seek informed consent before discussing sensitive experiences, where appropriate.</h5><p>Explain the purpose of sensitive questions and ask whether the client is comfortable proceeding. Be clear about any questions or information-sharing requirements that cannot be optional.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Begin with the client&#x27;s presenting concerns rather than assuming trauma is the primary issue.</h5><p>Ask what has brought the client to the service and what concerns them currently. Avoid assuming that their difficulties must be explained by past trauma.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Ask only for information relevant to the assessment and avoid unnecessary probing.</h5><p>Focus on information needed to understand the client&#x27;s circumstances, identify risks and determine appropriate support. Avoid requesting detailed trauma narratives when they are not necessary.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Offer breaks or pauses when discussing distressing experiences.</h5><p>Notice signs of discomfort and check whether the client would like a pause or a change of pace. Where possible, allow sensitive information to be explored across more than one session.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Respond to trauma disclosures with validation rather than immediate requests for details.</h5><p>Acknowledge what the client has shared without judgement. Avoid pressing for a detailed account unless further information is necessary for immediate safety or professional responsibilities.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Check for immediate safety concerns without requiring a detailed trauma narrative.</h5><p>Ask focused questions about current safety when concerns arise. Follow relevant safeguarding and reporting procedures without unnecessarily revisiting distressing experiences.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Explore strengths, coping strategies and supportive relationships alongside difficulties.</h5><p>Ask what has helped the client manage challenges, what they feel they do well and who they can turn to for support. Include these strengths alongside identified concerns.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Use language and identity-related terminology preferred by the client.</h5><p>Ask about and respect the client&#x27;s preferred terms when discussing their identity, relationships and experiences. Use these terms consistently in assessment conversations and documentation, avoiding assumptions or stigmatising labels.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Summarise what you have heard and check your understanding with the client.</h5><p>Reflect back the main points of the assessment and ask whether your understanding is accurate. Invite clients to clarify or correct information before finalising conclusions.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Document assessment information using respectful, non-stigmatising language.</h5><p>Record relevant observations and client-reported information accurately. Distinguish facts from interpretations, avoid judgemental labels and document strengths alongside concerns.</p></div>
+          </div>
+          </section>
+          <section class="m3-scenario" aria-labelledby="m3s3-scenario-1-title">
+            <h4 id="m3s3-scenario-1-title">Practice Scenario 1</h4>
+            <p>You are a social work student completing an intake assessment at a community support service.</p>
+<p>Jordan has come in for emergency rent assistance. The intake form includes questions about family and personal history.</p>
+<p>Jordan looks at the form and asks:</p>
+            <blockquote class="m3-client-quote">“Why do you need to know all that? I just need help with my rent.”</blockquote>
+            <p class="m3-question" id="m3s3-scenario-1-question">How would you respond?</p>
+            <div class="m3-options" role="group" aria-labelledby="m3s3-scenario-1-question">
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s3-scenario-1-feedback-a">
+                  <span class="m3-option-marker" aria-hidden="true">A</span>
+                  <span class="m3-option-copy">“It&#x27;s just part of the form. I have to ask everyone these questions.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s3-scenario-1-feedback-a" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Explain the purpose, not just the procedure</h5><p>Although the questions may be part of a standard assessment, this response does not explain why the information is needed. Referring only to procedure may leave Jordan feeling that their concerns are being overlooked. A trauma-informed approach makes the assessment process understandable and avoids unnecessary questioning.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s3-scenario-1-feedback-b">
+                  <span class="m3-option-marker" aria-hidden="true">B</span>
+                  <span class="m3-option-copy">“Fair question. Some of this helps us work out what support&#x27;s available. Let me explain which questions we need for the rent application, and we can go from there.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s3-scenario-1-feedback-b" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Explain why the information is needed</h5><p>This response acknowledges Jordan&#x27;s concern and connects the questions to the support they are seeking. It helps the client understand the purpose of the assessment without assuming that all personal history must be explored immediately. Any required information should still be collected and explained clearly.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s3-scenario-1-feedback-c">
+                  <span class="m3-option-marker" aria-hidden="true">C</span>
+                  <span class="m3-option-copy">“Okay, no worries. We can skip that whole section.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s3-scenario-1-feedback-c" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Avoid making promises you may not be able to keep</h5><p>Allowing flexibility can support client comfort, but some information may be necessary to assess eligibility or safety. Skipping an entire section without checking these requirements could create problems later. Explain which questions are essential and which can be postponed.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="m3-scenario" aria-labelledby="m3s3-scenario-2-title">
+            <h4 id="m3s3-scenario-2-title">Practice Scenario 2</h4>
+            <p>You are a social worker conducting an assessment with Maya at a family support service.</p>
+<p>While talking about their home situation, Maya tells you:</p>
+            <blockquote class="m3-client-quote">“My ex used to lock me in the house. I don&#x27;t really want to go into it.”</blockquote>
+            <p class="m3-question" id="m3s3-scenario-2-question">How would you respond?</p>
+            <div class="m3-options" role="group" aria-labelledby="m3s3-scenario-2-question">
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s3-scenario-2-feedback-a">
+                  <span class="m3-option-marker" aria-hidden="true">A</span>
+                  <span class="m3-option-copy">“I&#x27;m sorry to hear that. Can you tell me exactly what happened?”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s3-scenario-2-feedback-a" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Avoid unnecessary requests for trauma details</h5><p>Acknowledging the disclosure is helpful, but immediately asking for a detailed account may place pressure on Maya after they have said they do not want to discuss it. A more appropriate first step is to validate the experience and identify whether any immediate safety information is needed.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s3-scenario-2-feedback-b">
+                  <span class="m3-option-marker" aria-hidden="true">B</span>
+                  <span class="m3-option-copy">“I&#x27;m sorry that happened. We don&#x27;t need to go into the details right now. Can I just check whether you feel safe from them at the moment?”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s3-scenario-2-feedback-b" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Acknowledge the disclosure and check current safety</h5><p>This response acknowledges Maya&#x27;s experience without pressing for unnecessary details. It also checks current safety, which may be important for deciding what support or protective action is needed. Further assessment should follow relevant safeguarding and reporting responsibilities.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s3-scenario-2-feedback-c">
+                  <span class="m3-option-marker" aria-hidden="true">C</span>
+                  <span class="m3-option-copy">“That&#x27;s okay. We can leave it and move on to the next question.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s3-scenario-2-feedback-c" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Respecting disclosure boundaries still requires professional judgement</h5><p>Moving away from a sensitive topic may respect the client&#x27;s stated preference, but completely overlooking the disclosure could mean missing an immediate safety concern. A brief, focused safety check may be necessary without requiring the client to describe the past experience in detail.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="m3-scenario" aria-labelledby="m3s3-scenario-3-title">
+            <h4 id="m3s3-scenario-3-title">Practice Scenario 3</h4>
+            <p>You are finishing an assessment with Morgan, a parent receiving family support.</p>
+<p>Morgan reads your draft summary and says:</p>
+            <blockquote class="m3-client-quote">“It says I&#x27;ve been struggling to cope. But I&#x27;ve kept the kids in school, and my sister helps with the afternoons. That makes it sound like I&#x27;m doing nothing right.”</blockquote>
+            <p class="m3-question" id="m3s3-scenario-3-question">How would you respond?</p>
+            <div class="m3-options" role="group" aria-labelledby="m3s3-scenario-3-question">
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s3-scenario-3-feedback-a">
+                  <span class="m3-option-marker" aria-hidden="true">A</span>
+                  <span class="m3-option-copy">“That&#x27;s just how we word things in the assessment. It doesn&#x27;t mean you&#x27;re not trying.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s3-scenario-3-feedback-a" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Professional wording can still affect clients</h5><p>This response attempts to reassure Morgan but dismisses their concern about how they are represented. Assessment records should be accurate, respectful and attentive to strengths as well as difficulties. Standard wording is not a reason to overlook the client&#x27;s perspective.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s3-scenario-3-feedback-b">
+                  <span class="m3-option-marker" aria-hidden="true">B</span>
+                  <span class="m3-option-copy">“You&#x27;re right, that doesn&#x27;t tell the whole story. You&#x27;ve been keeping things going, and your sister&#x27;s been helping. Let me add that, and we can check I&#x27;ve got it right.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s3-scenario-3-feedback-b" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Include strengths and check the accuracy of your assessment</h5><p>This response acknowledges Morgan&#x27;s concern and recognises the coping efforts and family support they have described. It also invites the client to check the written summary. A balanced assessment documents strengths alongside relevant needs and risks rather than focusing only on difficulties.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s3-scenario-3-feedback-c">
+                  <span class="m3-option-marker" aria-hidden="true">C</span>
+                  <span class="m3-option-copy">“Okay, I&#x27;ll take out the part about struggling to cope.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s3-scenario-3-feedback-c" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>A balanced assessment should not omit relevant concerns</h5><p>Removing all references to difficulties may make the summary less accurate. Trauma-informed documentation is not about recording only positive information; it involves representing both challenges and strengths fairly. A better response would review the wording with Morgan and clarify what the assessment needs to capture.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="m3-references" aria-labelledby="m3s3-references-title">
+            <h4 id="m3s3-references-title">References</h4>
+            <ol><li>Levenson, J. S. (2020). Translating trauma-informed principles into social work practice. Social Work, 65(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
+<li>Substance Abuse and Mental Health Services Administration. (2014). SAMHSA’s concept of trauma and guidance for a trauma-informed approach (HHS Publication No. SMA 14-4884).</li></ol>
+          </section>
+        </article>
+        <article class="m3-submodule" id="m3s4" hidden>
+          <h3 tabindex="-1">4. Supporting Client Autonomy and Shared Decision-Making</h3>
+          <section class="m3-actions" aria-labelledby="m3s4-actions-title">
+            <h4 id="m3s4-actions-title">What can you do as a social worker?</h4>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Ask clients which concerns they would like to address first.</h5><p>When clients face multiple difficulties, ask what feels most urgent or important to them. Consider their priorities alongside any immediate safety concerns that require attention.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Explore the client&#x27;s preferences, values and goals before recommending actions.</h5><p>Ask what matters to the client, what they have already tried and what they hope to achieve. Avoid assuming that your preferred solution is necessarily the best fit for their circumstances.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Explain available options, including their potential benefits, risks and limitations.</h5><p>Provide clear information about relevant services, eligibility requirements, waiting times and possible consequences. Help clients compare options without pressuring them towards one particular choice.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Check the client&#x27;s understanding before asking them to make a decision.</h5><p>Use accessible language and invite questions. Check whether the client understands the options and what each involves, rather than assuming that agreement or silence indicates informed understanding.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Be transparent about non-negotiable requirements while identifying choices that remain.</h5><p>Explain any legal, safeguarding or service requirements that cannot be changed. Where possible, involve clients in deciding how these requirements are met and what support they would find helpful.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Identify organisational constraints and advocate for more accessible or equitable options where appropriate.</h5><p>Recognise when service policies, eligibility requirements or resource limitations restrict the client&#x27;s choices. Discuss available alternatives and, with the client&#x27;s involvement, advocate for adjustments or more accessible services where appropriate.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Invite clients to define their own goals rather than imposing professional priorities.</h5><p>Ask what meaningful progress would look like from the client&#x27;s perspective. Develop goals that reflect their priorities and circumstances while addressing relevant professional responsibilities.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Break agreed goals into manageable steps together.</h5><p>Work with clients to identify realistic actions they can take towards their goals. Consider available resources, current capacity and practical barriers when deciding what can be achieved.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Clarify responsibilities and next steps through collaborative planning.</h5><p>Agree on who will do what, when actions will take place and how progress will be followed up. Make sure the client understands and has a say in the agreed arrangements.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Support clients to advocate for themselves rather than taking over decisions or tasks.</h5><p>Offer practical support such as preparing for conversations, explaining procedures or attending meetings together. Encourage client participation without assuming they must manage everything independently.</p></div>
+          </div>
+            <div class="m3-action-row">
+            <span class="m3-action-check" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></svg></span>
+            <div><h5>Review decisions and adjust plans based on client feedback.</h5><p>Regularly ask whether agreed actions are working and whether the client&#x27;s priorities have changed. Make adjustments collaboratively rather than continuing with a plan that no longer meets their needs.</p></div>
+          </div>
+          </section>
+          <section class="m3-scenario" aria-labelledby="m3s4-scenario-1-title">
+            <h4 id="m3s4-scenario-1-title">Practice Scenario 1</h4>
+            <p>You are a social worker at a family support service. Nadia is dealing with housing insecurity, financial stress and concerns about her son&#x27;s school attendance.</p>
+<p>During your meeting, Nadia says:</p>
+            <blockquote class="m3-client-quote">“I know there&#x27;s a lot going on. But honestly, I just need to work out where we&#x27;re going to stay next week.”</blockquote>
+            <p class="m3-question" id="m3s4-scenario-1-question">How would you respond?</p>
+            <div class="m3-options" role="group" aria-labelledby="m3s4-scenario-1-question">
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s4-scenario-1-feedback-a">
+                  <span class="m3-option-marker" aria-hidden="true">A</span>
+                  <span class="m3-option-copy">“Okay. I&#x27;ll put in some referrals for housing, counselling and school support, and we&#x27;ll see what comes back.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s4-scenario-1-feedback-a" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>More referrals are not always the best starting point</h5><p>Although several referrals may eventually be helpful, this response moves ahead with a professional plan without first exploring Nadia&#x27;s immediate priorities. A trauma-informed approach involves the client in deciding where to focus, rather than trying to address everything at once.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s4-scenario-1-feedback-b">
+                  <span class="m3-option-marker" aria-hidden="true">B</span>
+                  <span class="m3-option-copy">“I&#x27;m a bit concerned about how stressed you&#x27;ve been. Maybe we should work on that first so the other things feel more manageable.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s4-scenario-1-feedback-b" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Avoid replacing client priorities with professional assumptions</h5><p>Nadia&#x27;s emotional wellbeing matters, but she has clearly identified housing as her immediate concern. Prioritising stress management without discussing her preference may leave her feeling unheard. Professional judgement should be considered alongside client-defined needs.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s4-scenario-1-feedback-c">
+                  <span class="m3-option-marker" aria-hidden="true">C</span>
+                  <span class="m3-option-copy">“Housing sounds like the biggest worry right now. Have you and your son got somewhere safe to stay tonight? Then we can look at what needs to happen before next week.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s4-scenario-1-feedback-c" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Start with the client&#x27;s priority while checking immediate safety</h5><p>This response recognises what matters most to Nadia and checks an immediate safety consideration. It offers a starting point without taking over the entire plan. Client priorities can guide the work while the social worker continues to attend to relevant safety responsibilities.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="m3-scenario" aria-labelledby="m3s4-scenario-2-title">
+            <h4 id="m3s4-scenario-2-title">Practice Scenario 2</h4>
+            <p>You are supporting Casey, a parent involved with a family support service.</p>
+<p>Attending a parenting course is a requirement in Casey&#x27;s current support plan. However, the sessions run during Casey&#x27;s working hours.</p>
+<p>Casey tells you:</p>
+            <blockquote class="m3-client-quote">“I&#x27;m not losing shifts to go to this course. I need that money. What am I supposed to do?”</blockquote>
+            <p class="m3-question" id="m3s4-scenario-2-question">How would you respond?</p>
+            <div class="m3-options" role="group" aria-labelledby="m3s4-scenario-2-question">
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s4-scenario-2-feedback-a">
+                  <span class="m3-option-marker" aria-hidden="true">A</span>
+                  <span class="m3-option-copy">“That doesn&#x27;t sound workable with your shifts. Let&#x27;s check exactly what&#x27;s required and whether there&#x27;s another session or another way to do it. If there isn&#x27;t, we can ask the team about an adjustment.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s4-scenario-2-feedback-a" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Look for meaningful choices within the requirements</h5><p>This response acknowledges the practical conflict without suggesting Casey can simply ignore the plan. It distinguishes the requirement from how it might be fulfilled and explores opportunities for negotiation and advocacy. An alternative cannot be guaranteed, but the worker can help Casey participate in finding a workable solution.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s4-scenario-2-feedback-b">
+                  <span class="m3-option-marker" aria-hidden="true">B</span>
+                  <span class="m3-option-copy">“I know it&#x27;s difficult, but the course is part of your plan. Could you ask your manager to change your shifts?”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s4-scenario-2-feedback-b" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Consider whose circumstances are expected to change</h5><p>This response explains the requirement and suggests a possible solution, but it places responsibility on Casey to adjust their employment. Before recommending this, the social worker should explore other programme options and whether the service itself can accommodate the client&#x27;s circumstances.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s4-scenario-2-feedback-c">
+                  <span class="m3-option-marker" aria-hidden="true">C</span>
+                  <span class="m3-option-copy">“That&#x27;s not fair on you. I&#x27;ll tell them you can&#x27;t do the course and ask them to take it off your plan.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s4-scenario-2-feedback-c" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Advocacy requires clarity about professional authority</h5><p>Questioning an inaccessible requirement may be appropriate, but the social worker cannot assume the course can simply be removed. Effective advocacy involves checking the actual requirements, discussing Casey&#x27;s preferences and negotiating feasible alternatives without making promises beyond the worker&#x27;s authority.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="m3-scenario" aria-labelledby="m3s4-scenario-3-title">
+            <h4 id="m3s4-scenario-3-title">Practice Scenario 3</h4>
+            <p>You are working with Ellis at a community support service.</p>
+<p>You have agreed to help Ellis apply for financial hardship assistance with an overdue electricity bill.</p>
+<p>When you look through the application together, Ellis says:</p>
+            <blockquote class="m3-client-quote">“I want to get this sorted, but there&#x27;s so much paperwork. I don&#x27;t think I can get through all of it this week.”</blockquote>
+            <p class="m3-question" id="m3s4-scenario-3-question">How would you respond?</p>
+            <div class="m3-options" role="group" aria-labelledby="m3s4-scenario-3-question">
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s4-scenario-3-feedback-a">
+                  <span class="m3-option-marker" aria-hidden="true">A</span>
+                  <span class="m3-option-copy">“I can fill it all in for you. That&#x27;ll be quicker, and we can get it sorted.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s4-scenario-3-feedback-a" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Helping does not always mean taking over</h5><p>Completing paperwork for a client may sometimes be appropriate, particularly when accessibility or urgency requires it. However, offering to take over before exploring what Ellis wants may reduce their involvement. The social worker should ask what assistance would be most useful rather than assuming full responsibility.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s4-scenario-3-feedback-b">
+                  <span class="m3-option-marker" aria-hidden="true">B</span>
+                  <span class="m3-option-copy">“Okay, let&#x27;s make it a bit more manageable. Want to start the first part together and work out what you can do before we meet again?”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s4-scenario-3-feedback-b" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>Break goals into achievable, shared steps</h5><p>This response turns an agreed goal into smaller, realistic actions while keeping Ellis involved. It offers practical assistance without assuming they must manage the task alone. The next step would be to agree on responsibilities, check any deadlines and review progress together.</p>
+                </div>
+              </div>
+              <div class="m3-option-wrap">
+                <button class="m3-option" type="button" aria-pressed="false" aria-controls="m3s4-scenario-3-feedback-c">
+                  <span class="m3-option-marker" aria-hidden="true">C</span>
+                  <span class="m3-option-copy">“I think we should try to get the whole form finished this week. I&#x27;ll write down what you need to do before our next meeting.”</span>
+                  <span class="m3-option-indicator" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle class="m3-selected-dot" cx="12" cy="12" r="4"/></svg></span>
+                </button>
+                <div class="m3-feedback" id="m3s4-scenario-3-feedback-c" role="status" aria-live="polite" aria-atomic="true" hidden>
+                  <h5>A plan should reflect the client&#x27;s capacity and input</h5><p>A clear deadline can be useful, but this response sets the pace and tasks without exploring Ellis&#x27;s concerns. Collaborative planning involves checking what is achievable, identifying barriers and agreeing on responsibilities together, rather than assigning tasks unilaterally.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="m3-references" aria-labelledby="m3s4-references-title">
+            <h4 id="m3s4-references-title">References</h4>
+            <ol><li>Levenson, J. S. (2020). Translating trauma-informed principles into social work practice. Social Work, 65(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
+<li>Harris, M., &amp; Fallot, R. D. (2001). Envisioning a trauma-informed service system: A vital paradigm shift. New Directions for Mental Health Services, 2001(89), 3–22. <a href="https://doi.org/10.1002/yd.23320018903" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/yd.23320018903</a></li>
+<li>Substance Abuse and Mental Health Services Administration. (2014). SAMHSA’s concept of trauma and guidance for a trauma-informed approach (HHS Publication No. SMA 14-4884).</li></ol>
+          </section>
+        </article>
       </div>
     </section>
 
-    <section id="module-04">
+        <section id="module-04">
       <div class="section-head">
         <span class="section-number">04</span>
         <div>
@@ -397,43 +1743,13 @@
       </div>
       <div class="scenario-grid" id="scenarios">
         <a class="scenario-card" href="./jack.html" aria-label="Open Jack's interactive scenario"><h3>Jack</h3><span class="setting">School · Rapport building</span><span class="launch-label">Open interactive scenario</span></a>
-        <a class="scenario-card" href="#alex"><h3>Alex</h3><span class="setting">NDIS · Assessment</span><div class="empty" aria-label="Alex scenario summary area reserved"></div></a>
-        <a class="scenario-card" href="#marko"><h3>Marko</h3><span class="setting">Youth work · Care planning</span><div class="empty" aria-label="Marko scenario summary area reserved"></div></a>
+        <a class="scenario-card" href="./alex.html"><h3>Alex</h3><span class="setting">NDIS · Assessment</span></a>
+        <a class="scenario-card" href="./marko.html"><h3>Marko</h3><span class="setting">Youth work · Care planning</span></a>
       </div>
       <div class="submodule-grid">
         <article class="submodule-card"><h3>Choice-Based Feedback</h3><div class="empty" aria-label="Choice-Based Feedback content reserved"></div></article>
         <article class="submodule-card"><h3>Links Back to Relevant Learning Materials</h3><div class="empty" aria-label="Links Back to Relevant Learning Materials content reserved"></div></article>
       </div>
-    </section>
-
-    <section class="scenario-section" id="alex">
-      <p class="eyebrow">Scenario 02 · NDIS</p>
-      <h2>Alex</h2>
-      <div class="scenario-meta"><span class="tag">Assessment</span></div>
-      <div class="blank-row"><span class="slot-title">Scenario context</span><div class="empty" aria-label="Alex scenario context reserved"></div></div>
-      <div class="blank-row"><span class="slot-title">Practice interaction</span><div class="empty" aria-label="Alex interaction area reserved"></div></div>
-      <div class="blank-row"><span class="slot-title">Client response and reflection</span><div class="empty" aria-label="Alex response and reflection reserved"></div></div>
-    </section>
-
-    <section class="scenario-section" id="marko">
-      <p class="eyebrow">Scenario 03 · Youth work</p>
-      <h2>Marko</h2>
-      <div class="scenario-meta"><span class="tag">Care planning</span></div>
-      <div class="blank-row"><span class="slot-title">Shared opening</span><div class="empty" aria-label="Marko shared opening reserved"></div></div>
-      <div class="scenario-block">
-        <h3>Decision point one</h3>
-        <div class="decision-grid"><div class="decision-card"><p class="decision-title">Choice A</p><div class="empty" aria-label="Marko decision one choice A reserved"></div></div><div class="decision-card"><p class="decision-title">Choice B</p><div class="empty" aria-label="Marko decision one choice B reserved"></div></div><div class="decision-card"><p class="decision-title">Choice C</p><div class="empty" aria-label="Marko decision one choice C reserved"></div></div></div>
-      </div>
-      <div class="scenario-block">
-        <h3>Decision point two</h3>
-        <div class="decision-grid"><div class="decision-card"><p class="decision-title">Choice A</p><div class="empty" aria-label="Marko decision two choice A reserved"></div></div><div class="decision-card"><p class="decision-title">Choice B</p><div class="empty" aria-label="Marko decision two choice B reserved"></div></div><div class="decision-card"><p class="decision-title">Choice C</p><div class="empty" aria-label="Marko decision two choice C reserved"></div></div></div>
-      </div>
-      <div class="scenario-block">
-        <h3>Decision point three</h3>
-        <div class="decision-grid"><div class="decision-card"><p class="decision-title">Choice A</p><div class="empty" aria-label="Marko decision three choice A reserved"></div></div><div class="decision-card"><p class="decision-title">Choice B</p><div class="empty" aria-label="Marko decision three choice B reserved"></div></div><div class="decision-card"><p class="decision-title">Choice C</p><div class="empty" aria-label="Marko decision three choice C reserved"></div></div></div>
-      </div>
-      <div class="blank-row"><span class="slot-title">Possible shared care plan</span><div class="empty" aria-label="Marko shared care plan reserved"></div></div>
-      <div class="blank-row"><span class="slot-title">Facilitator reflection</span><div class="empty" aria-label="Marko facilitator reflection reserved"></div></div>
     </section>
 
     <section id="acknowledgement" aria-labelledby="acknowledgement-title">
@@ -470,17 +1786,105 @@
       });
       document.getElementById('m1s1-edit').addEventListener('click', showStepOne);
       document.getElementById('m1s1-back').addEventListener('click', showStepOne);
-      document.getElementById('m1s1-complete').addEventListener('click', () => {
-        submoduleTwo.hidden = false;
-        document.getElementById('m1s1-complete').setAttribute('aria-expanded', 'true');
-        submoduleTwo.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        document.getElementById('m1s2-heading').focus({ preventScroll: true });
+      document.querySelectorAll('.m1-menu-card, .m2-menu-card, .m3-menu-card').forEach((card) => {
+        card.addEventListener('click', () => {
+          const target = document.getElementById(card.dataset.target);
+          const isOpening = card.getAttribute('aria-expanded') !== 'true';
+          card.setAttribute('aria-expanded', String(isOpening));
+          target.hidden = !isOpening;
+          if (card.classList.contains('m2-menu-card')) {
+            const anyM2Open = Array.from(document.querySelectorAll('.m2-menu-card')).some((item) => item.getAttribute('aria-expanded') === 'true');
+            document.querySelector('.m2-references').hidden = !anyM2Open;
+          }
+          if (!isOpening) return;
+          const heading = target.querySelector('h3');
+          const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+          target.scrollIntoView({ behavior, block: 'start' });
+          heading.focus({ preventScroll: true });
+        });
+      });
+      document.querySelectorAll('.m3-options').forEach((group) => {
+        const options = Array.from(group.querySelectorAll('.m3-option'));
+        options.forEach((button) => {
+          button.addEventListener('click', () => {
+            options.forEach((option) => {
+              const feedback = document.getElementById(option.getAttribute('aria-controls'));
+              const isSelected = option === button;
+              option.setAttribute('aria-pressed', String(isSelected));
+              feedback.hidden = !isSelected;
+            });
+          });
+        });
+      });
+      const fourRDetails = {
+        realise: ['Realise — Consider the Wider Context', 'Previous experiences may influence how someone engages with services, even when their trauma history is unknown. This awareness helps the worker remain sensitive without presuming what the client has experienced.'],
+        recognise: ['Recognise — Notice Without Assuming', "The client's change in engagement may signal discomfort. The worker can check whether they would like to pause or adjust the conversation, rather than treating the reaction as proof of trauma."],
+        respond: ['Respond — Adapt the Assessment', 'Explain why information is needed, check whether existing records can be used with appropriate permission, and offer choices about pacing or how to continue.'],
+        resist: ['Resist — Reduce Avoidable Repetition', 'Review information-sharing and assessment procedures so clients are not unnecessarily required to recount distressing experiences. This extends beyond the individual worker to organisational practice.']
+      };
+      const fourRButtons = document.querySelectorAll('.m2s2-selector');
+      const selectFourR = (button) => {
+        const [title, copy] = fourRDetails[button.dataset.m2r];
+        document.getElementById('m2s2-panel-title').textContent = title;
+        document.getElementById('m2s2-panel-copy').textContent = copy;
+        fourRButtons.forEach((option) => option.setAttribute('aria-pressed', String(option === button)));
+      };
+      fourRButtons.forEach((button) => {
+        button.addEventListener('mouseenter', () => selectFourR(button));
+        button.addEventListener('focus', () => selectFourR(button));
+        button.addEventListener('click', () => selectFourR(button));
       });
       document.getElementById('m1s1-restart').addEventListener('click', () => {
         input.value = '';
         response.textContent = '';
         showStepOne();
         input.focus();
+      });
+
+      const impactContent = [
+        ['Emotional and Psychological Well-being', 'Anxiety, fear, shame, emotional numbness, or heightened alertness.'],
+        ['Cognitive and Physical Functioning', 'Difficulties with concentration, memory, sleep, emotional regulation, and physical health.'],
+        ['Relationships', 'Difficulties with trust, emotional safety, attachment, and maintaining healthy interpersonal connections.'],
+        ['Behaviour and Coping', 'Avoidance, withdrawal, or protective responses that may be misunderstood as resistance or unwillingness to engage.'],
+        ['Sense of Control', "Feelings of powerlessness that can affect decision-making, help-seeking, and confidence in one's own choices."]
+      ];
+      const impactTitle = document.getElementById('m1s3-impact-title');
+      const impactDescription = document.getElementById('m1s3-impact-description');
+      document.querySelectorAll('.m1s3-option').forEach((button) => {
+        button.addEventListener('click', () => {
+          const [title, description] = impactContent[Number(button.dataset.impact)];
+          document.querySelectorAll('.m1s3-option').forEach((option) => option.setAttribute('aria-pressed', String(option === button)));
+          impactTitle.textContent = title;
+          impactDescription.textContent = description;
+        });
+      });
+
+      const lensContent = {
+        loss: ['What has Jamie lost?', 'Jamie has lost their familiar home, neighbourhood, friendships and routines. These are meaningful losses even though nobody has died.'],
+        grief: ['How might Jamie experience grief?', "Jamie's sadness and longing may be part of a grief response. Enjoying the new surroundings does not invalidate these feelings. Grief does not follow a fixed pattern."],
+        trauma: ['Has Jamie necessarily experienced trauma?', "The flood may have been traumatic for Jamie, but we cannot conclude this from the information given. We need to consider Jamie's own experience and any lasting adverse effects."]
+      };
+      const visitedLenses = new Set();
+      const lensTitle = document.getElementById('m1s4-lens-title');
+      const lensDescription = document.getElementById('m1s4-lens-description');
+      const lensCompletion = document.getElementById('m1s4-completion');
+      document.querySelectorAll('.m1s4-lens').forEach((button) => {
+        button.addEventListener('click', () => {
+          const lens = button.dataset.lens;
+          const [title, description] = lensContent[lens];
+          visitedLenses.add(lens);
+          document.querySelectorAll('.m1s4-lens').forEach((option) => {
+            const selected = option === button;
+            option.setAttribute('aria-pressed', String(selected));
+            if (visitedLenses.has(option.dataset.lens)) {
+              option.querySelector('.m1s4-lens-status').textContent = 'Explored ✓';
+            }
+          });
+          lensTitle.textContent = title;
+          lensDescription.textContent = description;
+          lensDescription.hidden = false;
+          if (visitedLenses.size === 3) lensCompletion.hidden = false;
+        });
       });
     })();
   </script>
