@@ -53,21 +53,24 @@
     .topbar nav a { flex: 0 0 auto; font-size: 16px; white-space: nowrap; text-decoration: none; color: var(--muted); }
     .topbar nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
     main { padding-bottom: 80px; }
-    .hero {
-      padding: 70px 0 58px;
-      display: block;
+    .hero { padding: 24px 0 52px; display: block; }
+    .hero-panel {
+      padding: clamp(28px, 3.2vw, 42px);
+      border-radius: 24px;
+      background: #f1f0e9;
     }
     .eyebrow { margin: 0 0 12px; color: var(--muted); font-size: 16px; font-weight: 650; letter-spacing: 1.3px; text-transform: uppercase; }
     h1, h2, h3 { margin-top: 0; }
-    h1 { margin-bottom: 22px; max-width: 730px; font: 400 clamp(42px, 6vw, 68px)/1.06 var(--serif); letter-spacing: -1.5px; }
+    h1 { margin-bottom: 32px; max-width: none; color: var(--ink); font: 700 clamp(36px, 3.5vw, 50px)/1.28 -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif; letter-spacing: -1px; }
+    .hero .eyebrow { margin-bottom: 30px; color: #60746b; font-size: 20px; letter-spacing: .7px; }
     h2 { margin-bottom: 12px; font: 400 clamp(30px, 4vw, 42px)/1.15 var(--serif); letter-spacing: -.6px; }
     h3 { margin-bottom: 10px; font-size: 23px; line-height: 1.25; }
     .empty {
       min-height: 110px; border: 1.5px dashed #bfc9b8; border-radius: 12px;
       background: rgba(255, 254, 249, .58);
     }
-    .positioning { max-width: 920px; margin: 0; color: var(--muted); font-size: 19px; line-height: 1.55; }
-    .positioning p { margin: 0 0 14px; }
+    .positioning { max-width: none; margin: 0; color: #65776e; font-size: clamp(20px, 2vw, 28px); line-height: 1.65; }
+    .positioning p { margin: 0 0 30px; }
     .positioning p:last-child { margin-bottom: 0; }
     section { padding: 56px 0; border-top: 1px solid var(--line); }
     .section-head { display: grid; grid-template-columns: 150px 1fr; gap: 24px; align-items: start; margin-bottom: 28px; }
@@ -197,6 +200,11 @@
     .m1-menu-arrow { display: grid; width: 42px; height: 42px; place-items: center; border: 2px solid currentColor; border-radius: 50%; }
     .m1-menu-arrow svg { width: 23px; height: 23px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .18s ease; }
     .m1-menu-card[aria-expanded="true"] .m1-menu-arrow svg { transform: rotate(180deg); }
+    .m1-menu-card[aria-expanded="true"], .m2-menu-card[aria-expanded="true"], .m3-menu-card[aria-expanded="true"] {
+      outline: 3px solid #26768c; outline-offset: 6px; border-radius: 8px;
+    }
+    .module-expansion-slot { grid-column: 1 / -1; width: 100%; min-width: 0; }
+    .module-expansion-slot[hidden] { display: none; }
     .panel {
       padding: 26px; border: 1px solid var(--line); border-radius: 14px;
       background: var(--surface); box-shadow: var(--shadow);
@@ -239,7 +247,10 @@
     .reflection-grid .empty { min-height: 140px; }
     footer { border-top: 1px solid var(--line); padding: 24px 0 42px; color: var(--muted); font-size: 16px; }
     @media (max-width: 800px) {
-      .hero { padding-top: 48px; }
+      .hero { padding-top: 30px; }
+      .hero-panel { padding: 30px; }
+      .hero .eyebrow { font-size: 17px; }
+      .positioning { font-size: 21px; }
       .section-head { grid-template-columns: 1fr; gap: 8px; }
       .scenario-grid { grid-template-columns: 1fr; }
       .module-grid { grid-template-columns: 1fr; }
@@ -252,6 +263,10 @@
     }
     @media (max-width: 560px) {
       .wrap { width: min(100% - 32px, 1180px); }
+      .hero-panel { padding: 22px 20px; border-radius: 18px; }
+      h1 { margin-bottom: 24px; font-size: clamp(34px, 9vw, 44px); }
+      .hero .eyebrow { margin-bottom: 22px; font-size: 16px; }
+      .positioning { font-size: 19px; }
       .topbar { padding: 14px 0; align-items: flex-start; flex-direction: column; }
       .topbar nav { justify-content: flex-start; gap: 18px; }
       .two-col, .submodule-grid, .reflection-grid { grid-template-columns: 1fr; }
@@ -502,14 +517,12 @@
   </header>
   <main id="main" class="wrap">
     <div class="hero" id="top">
-      <div>
-        <p class="eyebrow">For social work students and early-career social workers</p>
+      <div class="hero-panel">
+        <p class="eyebrow">FOR SOCIAL WORK STUDENTS AND EARLY-CAREER SOCIAL WORKERS</p>
         <h1>An Interactive Learning Tool for Trauma-Informed Social Work Practice</h1>
         <div class="positioning">
-          <p>This website is a beginner-friendly learning resource designed for social work students and emerging practitioners who want to understand and apply trauma-informed practice (TIP).</p>
-          <p>Through four interactive modules, we guide you from understanding trauma and its impacts to exploring key principles, applying them in real-world practice scenarios, and reflecting on your professional approach.</p>
-          <p>Our goal is to bridge the gap between theory and practice, making trauma-informed principles accessible, practical, and relevant to everyday social work.</p>
-          <p>Designed specifically for beginners, this website offers a supportive starting point to build foundational knowledge, develop practical awareness, and begin your journey towards trauma-informed social work practice.</p>
+          <p>Through four interactive modules, you will explore trauma and its impacts, understand key principles, apply them to real-world practice scenarios, and reflect on your professional approach.</p>
+          <p>Our aim is to bridge the gap between theory and practice, making trauma-informed principles accessible, practical, and relevant to everyday social work.</p>
         </div>
       </div>
     </div>
@@ -521,7 +534,7 @@
           <h2>01 · Understanding Trauma</h2>
         </div>
       </div>
-      <nav class="m1-submodule-menu" aria-label="Module 01 submodules">
+      <div class="m1-submodule-menu" role="group" aria-label="Module 01 submodules">
         <button class="m1-menu-card" type="button" data-target="m1s1" aria-controls="m1s1" aria-expanded="false">
           <span class="m1-menu-visual" style="background:#f2ead8" aria-hidden="true">
             <svg viewBox="0 0 360 180"><circle cx="88" cy="90" r="48" fill="#f2a23a"/><circle cx="180" cy="90" r="48" fill="#c8b8dc"/><circle cx="272" cy="90" r="48" fill="#f4c542"/><path d="M73 102 96 76l15 16-23 26zM89 90l10 10M164 106c-13-9-21-18-21-29a12 12 0 0 1 22-7 12 12 0 0 1 22 7c0 11-8 20-21 29zM253 76h17v17h-17zM280 76h17v17h-17zM253 103h17v17h-17zM278 105l7 7 14-17" fill="none" stroke="#243e65" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -546,7 +559,7 @@
           </span>
           <span class="m1-menu-caption"><span class="m1-menu-title">Trauma, Loss and Grief</span><span class="m1-menu-arrow" aria-hidden="true"><svg class="m1-menu-chevron" viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
         </button>
-      </nav>
+      </div>
       <div class="submodule-grid">
         <article class="submodule-card m1s1-card" id="m1s1" hidden>
           <p class="eyebrow">Submodule 1 · Reflection activity</p>
@@ -784,7 +797,7 @@
         <span class="section-number">02</span>
         <div><h2>02 · Understanding Trauma-Informed Practice</h2></div>
       </div>
-      <nav class="m2-submodule-menu" aria-label="Module 02 submodules">
+      <div class="m2-submodule-menu" role="group" aria-label="Module 02 submodules">
         <button class="m2-menu-card" type="button" data-target="m2s1" aria-controls="m2s1" aria-expanded="false">
           <span class="m2-menu-visual" style="background:#f2ead8" aria-hidden="true"><svg viewBox="0 0 360 180"><circle cx="110" cy="90" r="48" fill="#f2a23a" stroke="none"/><circle cx="250" cy="90" r="48" fill="#c8b8dc" stroke="none"/><path d="M85 99c15-23 34-31 54-22 8 4 11 13 7 21-6 11-20 18-33 24M230 91c0-13 10-23 22-23 6 0 12 3 16 8 4-5 10-8 16-8 13 0 23 10 23 23 0 18-20 31-39 45-18-14-38-27-38-45z"/></svg></span>
           <span class="m2-menu-caption"><span class="m2-menu-title">What Is TIP?</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
@@ -805,7 +818,7 @@
           <span class="m2-menu-visual" style="background:#e6eddb" aria-hidden="true"><svg viewBox="0 0 360 180"><circle cx="115" cy="68" r="24" fill="#e99e80" stroke="none"/><circle cx="245" cy="68" r="24" fill="#c8b8dc" stroke="none"/><path d="M65 145c4-35 20-54 50-54s46 19 50 54m30 0c4-35 20-54 50-54s46 19 50 54M180 57v70m-25-25h50"/></svg></span>
           <span class="m2-menu-caption"><span class="m2-menu-title">How Can TIP Support Social Work Practice?</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
         </button>
-      </nav>
+      </div>
       <div class="m2-content">
         <article class="m2-submodule" id="m2s1" hidden>
           <h3 tabindex="-1">What Is Trauma-Informed Practice?</h3>
@@ -1026,7 +1039,7 @@
         <span class="section-number">03</span>
         <div><h2>03 · Applying TIP in Social Work</h2></div>
       </div>
-      <nav class="m3-submodule-menu" aria-label="Module 03 submodules">
+      <div class="m3-submodule-menu" role="group" aria-label="Module 03 submodules">
         <button class="m3-menu-card" type="button" data-target="m3s1" aria-controls="m3s1" aria-expanded="false">
         <span class="m2-menu-visual" style="background:#f4ead7" aria-hidden="true"><svg viewBox="0 0 360 180"><circle cx="124" cy="76" r="43" fill="#f2a23a" stroke="none"/><circle cx="230" cy="76" r="43" fill="#c8b8dc" stroke="none"/><path d="M62 158c5-35 25-54 62-54s57 19 62 54M174 158c5-35 25-54 62-54s57 19 62 54"/><path d="M90 60h65m-65 17h45m72-2h55m-55 17h37"/><path d="M99 54l9-12 9 12m121-6 8 11 8-11"/></svg></span>
         <span class="m2-menu-caption"><span class="m2-menu-title">1. Building Safe and Trusting Relationships</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
@@ -1043,7 +1056,7 @@
         <span class="m2-menu-visual" style="background:#dcecf2" aria-hidden="true"><svg viewBox="0 0 360 180"><circle cx="180" cy="50" r="24" fill="#e99e80" stroke="none"/><circle cx="83" cy="111" r="23" fill="#f2a23a" stroke="none"/><circle cx="277" cy="111" r="23" fill="#78bfcc" stroke="none"/><path d="M132 104c4-27 19-40 48-40s44 13 48 40M37 163c3-27 18-40 46-40s43 13 46 40m106 0c3-27 18-40 46-40s43 13 46 40"/><path d="M111 107h138m-116-13 21 13-21 13m94-26-21 13 21 13"/><path d="M156 146h48m-24-16v32"/></svg></span>
         <span class="m2-menu-caption"><span class="m2-menu-title">4. Supporting Client Autonomy and Shared Decision-Making</span><span class="m2-menu-arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m5 9 7 7 7-7"/></svg></span></span>
       </button>
-      </nav>
+      </div>
       <div class="m3-content">
         <article class="m3-submodule" id="m3s1" hidden>
           <h3 tabindex="-1">1. Building Safe and Trusting Relationships</h3>
@@ -1785,21 +1798,70 @@
       });
       document.getElementById('m1s1-edit').addEventListener('click', showStepOne);
       document.getElementById('m1s1-back').addEventListener('click', showStepOne);
-      document.querySelectorAll('.m1-menu-card, .m2-menu-card, .m3-menu-card').forEach((card) => {
-        card.addEventListener('click', () => {
-          const target = document.getElementById(card.dataset.target);
-          const isOpening = card.getAttribute('aria-expanded') !== 'true';
-          card.setAttribute('aria-expanded', String(isOpening));
-          target.hidden = !isOpening;
-          if (card.classList.contains('m2-menu-card')) {
-            const anyM2Open = Array.from(document.querySelectorAll('.m2-menu-card')).some((item) => item.getAttribute('aria-expanded') === 'true');
-            document.querySelector('.m2-references').hidden = !anyM2Open;
+      [
+        ['.m1-submodule-menu', '.submodule-grid'],
+        ['.m2-submodule-menu', '.m2-content'],
+        ['.m3-submodule-menu', '.m3-content']
+      ].forEach(([menuSelector, contentSelector]) => {
+        const menu = document.querySelector(menuSelector);
+        const contentRegion = document.querySelector(contentSelector);
+        if (!menu || !contentRegion) return;
+
+        const cards = Array.from(menu.querySelectorAll('button[data-target]'));
+        const originalParent = contentRegion.parentElement;
+        const originalNextSibling = contentRegion.nextSibling;
+        const slot = document.createElement('div');
+        slot.className = 'module-expansion-slot';
+        slot.hidden = true;
+        let activeCard = null;
+
+        const panels = Array.from(contentRegion.children).filter((child) => child.tagName === 'ARTICLE');
+        const references = contentRegion.querySelector('.m2-references');
+
+        const restoreContent = () => {
+          slot.remove();
+          if (contentRegion.parentElement !== originalParent) {
+            originalParent.insertBefore(contentRegion, originalNextSibling);
           }
-          if (!isOpening) return;
-          const heading = target.querySelector('h3');
-          const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-          target.scrollIntoView({ behavior, block: 'start' });
-          heading.focus({ preventScroll: true });
+        };
+
+        const closeGroup = () => {
+          cards.forEach((item) => item.setAttribute('aria-expanded', 'false'));
+          panels.forEach((panel) => { panel.hidden = true; });
+          if (references) references.hidden = true;
+          activeCard = null;
+          restoreContent();
+        };
+
+        cards.forEach((card) => {
+          card.addEventListener('click', () => {
+            if (activeCard === card) {
+              closeGroup();
+              return;
+            }
+
+            cards.forEach((item) => item.setAttribute('aria-expanded', String(item === card)));
+            panels.forEach((panel) => { panel.hidden = true; });
+
+            const target = document.getElementById(card.dataset.target);
+            if (!target) return;
+            target.hidden = false;
+            if (references) references.hidden = false;
+
+            const columns = Math.max(1, getComputedStyle(menu).gridTemplateColumns.split(/\s+/).length);
+            const cardIndex = cards.indexOf(card);
+            const rowEndIndex = Math.min(Math.ceil((cardIndex + 1) / columns) * columns, cards.length) - 1;
+            slot.remove();
+            cards[rowEndIndex].insertAdjacentElement('afterend', slot);
+            slot.hidden = false;
+            if (contentRegion.parentElement !== slot) slot.appendChild(contentRegion);
+            activeCard = card;
+
+            const heading = target.querySelector('h3');
+            const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+            if (heading) heading.focus({ preventScroll: true });
+            slot.scrollIntoView({ behavior, block: 'nearest' });
+          });
         });
       });
       document.querySelectorAll('.m3-options').forEach((group) => {
