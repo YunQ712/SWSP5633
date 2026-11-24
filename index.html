@@ -83,7 +83,7 @@
       background: var(--surface); box-shadow: var(--shadow);
     }
     .m1s1-card { grid-column: 1 / -1; scroll-margin-top: 94px; }
-    .submodule-grid article[hidden], .m2-content article[hidden], .m2-references[hidden] { display: none; }
+    .submodule-grid article[hidden], .m2-content article[hidden] { display: none; }
     .submodule-card h3 { margin: 0 0 14px; font-size: 19px; line-height: 1.4; }
     .submodule-card .empty { min-height: 94px; }
     .m1s1-card h3 { font-size: 25px; }
@@ -134,10 +134,6 @@
     .m1s2-icon { display: block; width: 32px; height: 32px; color: var(--ink); }
     .m1s2-icon svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
     .m1s2-citation, .m1s2-overlap { margin: 14px 0 0; font-size: 18px; }
-    .m1s2-references { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
-    .m1s2-references h4 { margin-bottom: 10px; font-size: 22px; }
-    .m1s2-references ol { margin: 0; padding-left: 26px; }
-    .m1s2-references li { padding: 5px 0 5px 4px; font-size: 18px; overflow-wrap: anywhere; }
     .m1s3-card, .m1s4-card { grid-column: 1 / -1; scroll-margin-top: 94px; }
     .m1s3-card h3, .m1s4-card h3 { font-size: 25px; }
     .m1s3-intro { margin: 0 0 24px; font-size: 18px; }
@@ -164,10 +160,6 @@
     .m1s3-panel p, .m1s3-resilience p, .m1s4-panel p, .m1s4-scenario p { margin: 0; font-size: 18px; }
     .m1s3-citation { margin: 14px 0 0; }
     .m1s3-resilience { background: #f6f5ef; }
-    .m1s3-references, .m1s4-references { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); }
-    .m1s3-references h4, .m1s4-references h4 { margin: 0 0 10px; font-size: 22px; }
-    .m1s3-references ol, .m1s4-references ol { margin: 0; padding-left: 26px; }
-    .m1s3-references li, .m1s4-references li { padding: 5px 0 5px 4px; font-size: 18px; overflow-wrap: anywhere; }
     .m1s4-definitions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
     .m1s4-definition { padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
     .m1s4-definition h5 { margin: 0 0 8px; font-size: 21px; }
@@ -245,6 +237,15 @@
     .scenario-block > h3 { margin-bottom: 14px; }
     .reflection-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
     .reflection-grid .empty { min-height: 140px; }
+    .references-section { padding: 24px 0 40px; border-top: 1px solid var(--line); }
+    .references-disclosure { overflow: hidden; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); box-shadow: var(--shadow); }
+    .references-disclosure summary { padding: 16px 20px; cursor: pointer; font-size: 18px; font-weight: 700; }
+    .references-disclosure summary:focus-visible { outline: 3px solid #216b84; outline-offset: 3px; }
+    .references-body { padding: 0 20px 20px; color: var(--muted); font-size: 14px; line-height: 1.55; }
+    .references-body ol { margin: 0; padding-left: 24px; }
+    .references-body li { margin: 0 0 8px; font-size: 14px; overflow-wrap: anywhere; }
+    .references-body li:last-child { margin-bottom: 0; }
+    .references-body a { overflow-wrap: anywhere; }
     footer { border-top: 1px solid var(--line); padding: 24px 0 42px; color: var(--muted); font-size: 16px; }
     @media (max-width: 800px) {
       .hero { padding-top: 30px; }
@@ -374,12 +375,6 @@
     .m2s5-values li { padding: 6px 11px; border: 1px solid var(--line); border-radius: 999px; background: var(--surface); font-size: 18px; }
     .m2s5-statement { margin-top: auto !important; padding: 16px; border-radius: 10px; background: var(--sage); font-weight: 600; }
     .m2s5-citation { margin-top: 12px !important; color: var(--muted); }
-    .m2-references { margin-top: 24px; padding: 22px; border-top: 1px solid var(--line); background: rgba(255,255,255,.42); }
-    .m2-references h3 { margin: 0 0 12px; font-size: 24px; }
-    .m2-references ol { margin: 0; padding-left: 26px; }
-    .m2-references li { margin: 0 0 12px; font-size: 18px; overflow-wrap: anywhere; }
-    .m2-references li:last-child { margin-bottom: 0; }
-    .m2-references a { overflow-wrap: anywhere; }
     @media (max-width: 800px) {
       .m2-submodule-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
       .m2s2-selectors { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -431,12 +426,12 @@
       .m2s4-analogy blockquote { border-left-color: #8bb4c1; }
       .m2s5-panel.ethics:hover { background: #263a32; border-color: #86b89e; }
       .m2s5-panel.aop:hover { background: #332e43; border-color: #b5a7d8; }
-      .m2s5-values li, .m2-references { background: var(--surface); }
+      .m2s5-values li { background: var(--surface); }
     }
     .m3-section-head { display: block; margin-bottom: 34px; text-align: center; }
     .m3-section-head .section-number { display: none; }
     .m3-section-head h2 { color: #1e6a84; }
-    .m3-submodule-menu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px; max-width: 1080px; margin: 0 auto 42px; align-items: start; }
+    .m3-submodule-menu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; max-width: 780px; margin: 0 auto 42px; align-items: start; }
     .m3-menu-card { display: block; width: 100%; padding: 0; border: 0; background: transparent; color: #1e6a84; font: inherit; text-align: left; cursor: pointer; }
     .m3-menu-card:focus-visible { outline: 3px solid #216b84; outline-offset: 6px; }
     .m3-menu-card:hover .m2-menu-visual { transform: translateY(-2px); box-shadow: var(--shadow); }
@@ -474,12 +469,6 @@
     .m3-feedback[hidden] { display: none; }
     .m3-feedback h5 { margin: 0 0 6px; font-size: 19px; }
     .m3-feedback p { margin: 0; font-size: 18px; }
-    .m3-references { margin-top: 32px; padding-top: 22px; border-top: 1px solid var(--line); }
-    .m3-references h4 { margin: 0 0 12px; font-size: 22px; }
-    .m3-references ol { margin: 0; padding-left: 26px; }
-    .m3-references li { margin: 0 0 12px; font-size: 18px; overflow-wrap: anywhere; }
-    .m3-references li:last-child { margin-bottom: 0; }
-    .m3-references a { overflow-wrap: anywhere; }
     @media (max-width: 800px) {
       .m3-submodule-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
     }
@@ -611,7 +600,6 @@
               <h5>A moment to reflect</h5>
               <p>Looking at both definitions, is there anything you would add to or reconsider about your initial understanding?</p>
             </div>
-            <p class="m1s1-note">Reference: Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em> (HHS Publication No. SMA 14-4884). <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">View the report</a>.</p>
             <div class="m1-actions">
               <button class="m1s1-button secondary" id="m1s1-back" type="button">← Back</button>
               <button class="m1s1-button secondary" id="m1s1-restart" type="button">Restart</button>
@@ -641,7 +629,6 @@
                 <p>Involves multiple or repeated traumatic experiences, often occurring within interpersonal relationships during childhood, potentially affecting development and attachment.</p>
               </article>
             </div>
-            <p class="m1s2-citation">Sources: <a href="https://www.nctsn.org/what-is-child-trauma-infographic" target="_blank" rel="noopener noreferrer">National Child Traumatic Stress Network (NCTSN, 2025)</a>; <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">Levenson (2020)</a>.</p>
           </div>
           <div class="m1s2-group">
             <h4>Common Sources of Trauma</h4>
@@ -672,17 +659,9 @@
                 <p>Discrimination, racism, and other forms of systemic oppression.</p>
               </article>
             </div>
-            <p class="m1s2-citation">Sources: <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">SAMHSA (2014)</a>; <a href="https://www.nctsn.org/what-is-child-trauma-infographic" target="_blank" rel="noopener noreferrer">NCTSN (2025)</a>.</p>
             <p class="m1s2-overlap">These experiences may overlap, and their effects vary between individuals.</p>
           </div>
-          <div class="m1s2-references">
-            <h4>References</h4>
-            <ol>
-              <li>Levenson, J. (2020). Translating trauma-informed principles into social work practice. <em>Social Work, 65</em>(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
-              <li>National Child Traumatic Stress Network. (2025). <em>What is child trauma?</em> <a href="https://www.nctsn.org/what-is-child-trauma-infographic" target="_blank" rel="noopener noreferrer">https://www.nctsn.org/what-is-child-trauma-infographic</a></li>
-              <li>Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em> (HHS Publication No. SMA 14-4884). <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">https://library.samhsa.gov/sites/default/files/sma14-4884.pdf</a></li>
-            </ol>
-          </div>
+          
           <div class="m1-actions">
           </div>
         </article>
@@ -718,19 +697,11 @@
             <h5 id="m1s3-impact-title">Emotional and Psychological Well-being</h5>
             <p id="m1s3-impact-description">Anxiety, fear, shame, emotional numbness, or heightened alertness.</p>
           </div>
-          <p class="m1s3-citation">Sources: Harris &amp; Fallot (2001); Levenson (2020); SAMHSA (2014).</p>
           <div class="m1s3-resilience">
             <h5>Resilience and Recovery</h5>
             <p>Importantly, trauma does not affect everyone in the same way. Supportive relationships, appropriate services, and personal strengths can promote resilience and recovery (SAMHSA, 2014).</p>
           </div>
-          <div class="m1s3-references">
-            <h4>References</h4>
-            <ol>
-              <li>Harris, M., &amp; Fallot, R. D. (2001). Envisioning a trauma-informed service system: A vital paradigm shift. <em>New Directions for Mental Health Services, 2001</em>(89), 3–22. <a href="https://doi.org/10.1002/yd.23320018903" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/yd.23320018903</a></li>
-              <li>Levenson, J. (2020). Translating trauma-informed principles into social work practice. <em>Social Work, 65</em>(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
-              <li>Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em> (HHS Publication No. SMA 14-4884). <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">https://library.samhsa.gov/sites/default/files/sma14-4884.pdf</a></li>
-            </ol>
-          </div>
+          
           <div class="m1-actions">
           </div>
         </article>
@@ -780,14 +751,7 @@
           <h4>Grief Is Not a Linear Process</h4>
           <p class="m1s4-copy">Grief does not follow a fixed sequence of stages or a universal timeline. Responses are shaped by personal meaning, relationships and sociocultural context (Goldsworthy, 2005; Neimeyer, 2016).</p>
           <p class="m1s4-copy">Some people maintain meaningful connections with deceased loved ones as part of their grieving process, although the role of these continuing bonds varies between individuals (Stroebe et al., 2010).</p>
-          <div class="m1s4-references">
-            <h4>References (APA 7)</h4>
-            <ol>
-              <li>Goldsworthy, K. (2005). Grief and loss theory in social work practice: All changes involve loss, just as all losses require change. <em>Australian Social Work, 58</em>(2), 167–178. <a href="https://doi.org/10.1111/j.1447-0748.2005.00201.x" target="_blank" rel="noopener noreferrer">https://doi.org/10.1111/j.1447-0748.2005.00201.x</a></li>
-              <li>Neimeyer, R. A. (2016). Meaning reconstruction in the wake of loss: Evolution of a research program. <em>Behaviour Change, 33</em>(2), 65–79. <a href="https://doi.org/10.1017/bec.2016.4" target="_blank" rel="noopener noreferrer">https://doi.org/10.1017/bec.2016.4</a></li>
-              <li>Stroebe, M., Schut, H., &amp; Boerner, K. (2010). Continuing bonds in adaptation to bereavement: Toward theoretical integration. <em>Clinical Psychology Review, 30</em>(2), 259–268. <a href="https://doi.org/10.1016/j.cpr.2009.11.007" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.cpr.2009.11.007</a></li>
-            </ol>
-          </div>
+          
         </article>
       </div>
     </section>
@@ -1021,16 +985,7 @@
             </article>
           </div>
         </article>
-        <section class="m2-references" aria-labelledby="m2-references-title" hidden>
-          <h3 id="m2-references-title">Module 02 References</h3>
-          <ol>
-            <li>Australian Association of Social Workers. (2020). <em>Code of ethics 2020</em>. <a href="https://www.aasw.asn.au/about-aasw/ethics-standards/code-of-ethics/" target="_blank" rel="noopener noreferrer">https://www.aasw.asn.au/about-aasw/ethics-standards/code-of-ethics/</a></li>
-            <li>Harris, M., &amp; Fallot, R. D. (Eds.). (2001). <em>Using trauma theory to design service systems</em> (New Directions for Mental Health Services, No. 89). Jossey-Bass.</li>
-            <li>Leotti, S. M., &amp; Wahab, S. (2025). Mapping the landscape of trauma-informed care in social work: A critical scoping review. <em>Trauma, Violence, &amp; Abuse, 26</em>(4), 651–667. <a href="https://doi.org/10.1177/15248380241286810" target="_blank" rel="noopener noreferrer">https://doi.org/10.1177/15248380241286810</a></li>
-            <li>Levenson, J. (2020). Translating trauma-informed principles into social work practice. <em>Social Work, 65</em>(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
-            <li>Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em>. <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">https://library.samhsa.gov/sites/default/files/sma14-4884.pdf</a></li>
-          </ol>
-        </section>
+        
       </div>
     </section>
 
@@ -1222,12 +1177,7 @@
               </div>
             </div>
           </section>
-          <section class="m3-references" aria-labelledby="m3s1-references-title">
-            <h4 id="m3s1-references-title">References</h4>
-            <ol><li>Levenson, J. S. (2020). Translating trauma-informed principles into social work practice. Social Work, 65(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
-<li>Substance Abuse and Mental Health Services Administration. (2014). SAMHSA’s concept of trauma and guidance for a trauma-informed approach (HHS Publication No. SMA 14-4884).</li>
-<li>Harris, M., &amp; Fallot, R. D. (2001). Envisioning a trauma-informed service system: A vital paradigm shift. New Directions for Mental Health Services, 2001(89), 3–22. <a href="https://doi.org/10.1002/yd.23320018903" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/yd.23320018903</a></li></ol>
-          </section>
+          
         </article>
         <article class="m3-submodule" id="m3s2" hidden>
           <h3 tabindex="-1">2. Understanding and Responding to Client Behaviour</h3>
@@ -1391,12 +1341,7 @@
               </div>
             </div>
           </section>
-          <section class="m3-references" aria-labelledby="m3s2-references-title">
-            <h4 id="m3s2-references-title">References</h4>
-            <ol><li>Levenson, J. S. (2020). Translating trauma-informed principles into social work practice. Social Work, 65(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
-<li>Harris, M., &amp; Fallot, R. D. (2001). Envisioning a trauma-informed service system: A vital paradigm shift. New Directions for Mental Health Services, 2001(89), 3–22. <a href="https://doi.org/10.1002/yd.23320018903" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/yd.23320018903</a></li>
-<li>Substance Abuse and Mental Health Services Administration. (2014). SAMHSA’s concept of trauma and guidance for a trauma-informed approach (HHS Publication No. SMA 14-4884).</li></ol>
-          </section>
+          
         </article>
         <article class="m3-submodule" id="m3s3" hidden>
           <h3 tabindex="-1">3. Conducting Trauma-Informed Assessments</h3>
@@ -1565,11 +1510,7 @@
               </div>
             </div>
           </section>
-          <section class="m3-references" aria-labelledby="m3s3-references-title">
-            <h4 id="m3s3-references-title">References</h4>
-            <ol><li>Levenson, J. S. (2020). Translating trauma-informed principles into social work practice. Social Work, 65(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
-<li>Substance Abuse and Mental Health Services Administration. (2014). SAMHSA’s concept of trauma and guidance for a trauma-informed approach (HHS Publication No. SMA 14-4884).</li></ol>
-          </section>
+          
         </article>
         <article class="m3-submodule" id="m3s4" hidden>
           <h3 tabindex="-1">4. Supporting Client Autonomy and Shared Decision-Making</h3>
@@ -1739,12 +1680,7 @@
               </div>
             </div>
           </section>
-          <section class="m3-references" aria-labelledby="m3s4-references-title">
-            <h4 id="m3s4-references-title">References</h4>
-            <ol><li>Levenson, J. S. (2020). Translating trauma-informed principles into social work practice. Social Work, 65(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
-<li>Harris, M., &amp; Fallot, R. D. (2001). Envisioning a trauma-informed service system: A vital paradigm shift. New Directions for Mental Health Services, 2001(89), 3–22. <a href="https://doi.org/10.1002/yd.23320018903" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/yd.23320018903</a></li>
-<li>Substance Abuse and Mental Health Services Administration. (2014). SAMHSA’s concept of trauma and guidance for a trauma-informed approach (HHS Publication No. SMA 14-4884).</li></ol>
-          </section>
+          
         </article>
       </div>
     </section>
@@ -1770,6 +1706,26 @@
         <p>We acknowledge the Whadjuk wod-JUK Noongar people as the Traditional Custodians of the land on which we meet today and pay our respects to Elders past and present.</p>
         <p>We extend that respect to all Aboriginal and Torres Strait Islander people here today.</p>
       </div>
+    </section>
+
+    <section id="references" class="references-section" aria-labelledby="references-title">
+      <details class="references-disclosure">
+        <summary id="references-title">References</summary>
+        <div class="references-body">
+          <ol>
+            <li>Australian Association of Social Workers. (2020). <em>Code of ethics 2020</em>. <a href="https://www.aasw.asn.au/about-aasw/ethics-standards/code-of-ethics/" target="_blank" rel="noopener noreferrer">https://www.aasw.asn.au/about-aasw/ethics-standards/code-of-ethics/</a></li>
+            <li>Goldsworthy, K. (2005). Grief and loss theory in social work practice: All changes involve loss, just as all losses require change. <em>Australian Social Work, 58</em>(2), 167–178. <a href="https://doi.org/10.1111/j.1447-0748.2005.00201.x" target="_blank" rel="noopener noreferrer">https://doi.org/10.1111/j.1447-0748.2005.00201.x</a></li>
+            <li>Harris, M., &amp; Fallot, R. D. (2001). Envisioning a trauma-informed service system: A vital paradigm shift. <em>New Directions for Mental Health Services, 2001</em>(89), 3–22. <a href="https://doi.org/10.1002/yd.23320018903" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/yd.23320018903</a></li>
+            <li>Harris, M., &amp; Fallot, R. D. (Eds.). (2001). <em>Using trauma theory to design service systems</em> (New Directions for Mental Health Services, No. 89). Jossey-Bass.</li>
+            <li>Leotti, S. M., &amp; Wahab, S. (2025). Mapping the landscape of trauma-informed care in social work: A critical scoping review. <em>Trauma, Violence, &amp; Abuse, 26</em>(4), 651–667. <a href="https://doi.org/10.1177/15248380241286810" target="_blank" rel="noopener noreferrer">https://doi.org/10.1177/15248380241286810</a></li>
+            <li>Levenson, J. (2020). Translating trauma-informed principles into social work practice. <em>Social Work, 65</em>(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
+            <li>National Child Traumatic Stress Network. (2025). <em>What is child trauma?</em> <a href="https://www.nctsn.org/what-is-child-trauma-infographic" target="_blank" rel="noopener noreferrer">https://www.nctsn.org/what-is-child-trauma-infographic</a></li>
+            <li>Neimeyer, R. A. (2016). Meaning reconstruction in the wake of loss: Evolution of a research program. <em>Behaviour Change, 33</em>(2), 65–79. <a href="https://doi.org/10.1017/bec.2016.4" target="_blank" rel="noopener noreferrer">https://doi.org/10.1017/bec.2016.4</a></li>
+            <li>Stroebe, M., Schut, H., &amp; Boerner, K. (2010). Continuing bonds in adaptation to bereavement: Toward theoretical integration. <em>Clinical Psychology Review, 30</em>(2), 259–268. <a href="https://doi.org/10.1016/j.cpr.2009.11.007" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.cpr.2009.11.007</a></li>
+            <li>Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em> (HHS Publication No. SMA 14-4884). <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">https://library.samhsa.gov/sites/default/files/sma14-4884.pdf</a></li>
+          </ol>
+        </div>
+      </details>
     </section>
   </main>
   <footer><div class="wrap">An Interactive Learning Tool for Trauma-Informed Social Work Practice</div></footer>
@@ -1816,7 +1772,6 @@
         let activeCard = null;
 
         const panels = Array.from(contentRegion.children).filter((child) => child.tagName === 'ARTICLE');
-        const references = contentRegion.querySelector('.m2-references');
 
         const restoreContent = () => {
           slot.remove();
@@ -1828,7 +1783,6 @@
         const closeGroup = () => {
           cards.forEach((item) => item.setAttribute('aria-expanded', 'false'));
           panels.forEach((panel) => { panel.hidden = true; });
-          if (references) references.hidden = true;
           activeCard = null;
           restoreContent();
         };
@@ -1846,7 +1800,6 @@
             const target = document.getElementById(card.dataset.target);
             if (!target) return;
             target.hidden = false;
-            if (references) references.hidden = false;
 
             const columns = Math.max(1, getComputedStyle(menu).gridTemplateColumns.split(/\s+/).length);
             const cardIndex = cards.indexOf(card);
