@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#234b40">
   <meta name="description" content="An interactive learning site for social work students and early-career social workers to learn about trauma-informed practice.">
-  <title>SWSP5633 · Interactive trauma-informed social work learning site</title>
+  <title>An Interactive Learning Tool for Trauma-Informed Social Work Practice</title>
   <style>
     :root {
       --paper: #f6f5ef;
@@ -41,13 +41,17 @@
       backdrop-filter: blur(12px);
     }
     .topbar {
-      min-height: 76px; display: flex; align-items: center;
-      justify-content: space-between; gap: 24px;
+      min-height: 76px; display: flex; flex-direction: column; align-items: stretch;
+      justify-content: center; gap: 10px; padding: 12px 0;
     }
     .brand { font-size: 20px; font-weight: 700; text-decoration: none; letter-spacing: -.3px; }
-    nav { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-    nav a { font-size: 16px; text-decoration: none; color: var(--muted); }
-    nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
+    .topbar nav {
+      display: flex; width: 100%; align-items: center; justify-content: space-between;
+      gap: 8px; flex-wrap: nowrap; overflow-x: auto; white-space: nowrap;
+      scrollbar-width: thin;
+    }
+    .topbar nav a { flex: 0 0 auto; font-size: 16px; white-space: nowrap; text-decoration: none; color: var(--muted); }
+    .topbar nav a:hover { color: var(--ink); text-decoration: underline; text-underline-offset: 5px; }
     main { padding-bottom: 80px; }
     .hero {
       padding: 70px 0 58px;
@@ -249,7 +253,7 @@
     @media (max-width: 560px) {
       .wrap { width: min(100% - 32px, 1180px); }
       .topbar { padding: 14px 0; align-items: flex-start; flex-direction: column; }
-      nav { gap: 10px 18px; }
+      .topbar nav { justify-content: flex-start; gap: 18px; }
       .two-col, .submodule-grid, .reflection-grid { grid-template-columns: 1fr; }
       .m1s2-cards, .m1s1-ees { grid-template-columns: 1fr; }
       .m1s3-options, .m1s4-lenses, .m1s4-definitions { grid-template-columns: 1fr; }
@@ -500,7 +504,7 @@
     <div class="hero" id="top">
       <div>
         <p class="eyebrow">For social work students and early-career social workers</p>
-        <h1>SWSP5633 · Interactive trauma-informed social work learning site</h1>
+        <h1>An Interactive Learning Tool for Trauma-Informed Social Work Practice</h1>
         <div class="positioning">
           <p>This website is a beginner-friendly learning resource designed for social work students and emerging practitioners who want to understand and apply trauma-informed practice (TIP).</p>
           <p>Through four interactive modules, we guide you from understanding trauma and its impacts to exploring key principles, applying them in real-world practice scenarios, and reflecting on your professional approach.</p>
@@ -1738,7 +1742,6 @@
         <div>
           <p class="eyebrow">Module 04</p>
           <h2>04 · Interactive Simulations</h2>
-          <div class="empty section-intro" aria-label="Module four introduction area reserved"></div>
         </div>
       </div>
       <div class="scenario-grid" id="scenarios">
@@ -1746,21 +1749,17 @@
         <a class="scenario-card" href="./alex.html"><h3>Alex</h3><span class="setting">NDIS · Assessment</span></a>
         <a class="scenario-card" href="./marko.html"><h3>Marko</h3><span class="setting">Youth work · Care planning</span></a>
       </div>
-      <div class="submodule-grid">
-        <article class="submodule-card"><h3>Choice-Based Feedback</h3><div class="empty" aria-label="Choice-Based Feedback content reserved"></div></article>
-        <article class="submodule-card"><h3>Links Back to Relevant Learning Materials</h3><div class="empty" aria-label="Links Back to Relevant Learning Materials content reserved"></div></article>
-      </div>
     </section>
 
     <section id="acknowledgement" aria-labelledby="acknowledgement-title">
       <div>
         <h2 id="acknowledgement-title">Acknowledgement of Country</h2>
-        <p>We acknowledge the Whadjuk wod-JUK Noongar people as the Traditional Custodians /kʌˈstəʊ.di.ənz/ of the land on which we meet today and pay our respects to Elders past and present.</p>
+        <p>We acknowledge the Whadjuk wod-JUK Noongar people as the Traditional Custodians of the land on which we meet today and pay our respects to Elders past and present.</p>
         <p>We extend that respect to all Aboriginal and Torres Strait Islander people here today.</p>
       </div>
     </section>
   </main>
-  <footer><div class="wrap">SWSP5633 · Static learning module structure</div></footer>
+  <footer><div class="wrap">An Interactive Learning Tool for Trauma-Informed Social Work Practice</div></footer>
   <script>
     (() => {
       const form = document.getElementById('m1s1-reflection-form');
