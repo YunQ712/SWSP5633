@@ -3,15 +3,15 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f6f8f7">
+  <meta name="theme-color" content="#f6f5ef">
   <meta name="description" content="An unscored youth care-planning simulation about client priorities, shared decision-making and service limits.">
   <title>Whose Plan Is It? | Interactive Simulation</title>
   <style>
     :root {
-      --ink:#21323a;--muted:#52666d;--border:#d8e2df;--paper:#f5f7f5;
-      --white:#ffffff;--sage:#306f68;--sage-pale:#eaf4f0;--sage-line:#94c0b1;
-      --purple:#654c7c;--purple-pale:#f3eef8;--amber-pale:#fbf5e9;
-      --shadow:0 8px 28px rgba(25,58,61,.055);--round:16px;
+      --ink:#23483d;--muted:#63756b;--border:#d9ddd2;--paper:#f6f5ef;
+      --white:#fffef9;--sage:#23483d;--sage-pale:#e6ecdf;--sage-line:#aebc99;
+      --purple:#63756b;--purple-pale:#e6ecdf;--amber-pale:#f1eee3;
+      --shadow:0 8px 28px rgba(35,72,61,.06);--round:16px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -19,8 +19,8 @@
     button,input,textarea{font:inherit}
     button{cursor:pointer}
     button:disabled{cursor:not-allowed;opacity:.55}
-    :focus-visible{outline:3px solid #4b9b89;outline-offset:3px}
-    .site-header{background:white;border-bottom:1px solid var(--border)}
+    :focus-visible{outline:3px solid #7a895d;outline-offset:3px}
+    .site-header{background:rgba(246,245,239,.96);border-bottom:1px solid var(--border)}
     .header-inner{max-width:1160px;margin:auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}
     .brand{font-weight:750;font-size:17px;letter-spacing:.01em;color:var(--ink);text-decoration:none}
     .header-right{font-size:15px;color:var(--muted);text-align:right;line-height:1.55}
@@ -32,13 +32,13 @@
     h1{font-size:clamp(34px,4.5vw,48px);line-height:1.16;letter-spacing:-.035em;margin:8px 0 13px;max-width:900px}
     .hero p{max-width:850px;color:var(--muted);font-size:17px;margin:0 0 13px}
     .pills{display:flex;flex-wrap:wrap;gap:9px;margin-top:17px}
-    .pill{border:1px solid var(--border);background:var(--white);font-weight:650;font-size:15px;padding:6px 12px;border-radius:100px;color:#405b60}
+    .pill{border:1px solid var(--border);background:var(--white);font-weight:650;font-size:15px;padding:6px 12px;border-radius:100px;color:#63756b}
     .layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;align-items:start;gap:24px}
     .panel{background:var(--white);border:1px solid var(--border);border-radius:var(--round);box-shadow:var(--shadow);overflow:hidden}
     .panel-main{padding:28px 30px 26px}
     .steps{display:flex;gap:8px;margin:0 0 30px;list-style:none;padding:0}
     .steps li{flex:1;height:8px;border-radius:8px;background:#e6ecea}
-    .steps li.done{background:#9cc9b8}
+    .steps li.done{background:#aebc99}
     .steps li.current{background:var(--sage)}
     .steps li[aria-current="step"]{background:var(--sage)}
     .scene-label{color:var(--muted);font-weight:800;font-size:14px;letter-spacing:.07em;text-transform:uppercase;margin-bottom:7px}
@@ -48,11 +48,11 @@
     p{margin:0 0 14px}
     .narrative{font-size:16px;line-height:1.75}
     .narrative p{margin-bottom:13px}
-    .scene-box{border:1px solid #dce9e4;background:#f2f8f5;border-radius:13px;padding:18px 20px;margin:16px 0}
-    .box-eyebrow{color:#426560;font-size:14px;letter-spacing:.07em;text-transform:uppercase;font-weight:800;margin-bottom:10px}
+    .scene-box{border:1px solid var(--border);background:var(--white);border-radius:13px;padding:18px 20px;margin:16px 0}
+    .box-eyebrow{color:#63756b;font-size:14px;letter-spacing:.07em;text-transform:uppercase;font-weight:800;margin-bottom:10px}
     .dialogue{white-space:pre-line;font-size:16px;line-height:1.72;margin:0 0 14px}
     .dialogue:last-child{margin-bottom:0}
-    .context{font-size:15px;color:#526b69;margin-top:10px;line-height:1.68}
+    .context{font-size:15px;color:#63756b;margin-top:10px;line-height:1.68}
     .turn{padding:12px 0;border-top:1px solid rgba(48,111,104,.16)}
     .turn:first-of-type{border-top:0;padding-top:0}
     .speaker{display:block;color:var(--sage);font-size:15px;font-weight:800;margin:0 0 4px}
@@ -60,57 +60,61 @@
     .choice-fieldset{margin:0;padding:0;border:0;min-width:0}
     .choice-fieldset legend{font-size:19px;letter-spacing:-.01em;font-weight:800;margin-bottom:14px;padding:0}
     .choice-list{display:grid;gap:11px}
-    .choice{display:flex;gap:13px;align-items:flex-start;background:#fff;padding:15px 16px;border:1.5px solid #d6e2df;border-radius:12px;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
-    .choice:hover{border-color:#89b4a6;box-shadow:0 5px 15px rgba(31,96,77,.07);transform:translateY(-1px)}
-    .choice:has(input:focus-visible){outline:3px solid #4b9b89;outline-offset:2px}
+    .choice{display:flex;gap:13px;align-items:flex-start;background:#fff;padding:15px 16px;border:1.5px solid #d9ddd2;border-radius:12px;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
+    .choice:hover{border-color:#aebc99;box-shadow:0 5px 15px rgba(31,96,77,.07);transform:translateY(-1px)}
+    .choice:has(input:focus-visible){outline:3px solid #7a895d;outline-offset:2px}
     .choice:has(input:checked){background:var(--sage-pale);border-color:var(--sage);box-shadow:inset 0 0 0 .5px var(--sage)}
     .choice input{accent-color:var(--sage);margin:5px 0 0;flex-shrink:0;width:19px;height:19px}
     .letter{font-size:15px;font-weight:850;min-width:19px;color:var(--sage)}
     .choice-text{font-size:16px;line-height:1.55;font-weight:620}
     .reveal{margin-top:22px;animation:rise .23s ease both}
-    .conversation{border:1px solid #d9e2e1;background:white;padding:18px 19px;border-radius:12px}
-    .practice-reflection{border:1px solid #dce9e4;border-left:4px solid #b5a6ce;background:var(--purple-pale);padding:17px 19px;border-radius:0 12px 12px 0;margin-top:12px}
+    .conversation{border:1px solid #d9ddd2;background:white;padding:18px 19px;border-radius:12px}
+    .practice-reflection{border:1px solid var(--border);border-left:4px solid var(--sage-line);background:var(--sage-pale);padding:17px 19px;border-radius:0 12px 12px 0;margin-top:12px}
     .practice-reflection h3{font-size:18px;margin:0 0 8px;color:var(--purple)}
-    .practice-reflection p{font-size:16px;color:#414f57;line-height:1.7;margin:0}
-    .buttons{display:flex;justify-content:space-between;gap:12px;margin-top:25px;padding-top:20px;border-top:1px solid var(--border)}
+    .practice-reflection p{font-size:16px;color:#63756b;line-height:1.7;margin:0}
+    .buttons{display:flex;justify-content:flex-start;gap:12px;margin-top:25px;padding-top:20px;border-top:1px solid var(--border)}
     .btn{border:1px solid var(--sage);border-radius:10px;padding:12px 17px;font-weight:750;font-size:16px;min-height:48px;background:var(--sage);color:#fff;transition:filter .16s,transform .16s}
     .btn:hover:not(:disabled){filter:brightness(.95);transform:translateY(-1px)}
-    .btn.secondary{background:white;color:var(--sage);border-color:#a4c9bd}
+    .btn.secondary{background:white;color:var(--sage);border-color:#aebc99}
     .sidebar{padding:22px;position:sticky;top:22px}
     .sidebar h3{margin:0 0 14px}
     .sidebar-intro{font-size:15px;line-height:1.65;color:var(--muted);margin-bottom:17px}
     .history{display:grid;gap:15px;margin:0;padding:0;list-style:none}
     .history li{display:grid;grid-template-columns:30px 1fr;gap:11px;align-items:start}
-    .hnum{width:30px;height:30px;border-radius:8px;background:#edf2f0;color:#607574;display:grid;place-items:center;font-size:15px;font-weight:800}
-    .history li.completed .hnum{background:#e0f0e8;color:var(--sage)}
+    .hnum{width:30px;height:30px;border-radius:8px;background:#e6ecdf;color:#63756b;display:grid;place-items:center;font-size:15px;font-weight:800}
+    .history li.completed .hnum{background:#e6ecdf;color:var(--sage)}
     .history li.active .hnum{border:1px solid var(--sage);color:var(--sage);background:white}
     .hname{font-size:15px;font-weight:750;line-height:1.4}
     .hchoice{font-size:15px;color:var(--muted);line-height:1.5;margin-top:4px}
     .small-divider{height:1px;background:var(--border);margin:20px 0}
     .sidebar-note{font-size:15px;color:var(--muted);line-height:1.7}
     .sidebar-note strong{color:#3d585b}
-    .plan-card{border-radius:14px;border:1px solid #a6c6bd;background:var(--sage-pale);padding:22px;margin:16px 0 26px}
+    .plan-card{border-radius:14px;border:1px solid var(--sage-line);background:var(--sage-pale);padding:22px;margin:16px 0 26px}
     .plan-card p{font-size:16px;line-height:1.75}
     .reflection-list{margin:0;padding-left:24px}
     .reflection-list li{font-size:16px;line-height:1.65;margin:0 0 12px}
-    .lens-card{border:1px solid #d8cee6;background:#f7f4fa;border-radius:13px;padding:19px 20px;margin:18px 0 24px}
-    .lens-card h3{color:var(--purple);font-size:19px;margin:0 0 8px}
+    .lens-card{border:1px solid var(--border);background:var(--white);border-radius:13px;padding:19px 20px;margin:18px 0 24px}
+    .lens-card h3{color:var(--ink);font-size:19px;margin:0 0 8px}
     .lens-card p{font-size:16px;line-height:1.75;margin:0}
     .footer{margin-top:26px;font-size:15px;color:var(--muted);line-height:1.7}
-    .header-inner{min-height:76px}
-    .header-home{display:inline-flex;align-items:center;border:1px solid var(--border);background:white;color:var(--ink);padding:10px 15px;border-radius:10px;text-decoration:none;font-size:16px;font-weight:700}
+    .header-inner{min-height:68px;flex-wrap:wrap}
+    .header-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-left:auto}
+    .header-home{display:inline-flex;align-items:center;border:1px solid var(--border);background:var(--white);color:var(--ink);padding:8px 12px;border-radius:9px;text-decoration:none;font-size:13px;font-weight:700}
     .header-home:hover{text-decoration:none;border-color:var(--sage)}
+    .sim-page-label{display:flex;flex-direction:column;line-height:1.3}
+    .sim-page-label strong{font-size:14px;color:var(--ink)}
+    .sim-page-label span{font-size:12px;color:var(--muted)}
     .scenario-intro{margin:16px 0 30px}
-    .scenario-intro h1{font-size:clamp(40px,6vw,64px);line-height:1.1;letter-spacing:-.04em;max-width:none;margin:0 0 28px}
-    .intro-card{border:1.5px solid #d8e2e5;border-radius:20px;background:#f8fafb;padding:30px 34px;margin-bottom:30px}
-    .intro-section+.intro-section{margin-top:27px}
-    .intro-section h2{font-size:clamp(23px,3vw,29px);margin:0 0 8px}
-    .intro-section p{font-size:clamp(18px,2vw,24px);line-height:1.62;color:#405965;margin:0}
-    .scenario-start{min-height:76px;padding:17px 27px;font-size:20px;border-radius:16px}
+    .scenario-intro h1{font-size:clamp(36px,5vw,52px);line-height:1.1;letter-spacing:-.04em;max-width:none;margin:0 0 24px}
+    .intro-card{border:1.5px solid var(--border);border-radius:18px;background:var(--white);padding:27px 30px;margin-bottom:26px}
+    .intro-section+.intro-section{margin-top:23px}
+    .intro-section h2{font-size:clamp(21px,2.4vw,25px);margin:0 0 7px}
+    .intro-section p{font-size:clamp(17px,1.6vw,20px);line-height:1.6;color:var(--muted);margin:0}
+    .scenario-start{min-height:62px;padding:13px 21px;font-size:17px;border-radius:13px}
     .hidden{display:none!important}
     @keyframes rise{from{opacity:.25;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
     @media(max-width:900px){.layout{grid-template-columns:minmax(0,1fr)}.sidebar{position:static}.sidebar .history{grid-template-columns:repeat(3,minmax(0,1fr))}.shell{padding-top:26px}}
-    @media(max-width:680px){.shell{padding:22px 15px 48px}.header-inner{padding:15px}.header-home{font-size:14px;padding:8px 10px}.panel-main{padding:22px 18px}.sidebar{padding:20px}.sidebar .history{grid-template-columns:1fr}.choice{padding:13px 12px;gap:9px}.buttons{gap:9px}.btn{padding:11px 13px}.intro-card{padding:22px 21px;border-radius:16px}.intro-section+.intro-section{margin-top:22px}.intro-section p{font-size:18px}.scenario-intro h1{font-size:clamp(36px,10vw,46px);margin-bottom:22px}.scenario-start{min-height:64px;padding:13px 18px;font-size:18px}}
+    @media(max-width:680px){.shell{padding:22px 15px 48px}.header-inner{padding:15px}.header-home{font-size:12px;padding:7px 9px}.header-actions{gap:6px}.panel-main{padding:22px 18px}.sidebar{padding:20px}.sidebar .history{grid-template-columns:1fr}.choice{padding:13px 12px;gap:9px}.buttons{gap:9px}.btn{padding:11px 13px}.intro-card{padding:21px 19px;border-radius:15px}.intro-section+.intro-section{margin-top:19px}.intro-section p{font-size:17px}.scenario-intro h1{font-size:clamp(32px,9vw,42px);margin-bottom:20px}.scenario-start{min-height:54px;padding:11px 17px;font-size:16px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
     @media print{.sidebar,.buttons,.choice-list{display:none}.layout{display:block}.panel{box-shadow:none}.shell{padding:12px}.site-header{display:none}}
   </style>
@@ -118,8 +122,8 @@
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a class="header-home" href="./index.html">← Back to home page</a>
-    <button type="button" id="restartTop" class="btn secondary">Restart Simulation</button>
+    <div class="sim-page-label"><strong>Interactive Simulations</strong><span>Initial Engagement</span></div>
+    <div class="header-actions"><a class="header-home" href="./index.html">Back to home page</a><button type="button" id="restartTop" class="btn secondary">Restart Simulation</button></div>
   </div>
 </header>
 <main class="shell">
@@ -330,7 +334,6 @@
     const nav=add(stage,'div','buttons');
     const back=add(nav,'button','btn secondary','← Back');
     back.type='button';
-    back.disabled=step===0;
     const next=add(nav,'button','btn',step===2?'View the shared plan →':'Continue →');
     next.type='button';
     next.disabled=!selection;
@@ -415,7 +418,7 @@
     scrollToGame();
   }
   function goBack(){
-    if(step===0)return;
+    if(step===0)return restart();
     if(step===3)step=2;
     else step--;
     selection=history[step];

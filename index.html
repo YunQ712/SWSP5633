@@ -88,7 +88,6 @@
     .submodule-card .empty { min-height: 94px; }
     .m1s1-card h3 { font-size: 25px; }
     .m1s1-step[hidden] { display: none; }
-    .m1s1-progress { margin: 0 0 12px; font-size: 18px; font-weight: 650; color: var(--muted); }
     .m1s1-card h4 { margin: 0 0 10px; font-size: 24px; line-height: 1.3; }
     .m1s1-copy { max-width: 900px; margin: 0 0 18px; font-size: 18px; }
     .m1s1-label { display: block; margin: 18px 0 8px; font-size: 18px; font-weight: 650; }
@@ -175,7 +174,6 @@
     .m1s4-lens-copy { flex: 1; }
     .m1s4-lens-status { display: block; margin-top: 6px; font-size: 18px; }
     .m1s4-panel { min-height: 122px; background: var(--surface); }
-    .m1s4-completion { margin: 12px 0 0; font-size: 18px; font-weight: 650; }
     .m1s4-copy { margin: 0 0 12px; }
     .m1s4-copy + .m1s4-copy { margin-top: 12px; }
     .m1-actions .m1s1-button { flex: 0 0 auto; }
@@ -196,7 +194,7 @@
     .m1-menu-card[aria-expanded="true"], .m2-menu-card[aria-expanded="true"], .m3-menu-card[aria-expanded="true"] {
       outline: 3px solid #26768c; outline-offset: 6px; border-radius: 8px;
     }
-    .module-expansion-slot { grid-column: 1 / -1; width: 100%; min-width: 0; }
+    .module-expansion-slot { grid-column: 1 / -1; position: relative; left: 50%; width: min(1180px, calc(100vw - 48px)); min-width: 0; transform: translateX(-50%); }
     .module-expansion-slot[hidden] { display: none; }
     .submodule-collapse-button {
       display: flex; align-items: center; gap: 8px; width: fit-content; margin: 24px 0 0 auto; padding: 9px 14px;
@@ -247,10 +245,8 @@
     .reflection-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
     .reflection-grid .empty { min-height: 140px; }
     .references-section { padding: 24px 0 40px; border-top: 1px solid var(--line); }
-    .references-disclosure { overflow: hidden; border: 1px solid #e3e6e2; border-radius: 12px; background: var(--surface); box-shadow: none; }
-    .references-disclosure summary { padding: 13px 18px; cursor: pointer; color: #87918b; font-size: 15px; font-weight: 600; }
-    .references-disclosure summary:focus-visible { outline: 3px solid #216b84; outline-offset: 3px; }
-    .references-body { padding: 0 18px 16px; color: #929a95; font-size: 13px; line-height: 1.55; }
+    .references-section h2 { margin: 0 0 14px; color: #87918b; font-size: 15px; font-weight: 650; }
+    .references-body { padding: 0; color: #929a95; font-size: 13px; line-height: 1.55; }
     .references-body ul { margin: 0; padding: 0; list-style: none; }
     .references-body li { padding-left: 1.4em; text-indent: -1.4em; }
     .references-body li { margin: 0 0 7px; color: #929a95; font-size: 13px; overflow-wrap: anywhere; }
@@ -287,6 +283,7 @@
     }
     @media (max-width: 560px) {
       .wrap { width: min(100% - 32px, 1180px); }
+      .module-expansion-slot { width: calc(100vw - 32px); }
       .hero-panel { padding: 22px 20px; border-radius: 18px; }
       .acknowledgement-inner { width: calc(100% - 32px); gap: 14px; padding: 26px 0; }
       .acknowledgement-inner h2 { font-size: 27px; }
@@ -587,10 +584,7 @@
       </div>
       <div class="submodule-grid">
         <article class="submodule-card m1s1-card" id="m1s1" hidden>
-          <p class="eyebrow">Submodule 1</p>
-          <h3 tabindex="-1">What is Trauma?</h3>
           <div class="m1s1-step" id="m1s1-step-one" aria-labelledby="m1s1-step-one-title">
-            <p class="m1s1-progress" id="m1s1-progress" aria-live="polite">Step 1 of 2</p>
             <h4 id="m1s1-step-one-title" tabindex="-1">What does trauma mean to you?</h4>
             <p class="m1s1-copy">Before exploring the definition, take a moment to reflect on what trauma means to you. There is no right or wrong answer.</p>
             <form id="m1s1-reflection-form">
@@ -601,7 +595,6 @@
             </form>
           </div>
           <div class="m1s1-step" id="m1s1-step-two" aria-labelledby="m1s1-step-two-title" hidden>
-            <p class="m1s1-progress" aria-live="polite">Step 2 of 2</p>
             <h4 id="m1s1-step-two-title" tabindex="-1">What Is Trauma?</h4>
             <p class="m1s1-copy">Explore the definition below alongside your initial understanding.</p>
             <div class="m1s1-response" aria-labelledby="m1s1-your-understanding-title">
@@ -643,7 +636,6 @@
           </div>
         </article>
         <article class="submodule-card m1s2-card" id="m1s2" hidden>
-          <p class="eyebrow">Submodule 2</p>
           <h3 id="m1s2-heading" tabindex="-1">Types and Sources of Trauma</h3>
           <p class="m1s2-intro">Trauma can take different forms depending on the nature, duration, and context of traumatic experiences.</p>
           <div class="m1s2-group">
@@ -702,7 +694,6 @@
           </div>
         </article>
         <article class="submodule-card m1s3-card" id="m1s3" hidden>
-          <p class="eyebrow">Submodule 3</p>
           <h3 id="m1s3-heading" tabindex="-1">Impacts of Trauma on Individuals and Relationships</h3>
           <p class="m1s3-intro">Trauma can influence multiple aspects of a person's life, extending beyond immediate emotional distress.</p>
           <h4>Explore the Impacts</h4>
@@ -742,7 +733,6 @@
           </div>
         </article>
         <article class="submodule-card m1s4-card" id="m1s4" hidden>
-          <p class="eyebrow">Submodule 4</p>
           <h3 id="m1s4-heading" tabindex="-1">Trauma, Loss and Grief</h3>
           <p class="m1s4-copy">Trauma, loss and grief are closely connected because traumatic experiences may involve significant losses, while some experiences of loss may also be traumatic. However, these are distinct concepts and should not be treated as interchangeable.</p>
           <h4>Understanding Loss and Grief</h4>
@@ -783,7 +773,6 @@
             <h5 id="m1s4-lens-title">Choose a lens above to reveal an explanation.</h5>
             <p id="m1s4-lens-description" hidden></p>
           </div>
-          <p class="m1s4-completion" id="m1s4-completion" hidden>You’ve explored all three perspectives.</p>
           <h4>Grief Is Not a Linear Process</h4>
           <p class="m1s4-copy">Grief does not follow a fixed sequence of stages or a universal timeline. Responses are shaped by personal meaning, relationships and sociocultural context (Goldsworthy, 2005; Neimeyer, 2016).</p>
           <p class="m1s4-copy">Some people maintain meaningful connections with deceased loved ones as part of their grieving process, although the role of these continuing bonds varies between individuals (Stroebe et al., 2010).</p>
@@ -1744,30 +1733,29 @@
       </div>
     </section>
 
-    <section id="references" class="references-section" aria-labelledby="references-title">
-      <details class="references-disclosure" open>
-        <summary id="references-title">References</summary>
-        <div class="references-body">
-          <ul>
-            <li>Australian Association of Social Workers. (2020). <em>Code of ethics 2020</em>. <a href="https://www.aasw.asn.au/about-aasw/ethics-standards/code-of-ethics/" target="_blank" rel="noopener noreferrer">https://www.aasw.asn.au/about-aasw/ethics-standards/code-of-ethics/</a></li>
-            <li>Butler, K., MacDonald, J. B., Helprin, H., Dobud, W., &amp; Willoughby, M. (2025). <em>Trauma-informed practice in family mental health support services</em> (Practice guide). Australian Institute of Family Studies. <a href="https://aifs.gov.au/resources/practice-guides/trauma-informed-practice-family-mental-health-support-services" target="_blank" rel="noopener noreferrer">https://aifs.gov.au/resources/practice-guides/trauma-informed-practice-family-mental-health-support-services</a></li>
-            <li>Goldsworthy, K. (2005). Grief and loss theory in social work practice: All changes involve loss, just as all losses require change. <em>Australian Social Work, 58</em>(2), 167–178. <a href="https://doi.org/10.1111/j.1447-0748.2005.00201.x" target="_blank" rel="noopener noreferrer">https://doi.org/10.1111/j.1447-0748.2005.00201.x</a></li>
-            <li>Harris, M., &amp; Fallot, R. D. (2001). Envisioning a trauma-informed service system: A vital paradigm shift. <em>New Directions for Mental Health Services, 2001</em>(89), 3–22. <a href="https://doi.org/10.1002/yd.23320018903" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/yd.23320018903</a></li>
-            <li>Knight, C. (2015). Trauma-informed social work practice: Practice considerations and challenges. <em>Clinical Social Work Journal, 43</em>, 25–37. <a href="https://doi.org/10.1007/s10615-014-0481-6" target="_blank" rel="noopener noreferrer">https://doi.org/10.1007/s10615-014-0481-6</a></li>
-            <li>Leotti, S. M., &amp; Wahab, S. (2025). Mapping the landscape of trauma-informed care in social work: A critical scoping review. <em>Trauma, Violence, &amp; Abuse, 26</em>(4), 651–667. <a href="https://doi.org/10.1177/15248380241286810" target="_blank" rel="noopener noreferrer">https://doi.org/10.1177/15248380241286810</a></li>
-            <li>Levenson, J. S. (2020). Translating trauma-informed principles into social work practice. <em>Social Work, 65</em>(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
-            <li>National Child Traumatic Stress Network. (2025). <em>What is child trauma?</em> [Infographic]. <a href="https://www.nctsn.org/what-is-child-trauma-infographic" target="_blank" rel="noopener noreferrer">https://www.nctsn.org/what-is-child-trauma-infographic</a></li>
-            <li>Neimeyer, R. A. (2016). Meaning reconstruction in the wake of loss: Evolution of a research program. <em>Behaviour Change, 33</em>(2), 65–79. <a href="https://doi.org/10.1017/bec.2016.4" target="_blank" rel="noopener noreferrer">https://doi.org/10.1017/bec.2016.4</a></li>
-            <li>Stroebe, M., Schut, H., &amp; Boerner, K. (2010). Continuing bonds in adaptation to bereavement: Toward theoretical integration. <em>Clinical Psychology Review, 30</em>(2), 259–268. <a href="https://doi.org/10.1016/j.cpr.2009.11.007" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.cpr.2009.11.007</a></li>
-            <li>Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em> (HHS Publication No. (SMA) 14-4884). <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">https://library.samhsa.gov/sites/default/files/sma14-4884.pdf</a></li>
-            <li>Sweeney, A., Filson, B., Kennedy, A., Collinson, L., &amp; Gillard, S. (2018). A paradigm shift: Relationships in trauma-informed mental health services. <em>BJPsych Advances, 24</em>(5), 319–333. <a href="https://doi.org/10.1192/bja.2018.29" target="_blank" rel="noopener noreferrer">https://doi.org/10.1192/bja.2018.29</a></li>
-            <li>Sweeney, A., White, S., Kelly, K., Faulkner, A., Papoulias, S., &amp; Gillard, S. (2022). Survivor-led guidelines for conducting trauma-informed psychological therapy assessments: Development and modified Delphi study. <em>Health Expectations, 25</em>(6), 2818–2827. <a href="https://doi.org/10.1111/hex.13585" target="_blank" rel="noopener noreferrer">https://doi.org/10.1111/hex.13585</a></li>
-          </ul>
-        </div>
-      </details>
-    </section>
   </main>
-  <footer><div class="wrap">An Interactive Learning Tool for Trauma-Informed Social Work Practice</div></footer>
+  <footer id="references" class="references-section" aria-labelledby="references-title">
+    <div class="wrap">
+      <h2 id="references-title">References</h2>
+      <div class="references-body">      <ul>
+        <li>Australian Association of Social Workers. (2020). <em>Code of ethics 2020</em>. <a href="https://www.aasw.asn.au/about-aasw/ethics-standards/code-of-ethics/" target="_blank" rel="noopener noreferrer">https://www.aasw.asn.au/about-aasw/ethics-standards/code-of-ethics/</a></li>
+        <li>Butler, K., MacDonald, J. B., Helprin, H., Dobud, W., &amp; Willoughby, M. (2025). <em>Trauma-informed practice in family mental health support services</em> (Practice guide). Australian Institute of Family Studies. <a href="https://aifs.gov.au/resources/practice-guides/trauma-informed-practice-family-mental-health-support-services" target="_blank" rel="noopener noreferrer">https://aifs.gov.au/resources/practice-guides/trauma-informed-practice-family-mental-health-support-services</a></li>
+        <li>Goldsworthy, K. (2005). Grief and loss theory in social work practice: All changes involve loss, just as all losses require change. <em>Australian Social Work, 58</em>(2), 167–178. <a href="https://doi.org/10.1111/j.1447-0748.2005.00201.x" target="_blank" rel="noopener noreferrer">https://doi.org/10.1111/j.1447-0748.2005.00201.x</a></li>
+        <li>Harris, M., &amp; Fallot, R. D. (2001). Envisioning a trauma-informed service system: A vital paradigm shift. <em>New Directions for Mental Health Services, 2001</em>(89), 3–22. <a href="https://doi.org/10.1002/yd.23320018903" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/yd.23320018903</a></li>
+        <li>Knight, C. (2015). Trauma-informed social work practice: Practice considerations and challenges. <em>Clinical Social Work Journal, 43</em>, 25–37. <a href="https://doi.org/10.1007/s10615-014-0481-6" target="_blank" rel="noopener noreferrer">https://doi.org/10.1007/s10615-014-0481-6</a></li>
+        <li>Leotti, S. M., &amp; Wahab, S. (2025). Mapping the landscape of trauma-informed care in social work: A critical scoping review. <em>Trauma, Violence, &amp; Abuse, 26</em>(4), 651–667. <a href="https://doi.org/10.1177/15248380241286810" target="_blank" rel="noopener noreferrer">https://doi.org/10.1177/15248380241286810</a></li>
+        <li>Levenson, J. S. (2020). Translating trauma-informed principles into social work practice. <em>Social Work, 65</em>(3), 288–298. <a href="https://doi.org/10.1093/sw/swaa020" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/sw/swaa020</a></li>
+        <li>National Child Traumatic Stress Network. (2025). <em>What is child trauma?</em> [Infographic]. <a href="https://www.nctsn.org/what-is-child-trauma-infographic" target="_blank" rel="noopener noreferrer">https://www.nctsn.org/what-is-child-trauma-infographic</a></li>
+        <li>Neimeyer, R. A. (2016). Meaning reconstruction in the wake of loss: Evolution of a research program. <em>Behaviour Change, 33</em>(2), 65–79. <a href="https://doi.org/10.1017/bec.2016.4" target="_blank" rel="noopener noreferrer">https://doi.org/10.1017/bec.2016.4</a></li>
+        <li>Stroebe, M., Schut, H., &amp; Boerner, K. (2010). Continuing bonds in adaptation to bereavement: Toward theoretical integration. <em>Clinical Psychology Review, 30</em>(2), 259–268. <a href="https://doi.org/10.1016/j.cpr.2009.11.007" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.cpr.2009.11.007</a></li>
+        <li>Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em> (HHS Publication No. (SMA) 14-4884). <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">https://library.samhsa.gov/sites/default/files/sma14-4884.pdf</a></li>
+        <li>Sweeney, A., Filson, B., Kennedy, A., Collinson, L., &amp; Gillard, S. (2018). A paradigm shift: Relationships in trauma-informed mental health services. <em>BJPsych Advances, 24</em>(5), 319–333. <a href="https://doi.org/10.1192/bja.2018.29" target="_blank" rel="noopener noreferrer">https://doi.org/10.1192/bja.2018.29</a></li>
+        <li>Sweeney, A., White, S., Kelly, K., Faulkner, A., Papoulias, S., &amp; Gillard, S. (2022). Survivor-led guidelines for conducting trauma-informed psychological therapy assessments: Development and modified Delphi study. <em>Health Expectations, 25</em>(6), 2818–2827. <a href="https://doi.org/10.1111/hex.13585" target="_blank" rel="noopener noreferrer">https://doi.org/10.1111/hex.13585</a></li>
+      </ul>
+  
+      </div>
+    </div>
+  </footer>
   <script>
     (() => {
       const form = document.getElementById('m1s1-reflection-form');
@@ -1776,11 +1764,9 @@
       const stepTwo = document.getElementById('m1s1-step-two');
       const submoduleTwo = document.getElementById('m1s2');
       const response = document.getElementById('m1s1-response-text');
-      const progress = document.getElementById('m1s1-progress');
       const showStepOne = () => {
         stepTwo.hidden = true;
         stepOne.hidden = false;
-        progress.textContent = 'Step 1 of 2';
         document.getElementById('m1s1-step-one-title').focus();
       };
       form.addEventListener('submit', (event) => {
@@ -1788,7 +1774,6 @@
         response.textContent = input.value.length ? input.value : 'You chose to skip the initial reflection.';
         stepOne.hidden = true;
         stepTwo.hidden = false;
-        progress.textContent = 'Step 2 of 2';
         document.getElementById('m1s1-step-two-title').focus();
       });
       document.getElementById('m1s1-edit').addEventListener('click', showStepOne);
@@ -1836,7 +1821,7 @@
           collapseButton.type = 'button';
           collapseButton.setAttribute('aria-expanded', 'false');
           collapseButton.setAttribute('aria-controls', panel.id);
-          collapseButton.innerHTML = '<span>Collapse submodule</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>';
+          collapseButton.innerHTML = '<span>Collapse</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>';
           collapseButton.addEventListener('click', (event) => {
             event.stopPropagation();
             closeGroup();
@@ -1875,7 +1860,7 @@
             if (contentRegion.parentElement !== slot) slot.appendChild(contentRegion);
             activeCard = card;
 
-            const heading = target.querySelector('h3');
+            const heading = target.querySelector('h3, h4');
             const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
             if (heading) heading.focus({ preventScroll: true });
             slot.scrollIntoView({ behavior, block: 'nearest' });
@@ -1946,7 +1931,6 @@
       const visitedLenses = new Set();
       const lensTitle = document.getElementById('m1s4-lens-title');
       const lensDescription = document.getElementById('m1s4-lens-description');
-      const lensCompletion = document.getElementById('m1s4-completion');
       document.querySelectorAll('.m1s4-lens').forEach((button) => {
         button.addEventListener('click', () => {
           const lens = button.dataset.lens;
@@ -1962,7 +1946,6 @@
           lensTitle.textContent = title;
           lensDescription.textContent = description;
           lensDescription.hidden = false;
-          if (visitedLenses.size === 3) lensCompletion.hidden = false;
         });
       });
     })();

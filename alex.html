@@ -7,10 +7,10 @@
   <title>Alex's NDIS Assessment | Interactive Simulation</title>
   <style>
     :root {
-      --ink:#21323a;--muted:#62747b;--border:#dbe4e3;--paper:#f6f8f7;
-      --white:#ffffff;--sage:#306f68;--sage-pale:#eaf4f0;--sage-line:#94c0b1;
-      --purple:#654c7c;--purple-pale:#f3eef8;--amber-pale:#fbf5e9;
-      --shadow:0 8px 28px rgba(25,58,61,.045);--round:16px;
+      --ink:#23483d;--muted:#63756b;--border:#d9ddd2;--paper:#f6f5ef;
+      --white:#fffef9;--sage:#23483d;--sage-pale:#e6ecdf;--sage-line:#aebc99;
+      --purple:#63756b;--purple-pale:#e6ecdf;--amber-pale:#f1eee3;
+      --shadow:0 8px 28px rgba(35,72,61,.06);--round:16px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -18,8 +18,8 @@
     button,input,textarea{font:inherit}
     button{cursor:pointer}
     button:disabled{cursor:not-allowed;opacity:.52}
-    :focus-visible{outline:3px solid #4b9b89;outline-offset:3px}
-    .site-header{background:white;border-bottom:1px solid var(--border)}
+    :focus-visible{outline:3px solid #7a895d;outline-offset:3px}
+    .site-header{background:rgba(246,245,239,.96);border-bottom:1px solid var(--border)}
     .header-inner{max-width:1110px;margin:auto;padding:15px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
     .brand{display:block;color:inherit;text-decoration:none;font-weight:750;font-size:14px;letter-spacing:.012em}
     .header-right{font-size:12px;color:var(--muted);text-align:right}
@@ -31,13 +31,13 @@
     h1{font-size:clamp(27px,4vw,42px);line-height:1.17;letter-spacing:-.037em;margin:8px 0 13px;max-width:900px}
     .hero p{max-width:760px;color:var(--muted);font-size:15px;margin:0 0 13px}
     .pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:13px}
-    .pill{border:1px solid var(--border);background:var(--white);font-weight:650;font-size:11.5px;padding:5px 10px;border-radius:100px;color:#4c666b}
+    .pill{border:1px solid var(--border);background:var(--white);font-weight:650;font-size:11.5px;padding:5px 10px;border-radius:100px;color:#63756b}
     .layout{display:grid;grid-template-columns:minmax(0,1fr) 278px;align-items:start;gap:23px}
     .panel{background:var(--white);border:1px solid var(--border);border-radius:var(--round);box-shadow:var(--shadow);overflow:hidden}
     .panel-main{padding:27px 28px 24px}
     .steps{display:flex;gap:6px;margin:0 0 29px;list-style:none;padding:0}
-    .steps li{flex:1;height:6px;border-radius:6px;background:#e8eeed}
-    .steps li.done{background:#9cc9b8}
+    .steps li{flex:1;height:6px;border-radius:6px;background:#e6ecdf}
+    .steps li.done{background:#aebc99}
     .steps li.current{background:var(--sage)}
     .steps li[aria-current="step"]{background:var(--sage)}
     .scene-label{color:var(--muted);font-weight:750;font-size:11px;letter-spacing:.085em;text-transform:uppercase;margin-bottom:5px}
@@ -48,39 +48,39 @@
     .para:last-child,p:last-child{margin-bottom:0}
     .narrative{font-size:14px;line-height:1.76}
     .narrative p{margin-bottom:11px}
-    .scene-box{border:1px solid #dce9e4;background:#f2f8f5;border-radius:12px;padding:17px 18px;margin:15px 0 0}
-    .box-eyebrow{color:#4c6e6b;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;margin-bottom:9px}
+    .scene-box{border:1px solid var(--border);background:var(--white);border-radius:12px;padding:17px 18px;margin:15px 0 0}
+    .box-eyebrow{color:#63756b;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;font-weight:800;margin-bottom:9px}
     .dialogue{white-space:pre-line;font-size:14px;line-height:1.76}
-    .context{font-size:13px;color:#526b69;margin-top:9px;line-height:1.62}
+    .context{font-size:13px;color:#63756b;margin-top:9px;line-height:1.62}
     hr{border:0;border-top:1px solid var(--border);margin:24px 0}
     .choice-fieldset{margin:0;padding:0;border:0;min-width:0}
     .choice-fieldset legend{font-size:17px;letter-spacing:-.01em;font-weight:750;margin-bottom:13px;padding:0}
     .choice-list{display:grid;gap:10px}
-    .choice{display:flex;gap:13px;align-items:flex-start;background:#fff;padding:14px 15px;border:1.5px solid #d6e2df;border-radius:12px;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
-    .choice:hover{border-color:#89b4a6;box-shadow:0 5px 15px rgba(31,96,77,.07);transform:translateY(-1px)}
-    .choice:has(input:focus-visible){outline:3px solid #4b9b89;outline-offset:2px}
+    .choice{display:flex;gap:13px;align-items:flex-start;background:#fff;padding:14px 15px;border:1.5px solid #d9ddd2;border-radius:12px;cursor:pointer;transition:transform .15s,box-shadow .15s,border-color .15s,background .15s}
+    .choice:hover{border-color:#aebc99;box-shadow:0 5px 15px rgba(31,96,77,.07);transform:translateY(-1px)}
+    .choice:has(input:focus-visible){outline:3px solid #7a895d;outline-offset:2px}
     .choice:has(input:checked){background:var(--sage-pale);border-color:var(--sage);box-shadow:inset 0 0 0 .5px var(--sage)}
     .choice input{accent-color:var(--sage);margin:5px 0 0;flex-shrink:0;width:17px;height:17px}
     .letter{font-size:12px;font-weight:850;min-width:16px;color:var(--sage)}
     .choice-text{font-size:13.5px;line-height:1.56;font-weight:570}
     .reveal{margin-top:23px;animation:rise .23s ease both}
-    .response{border:1px solid #d9e2e1;background:white;padding:17px 18px;border-radius:12px}
+    .response{border:1px solid #d9ddd2;background:white;padding:17px 18px;border-radius:12px}
     .response .dialogue{white-space:pre-line}
-    .consequence{border:1px solid #dce9e4;background:var(--sage-pale);padding:17px 18px;border-radius:12px;margin-top:10px}
-    .feedback{margin-top:17px;border-left:3px solid #b5a6ce;padding:3px 0 2px 14px}
+    .consequence{border:1px solid #d9ddd2;background:var(--sage-pale);padding:17px 18px;border-radius:12px;margin-top:10px}
+    .feedback{margin-top:17px;border-left:3px solid #aebc99;padding:3px 0 2px 14px}
     .feedback strong{color:var(--purple);font-size:12px;display:block;margin-bottom:6px}
-    .feedback p{font-size:13px;color:#4b555d;line-height:1.7}
-    .buttons{display:flex;justify-content:space-between;gap:12px;margin-top:25px;padding-top:20px;border-top:1px solid var(--border)}
+    .feedback p{font-size:13px;color:#63756b;line-height:1.7}
+    .buttons{display:flex;justify-content:flex-start;gap:12px;margin-top:25px;padding-top:20px;border-top:1px solid var(--border)}
     .btn{border:1px solid var(--sage);border-radius:10px;padding:11px 16px;font-weight:750;font-size:13px;min-height:42px;background:var(--sage);color:#fff;transition:filter .16s,transform .16s}
     .btn:hover:not(:disabled){filter:brightness(.95);transform:translateY(-1px)}
-    .btn.secondary{background:white;color:var(--sage);border-color:#a4c9bd}
+    .btn.secondary{background:white;color:var(--sage);border-color:#aebc99}
     .sidebar{padding:21px;position:sticky;top:22px}
     .sidebar h3{margin:0 0 14px}
     .sidebar-intro{font-size:12.5px;line-height:1.65;color:var(--muted);margin-bottom:16px}
     .history{display:grid;gap:14px;margin:0;padding:0;list-style:none}
     .history li{display:grid;grid-template-columns:28px 1fr;gap:10px;align-items:start}
-    .hnum{width:28px;height:28px;border-radius:8px;background:#edf2f0;color:#607574;display:grid;place-items:center;font-size:12px;font-weight:800}
-    .history li.completed .hnum{background:#e0f0e8;color:var(--sage)}
+    .hnum{width:28px;height:28px;border-radius:8px;background:#e6ecdf;color:#63756b;display:grid;place-items:center;font-size:12px;font-weight:800}
+    .history li.completed .hnum{background:#e6ecdf;color:var(--sage)}
     .history li.active .hnum{border:1px solid var(--sage);color:var(--sage);background:white}
     .hname{font-size:12px;font-weight:750;line-height:1.35}
     .hchoice{font-size:11.5px;color:var(--muted);line-height:1.5;margin-top:3px}
@@ -89,35 +89,39 @@
     .sidebar-note b{color:#3d585b}
     .outcome-label{display:inline-block;font-size:11px;letter-spacing:.06em;font-weight:800;text-transform:uppercase;color:var(--sage);margin-bottom:7px}
     .outcome-title{font-size:29px;letter-spacing:-.035em;line-height:1.2;margin:0 0 10px}
-    .ending-card{border-radius:14px;border:1px solid #a6c6bd;background:var(--sage-pale);padding:23px;margin:15px 0 25px}
-    .ending-card.mixed{background:#f7f5fb;border-color:#c6b4d4}
-    .ending-card.difficult{background:var(--amber-pale);border-color:#e6d1a5}
+    .ending-card{border-radius:14px;border:1px solid var(--sage-line);background:var(--sage-pale);padding:23px;margin:15px 0 25px}
+    .ending-card.mixed{background:#f1f3eb;border-color:var(--sage-line)}
+    .ending-card.difficult{background:var(--amber-pale);border-color:#aebc99}
     .ending-card p{font-size:14px;line-height:1.75}
     .history-end{display:grid;gap:12px;list-style:none;padding:0;margin:0}
     .history-end li{display:flex;gap:12px;align-items:flex-start;font-size:13px;line-height:1.55}
     .tick{color:var(--sage);font-weight:850}
     .history-end small{display:block;font-size:11px;color:var(--muted);font-weight:750;margin-bottom:2px}
-    .attention{padding:16px 18px;border:1px solid #e5ded0;border-radius:12px;background:#faf8f3;margin-top:17px}
-    .attention ul{padding-left:17px;margin:7px 0 0;font-size:13px;color:#5f5b54}
+    .attention{padding:16px 18px;border:1px solid #d9ddd2;border-radius:12px;background:#fffef9;margin-top:17px}
+    .attention ul{padding-left:17px;margin:7px 0 0;font-size:13px;color:#63756b}
     .attention li{margin:0 0 8px}
     .reflection{border:1px solid var(--border);border-radius:12px;padding:17px 18px;margin-top:17px;font-size:13px;line-height:1.72}
     .fineprint{font-size:12px;color:var(--muted);line-height:1.7;margin-top:17px}
     .footer{margin-top:26px;font-size:12px;color:var(--muted);line-height:1.7}
-    .footer strong{color:#536b6e}
-    .header-inner{min-height:76px}
-    .header-home{display:inline-flex;align-items:center;border:1px solid var(--border);background:white;color:var(--ink);padding:10px 15px;border-radius:10px;text-decoration:none;font-size:16px;font-weight:700}
+    .footer strong{color:#63756b}
+    .header-inner{min-height:68px;flex-wrap:wrap}
+    .header-actions{display:flex;align-items:center;justify-content:flex-end;gap:8px;flex-wrap:wrap;margin-left:auto}
+    .header-home{display:inline-flex;align-items:center;border:1px solid var(--border);background:var(--white);color:var(--ink);padding:8px 12px;border-radius:9px;text-decoration:none;font-size:13px;font-weight:700}
     .header-home:hover{text-decoration:none;border-color:var(--sage)}
+    .sim-page-label{display:flex;flex-direction:column;line-height:1.3}
+    .sim-page-label strong{font-size:14px;color:var(--ink)}
+    .sim-page-label span{font-size:12px;color:var(--muted)}
     .scenario-intro{margin:16px 0 30px}
-    .scenario-intro h1{font-size:clamp(40px,6vw,64px);line-height:1.1;letter-spacing:-.04em;max-width:none;margin:0 0 28px}
-    .intro-card{border:1.5px solid #d8e2e5;border-radius:20px;background:#f8fafb;padding:30px 34px;margin-bottom:30px}
-    .intro-section+.intro-section{margin-top:27px}
-    .intro-section h2{font-size:clamp(23px,3vw,29px);margin:0 0 8px}
-    .intro-section p{font-size:clamp(18px,2vw,24px);line-height:1.62;color:#405965;margin:0}
-    .scenario-start{min-height:76px;padding:17px 27px;font-size:20px;border-radius:16px}
+    .scenario-intro h1{font-size:clamp(36px,5vw,52px);line-height:1.1;letter-spacing:-.04em;max-width:none;margin:0 0 24px}
+    .intro-card{border:1.5px solid var(--border);border-radius:18px;background:var(--white);padding:27px 30px;margin-bottom:26px}
+    .intro-section+.intro-section{margin-top:23px}
+    .intro-section h2{font-size:clamp(21px,2.4vw,25px);margin:0 0 7px}
+    .intro-section p{font-size:clamp(17px,1.6vw,20px);line-height:1.6;color:var(--muted);margin:0}
+    .scenario-start{min-height:62px;padding:13px 21px;font-size:17px;border-radius:13px}
     .hidden{display:none!important}
     @keyframes rise{from{opacity:.3;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
     @media(max-width:850px){.layout{grid-template-columns:minmax(0,1fr)}.sidebar{position:static}.sidebar .history{grid-template-columns:repeat(2,minmax(0,1fr))}.shell{padding-top:24px}}
-    @media(max-width:530px){.shell{padding:20px 13px 44px}.header-inner{padding:14px 13px}.header-home{font-size:14px;padding:8px 10px}.panel-main{padding:22px 17px}.sidebar{padding:19px}.sidebar .history{grid-template-columns:1fr}.choice{padding:12px 11px;gap:9px}.buttons{gap:8px}.btn{padding:10px 13px}.intro-card{padding:22px 21px;border-radius:16px}.intro-section+.intro-section{margin-top:22px}.intro-section p{font-size:18px}.scenario-intro h1{font-size:clamp(36px,10vw,46px);margin-bottom:22px}.scenario-start{min-height:64px;padding:13px 18px;font-size:18px}.hname{font-size:12px}}
+    @media(max-width:530px){.shell{padding:20px 13px 44px}.header-inner{padding:14px 13px}.header-home{font-size:12px;padding:7px 9px}.header-actions{gap:6px}.panel-main{padding:22px 17px}.sidebar{padding:19px}.sidebar .history{grid-template-columns:1fr}.choice{padding:12px 11px;gap:9px}.buttons{gap:8px}.btn{padding:10px 13px}.intro-card{padding:21px 19px;border-radius:15px}.intro-section+.intro-section{margin-top:19px}.intro-section p{font-size:17px}.scenario-intro h1{font-size:clamp(32px,9vw,42px);margin-bottom:20px}.scenario-start{min-height:54px;padding:11px 17px;font-size:16px}.hname{font-size:12px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
     @media print{.sidebar,.buttons,.choice-list{display:none}.layout{display:block}.panel{box-shadow:none}.shell{padding:12px}.site-header{display:none}}
   </style>
@@ -125,8 +129,8 @@
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a class="header-home" href="./index.html">← Back to home page</a>
-    <button type="button" id="restartTop" class="btn secondary">Restart Simulation</button>
+    <div class="sim-page-label"><strong>Interactive Simulations</strong><span>Initial Engagement</span></div>
+    <div class="header-actions"><a class="header-home" href="./index.html">Back to home page</a><button type="button" id="restartTop" class="btn secondary">Restart Simulation</button></div>
   </div>
 </header>
 <main class="shell">
@@ -387,7 +391,7 @@
       radio.addEventListener('change',()=>{selection=option.id;reveal();next.disabled=false;});
     });
     const nav=add(stage,'div','buttons');
-    const back=add(nav,'button','btn secondary','← Back');back.type='button';back.disabled=step===0;
+    const back=add(nav,'button','btn secondary','← Back');back.type='button';
     const next=add(nav,'button','btn',step===3?'See your outcome →':'Continue →');next.type='button';next.disabled=!selection;
     back.addEventListener('click',()=>goBack());
     next.addEventListener('click',()=>goNext());
@@ -434,7 +438,7 @@
     render();scrollToGame();
   }
   function goBack(){
-    if(step===0)return;
+    if(step===0)return restart();
     const prior=step-1;
     const old=history[prior];
     for(let i=prior;i<4;i++)history[i]='';
