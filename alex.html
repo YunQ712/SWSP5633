@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="light">
-  <title>Alex's NDIS Assessment — Interactive Simulation V2</title>
+  <title>Alex's NDIS Assessment | Interactive Simulation</title>
   <style>
     :root {
       --ink:#21323a;--muted:#62747b;--border:#dbe4e3;--paper:#f6f8f7;
@@ -104,10 +104,20 @@
     .fineprint{font-size:12px;color:var(--muted);line-height:1.7;margin-top:17px}
     .footer{margin-top:26px;font-size:12px;color:var(--muted);line-height:1.7}
     .footer strong{color:#536b6e}
+    .header-inner{min-height:76px}
+    .header-home{display:inline-flex;align-items:center;border:1px solid var(--border);background:white;color:var(--ink);padding:10px 15px;border-radius:10px;text-decoration:none;font-size:16px;font-weight:700}
+    .header-home:hover{text-decoration:none;border-color:var(--sage)}
+    .scenario-intro{margin:16px 0 30px}
+    .scenario-intro h1{font-size:clamp(40px,6vw,64px);line-height:1.1;letter-spacing:-.04em;max-width:none;margin:0 0 28px}
+    .intro-card{border:1.5px solid #d8e2e5;border-radius:20px;background:#f8fafb;padding:30px 34px;margin-bottom:30px}
+    .intro-section+.intro-section{margin-top:27px}
+    .intro-section h2{font-size:clamp(23px,3vw,29px);margin:0 0 8px}
+    .intro-section p{font-size:clamp(18px,2vw,24px);line-height:1.62;color:#405965;margin:0}
+    .scenario-start{min-height:76px;padding:17px 27px;font-size:20px;border-radius:16px}
     .hidden{display:none!important}
     @keyframes rise{from{opacity:.3;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
     @media(max-width:850px){.layout{grid-template-columns:minmax(0,1fr)}.sidebar{position:static}.sidebar .history{grid-template-columns:repeat(2,minmax(0,1fr))}.shell{padding-top:24px}}
-    @media(max-width:530px){.shell{padding:20px 13px 44px}.header-inner{padding:14px 13px}.header-right{font-size:10.5px}.panel-main{padding:22px 17px}.sidebar{padding:19px}.sidebar .history{grid-template-columns:1fr}.choice{padding:12px 11px;gap:9px}.buttons{gap:8px}.btn{padding:10px 13px}.hero{margin-bottom:20px}.hname{font-size:12px}}
+    @media(max-width:530px){.shell{padding:20px 13px 44px}.header-inner{padding:14px 13px}.header-home{font-size:14px;padding:8px 10px}.panel-main{padding:22px 17px}.sidebar{padding:19px}.sidebar .history{grid-template-columns:1fr}.choice{padding:12px 11px;gap:9px}.buttons{gap:8px}.btn{padding:10px 13px}.intro-card{padding:22px 21px;border-radius:16px}.intro-section+.intro-section{margin-top:22px}.intro-section p{font-size:18px}.scenario-intro h1{font-size:clamp(36px,10vw,46px);margin-bottom:22px}.scenario-start{min-height:64px;padding:13px 18px;font-size:18px}.hname{font-size:12px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
     @media print{.sidebar,.buttons,.choice-list{display:none}.layout{display:block}.panel{box-shadow:none}.shell{padding:12px}.site-header{display:none}}
   </style>
@@ -115,18 +125,21 @@
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="./index.html">Trauma-Informed Practice · Interactive Learning</a>
-    <div class="header-right"><a href="./index.html#module-04">Back to Interactive Simulations</a><br>Module 04 · Simulation 01<br>V2 · Peer playtest draft</div>
+    <a class="header-home" href="./index.html">← Back to home page</a>
+    <button type="button" id="restartTop" class="btn secondary">Restart Simulation</button>
   </div>
 </header>
 <main class="shell">
-  <div class="hero">
-    <div class="eyebrow">Social Work Practice Simulation</div>
-    <h1>Alex's NDIS Assessment</h1>
-    <p>Explore how your communication, assessment choices and professional judgement can shape an adult client's experience of an NDIS-related functional assessment.</p>
-    <div class="pills"><span class="pill">4 decision points</span><span class="pill">Choices carry forward</span><span class="pill">3 outcome types</span><span class="pill">Fictional learning scenario</span></div>
-  </div>
-  <div class="layout">
+  <section class="scenario-intro" id="scenarioIntro" aria-labelledby="scenario-title">
+    <h1 id="scenario-title">Alex's NDIS Assessment</h1>
+    <div class="intro-card">
+      <section class="intro-section"><h2>Setting</h2><p>An NDIS-related functional assessment in Western Australia, with information being gathered to prepare an assessment report.</p></section>
+      <section class="intro-section"><h2>Your role</h2><p>You are a social worker helping prepare the report. Alex's mother, Sarah, is attending with Alex's agreement. Your task is to understand daily support needs and strengths while keeping Alex involved in how their experience is represented.</p></section>
+      <section class="intro-section"><h2>About Alex</h2><p>Alex is a 20-year-old autistic university student. They are concerned that the report may make them seem unable to do things independently. A previous assessment left Alex feeling that other people were making decisions about them, and they are unsure how much detail they need to share.</p></section>
+    </div>
+    <button type="button" id="startSimulation" class="btn scenario-start">Start Simulation <span aria-hidden="true">→</span></button>
+  </section>
+  <div class="layout" id="simulationLayout" hidden>
     <article class="panel panel-main" id="simulation" aria-label="Interactive simulation">
       <ol class="steps" id="progress" aria-label="Simulation progress"></ol>
       <div id="stage" aria-live="polite" aria-atomic="false"></div>
@@ -139,7 +152,7 @@
       <div class="sidebar-note"><b>Learning focus</b><br>Safety · Transparency · Voice and choice · Collaborative assessment · Avoiding re-traumatisation</div>
     </aside>
   </div>
-  <div class="footer">
+  <div class="footer" id="simulationFooter" hidden>
     <strong>Educational prototype — not an official NDIA tool.</strong> The scenario is fictional and designed for social work student discussion. Endings describe the assessment interaction, not NDIS eligibility, funding or an NDIA decision. References/learning feedback require final academic review before publication.
   </div>
 </main>
@@ -408,7 +421,7 @@
     add(reflect,'p','',"A positive process does not guarantee NDIS eligibility or funding. The outcome here reflects the quality of the assessment interaction, not an NDIA decision.");
     const nav=add(stage,'div','buttons');
     const back=add(nav,'button','btn secondary','← Revise D4');back.type='button';back.addEventListener('click',goBack);
-    const again=add(nav,'button','btn','↻ Play Again');again.type='button';again.addEventListener('click',restart);
+    const again=add(nav,'button','btn','Restart Simulation');again.type='button';again.addEventListener('click',restart);
   }
   function scrollToGame(){document.getElementById('simulation').scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});}
   function render(){paintProgress();paintHistory();if(step===4)renderEnd();else renderScene();}
@@ -429,7 +442,22 @@
     selection=old;
     render();scrollToGame();
   }
-  function restart(){step=0;selection='';history=['','','',''];render();scrollToGame();}
+  function startSimulation(){
+    document.getElementById('scenarioIntro').hidden=true;
+    document.getElementById('simulationLayout').hidden=false;
+    document.getElementById('simulationFooter').hidden=false;
+    render();scrollToGame();
+  }
+  function restart(){
+    step=0;selection='';history=['','','',''];
+    render();
+    document.getElementById('scenarioIntro').hidden=false;
+    document.getElementById('simulationLayout').hidden=true;
+    document.getElementById('simulationFooter').hidden=true;
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  document.getElementById('startSimulation').addEventListener('click',startSimulation);
+  document.getElementById('restartTop').addEventListener('click',restart);
   render();
 })();
 </script>

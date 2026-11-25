@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f6f8f7">
   <meta name="description" content="An unscored youth care-planning simulation about client priorities, shared decision-making and service limits.">
-  <title>Marko: Whose Plan Is It? · Interactive Simulation</title>
+  <title>Whose Plan Is It? | Interactive Simulation</title>
   <style>
     :root {
       --ink:#21323a;--muted:#52666d;--border:#d8e2df;--paper:#f5f7f5;
@@ -97,10 +97,20 @@
     .lens-card h3{color:var(--purple);font-size:19px;margin:0 0 8px}
     .lens-card p{font-size:16px;line-height:1.75;margin:0}
     .footer{margin-top:26px;font-size:15px;color:var(--muted);line-height:1.7}
+    .header-inner{min-height:76px}
+    .header-home{display:inline-flex;align-items:center;border:1px solid var(--border);background:white;color:var(--ink);padding:10px 15px;border-radius:10px;text-decoration:none;font-size:16px;font-weight:700}
+    .header-home:hover{text-decoration:none;border-color:var(--sage)}
+    .scenario-intro{margin:16px 0 30px}
+    .scenario-intro h1{font-size:clamp(40px,6vw,64px);line-height:1.1;letter-spacing:-.04em;max-width:none;margin:0 0 28px}
+    .intro-card{border:1.5px solid #d8e2e5;border-radius:20px;background:#f8fafb;padding:30px 34px;margin-bottom:30px}
+    .intro-section+.intro-section{margin-top:27px}
+    .intro-section h2{font-size:clamp(23px,3vw,29px);margin:0 0 8px}
+    .intro-section p{font-size:clamp(18px,2vw,24px);line-height:1.62;color:#405965;margin:0}
+    .scenario-start{min-height:76px;padding:17px 27px;font-size:20px;border-radius:16px}
     .hidden{display:none!important}
     @keyframes rise{from{opacity:.25;transform:translateY(7px)}to{opacity:1;transform:translateY(0)}}
     @media(max-width:900px){.layout{grid-template-columns:minmax(0,1fr)}.sidebar{position:static}.sidebar .history{grid-template-columns:repeat(3,minmax(0,1fr))}.shell{padding-top:26px}}
-    @media(max-width:680px){.shell{padding:22px 15px 48px}.header-inner{padding:15px}.header-right{font-size:14px}.panel-main{padding:22px 18px}.sidebar{padding:20px}.sidebar .history{grid-template-columns:1fr}.choice{padding:13px 12px;gap:9px}.buttons{gap:9px}.btn{padding:11px 13px}.hero{margin-bottom:22px}}
+    @media(max-width:680px){.shell{padding:22px 15px 48px}.header-inner{padding:15px}.header-home{font-size:14px;padding:8px 10px}.panel-main{padding:22px 18px}.sidebar{padding:20px}.sidebar .history{grid-template-columns:1fr}.choice{padding:13px 12px;gap:9px}.buttons{gap:9px}.btn{padding:11px 13px}.intro-card{padding:22px 21px;border-radius:16px}.intro-section+.intro-section{margin-top:22px}.intro-section p{font-size:18px}.scenario-intro h1{font-size:clamp(36px,10vw,46px);margin-bottom:22px}.scenario-start{min-height:64px;padding:13px 18px;font-size:18px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
     @media print{.sidebar,.buttons,.choice-list{display:none}.layout{display:block}.panel{box-shadow:none}.shell{padding:12px}.site-header{display:none}}
   </style>
@@ -108,18 +118,21 @@
 <body>
 <header class="site-header">
   <div class="header-inner">
-    <a class="brand" href="./index.html">Trauma-Informed Practice · Interactive Learning</a>
-    <div class="header-right"><a href="./index.html#module-04">Back to Interactive Simulations</a><br>Module 04 · Simulation 03</div>
+    <a class="header-home" href="./index.html">← Back to home page</a>
+    <button type="button" id="restartTop" class="btn secondary">Restart Simulation</button>
   </div>
 </header>
 <main class="shell">
-  <div class="hero">
-    <div class="eyebrow">Social Work Practice Simulation</div>
-    <h1>Marko: Whose Plan Is It?</h1>
-    <p>Explore shared decision-making when a young person's housing priorities differ from a worker's preferred sequence of support.</p>
-    <div class="pills"><span class="pill">3 decision points</span><span class="pill">Unscored practice</span><span class="pill">Fictional learning scenario</span></div>
-  </div>
-  <div class="layout">
+  <section class="scenario-intro" id="scenarioIntro" aria-labelledby="scenario-title">
+    <h1 id="scenario-title">Whose Plan Is It?</h1>
+    <div class="intro-card">
+      <section class="intro-section"><h2>Setting</h2><p>A youth support service in Western Australia during a care-planning meeting.</p></section>
+      <section class="intro-section"><h2>Your role</h2><p>You are a social worker discussing priorities, available supports and practical next steps with Marko. The service can support a housing enquiry but cannot allocate independent housing or promise an outcome.</p></section>
+      <section class="intro-section"><h2>About Marko</h2><p>Marko is 18, staying in temporary accommodation and working casually. They want independent housing and more predictable work. They use phone reminders, take pride in being dependable at work and prefer text contact. They do not want family or friends contacted without discussing it first.</p></section>
+    </div>
+    <button type="button" id="startSimulation" class="btn scenario-start">Start Simulation <span aria-hidden="true">→</span></button>
+  </section>
+  <div class="layout" id="simulationLayout" hidden>
     <article class="panel panel-main" id="simulation" aria-label="Marko care planning simulation">
       <ol class="steps" id="progress" aria-label="Simulation progress"></ol>
       <div id="stage" aria-live="polite" aria-atomic="false"></div>
@@ -132,7 +145,7 @@
       <div class="sidebar-note"><strong>Practice focus</strong><br>Voice and choice · Collaboration · Transparency · Professional power · Service limits</div>
     </aside>
   </div>
-  <div class="footer">
+  <div class="footer" id="simulationFooter" hidden>
     <strong>Educational prototype.</strong> Marko is fictional. The youth service cannot allocate housing, and an external provider determines eligibility and availability. The simulation does not promise a housing outcome.
   </div>
 </main>
@@ -380,7 +393,7 @@
     const back=add(nav,'button','btn secondary','← Revise decision 3');
     back.type='button';
     back.addEventListener('click',goBack);
-    const again=add(nav,'button','btn','Play Again');
+    const again=add(nav,'button','btn','Restart Simulation');
     again.type='button';
     again.addEventListener('click',restart);
   }
@@ -409,13 +422,25 @@
     render();
     scrollToGame();
   }
+  function startSimulation(){
+    document.getElementById('scenarioIntro').hidden=true;
+    document.getElementById('simulationLayout').hidden=false;
+    document.getElementById('simulationFooter').hidden=false;
+    render();
+    scrollToGame();
+  }
   function restart(){
     step=0;
     selection='';
     history=['','',''];
     render();
-    scrollToGame();
+    document.getElementById('scenarioIntro').hidden=false;
+    document.getElementById('simulationLayout').hidden=true;
+    document.getElementById('simulationFooter').hidden=true;
+    window.scrollTo({top:0,behavior:'smooth'});
   }
+  document.getElementById('startSimulation').addEventListener('click',startSimulation);
+  document.getElementById('restartTop').addEventListener('click',restart);
   render();
 })();
 </script>

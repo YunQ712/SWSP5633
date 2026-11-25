@@ -145,12 +145,12 @@
       background: var(--surface); color: var(--ink); font: inherit; text-align: left;
       cursor: pointer; transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
     }
-    .m1s3-option { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 12px; }
-    .m1s3-option:nth-child(1), .m1s3-option:nth-child(3) { position: relative; left: -8px; }
+    .m1s3-option { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 12px; padding: 18px 20px; }
     .m1s3-option:hover, .m1s4-lens:hover { transform: translateY(-2px) scale(1.01); box-shadow: var(--shadow); }
     .m1s3-option:focus-visible, .m1s4-lens:focus-visible { outline: 3px solid #7a895d; outline-offset: 3px; }
     .m1s3-option[aria-pressed="true"], .m1s4-lens[aria-pressed="true"] { border: 2px solid var(--ink); background: var(--sage); }
     .m1s3-option-title, .m1s4-lens-title { display: block; font-size: 18px; font-weight: 650; line-height: 1.35; }
+    .m1s3-option-title { font-size: 17px; }
     .m1s3-icon, .m1s4-icon { display: block; width: 30px; height: 30px; }
     .m1s3-icon svg, .m1s4-icon svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
     .m1s3-panel, .m1s4-panel, .m1s4-scenario {
@@ -198,16 +198,14 @@
     }
     .module-expansion-slot { grid-column: 1 / -1; width: 100%; min-width: 0; }
     .module-expansion-slot[hidden] { display: none; }
-    .module-collapse-content[hidden] { display: none !important; }
-    .module-collapse-toggle {
-      display: flex; align-items: center; gap: 9px; margin: 26px 0 0 auto; padding: 10px 16px;
-      border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink);
-      font: inherit; font-size: 16px; font-weight: 650; cursor: pointer; transition: background-color .18s ease, border-color .18s ease;
+    .submodule-collapse-button {
+      display: flex; align-items: center; gap: 8px; width: fit-content; margin: 24px 0 0 auto; padding: 9px 14px;
+      border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--muted);
+      font: inherit; font-size: 15px; font-weight: 600; cursor: pointer; transition: background-color .18s ease, border-color .18s ease;
     }
-    .module-collapse-toggle:hover { border-color: var(--accent); background: var(--sage); }
-    .module-collapse-toggle:focus-visible { outline: 3px solid #216b84; outline-offset: 3px; }
-    .module-collapse-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .18s ease; }
-    .module-collapse-toggle[aria-expanded="false"] svg { transform: rotate(180deg); }
+    .submodule-collapse-button:hover { border-color: var(--accent); background: var(--sage); color: var(--ink); }
+    .submodule-collapse-button:focus-visible { outline: 3px solid #216b84; outline-offset: 3px; }
+    .submodule-collapse-button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
     .panel {
       padding: 26px; border: 1px solid var(--line); border-radius: 14px;
       background: var(--surface); box-shadow: var(--shadow);
@@ -253,7 +251,8 @@
     .references-disclosure summary { padding: 13px 18px; cursor: pointer; color: #87918b; font-size: 15px; font-weight: 600; }
     .references-disclosure summary:focus-visible { outline: 3px solid #216b84; outline-offset: 3px; }
     .references-body { padding: 0 18px 16px; color: #929a95; font-size: 13px; line-height: 1.55; }
-    .references-body ol { margin: 0; padding-left: 24px; }
+    .references-body ul { margin: 0; padding: 0; list-style: none; }
+    .references-body li { padding-left: 1.4em; text-indent: -1.4em; }
     .references-body li { margin: 0 0 7px; color: #929a95; font-size: 13px; overflow-wrap: anywhere; }
     .references-body li:last-child { margin-bottom: 0; }
     .references-body a { color: #8b948e; overflow-wrap: anywhere; }
@@ -281,7 +280,6 @@
       .module-grid { grid-template-columns: 1fr; }
       .m1s2-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .m1s3-options { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-      .m1s3-option:nth-child(1), .m1s3-option:nth-child(3) { left: 0; }
       .m1-submodule-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
       .scenario-card { min-height: 145px; }
       .blank-row { grid-template-columns: 1fr; gap: 8px; }
@@ -792,10 +790,6 @@
           
         </article>
       </div>
-      <button class="module-collapse-toggle" type="button" aria-expanded="true">
-        <span class="module-collapse-label">Collapse module</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
-      </button>
     </section>
 
     <section id="module-02">
@@ -1029,10 +1023,6 @@
         </article>
         
       </div>
-      <button class="module-collapse-toggle" type="button" aria-expanded="true">
-        <span class="module-collapse-label">Collapse module</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
-      </button>
     </section>
 
     <section id="module-03">
@@ -1729,10 +1719,6 @@
           
         </article>
       </div>
-      <button class="module-collapse-toggle" type="button" aria-expanded="true">
-        <span class="module-collapse-label">Collapse module</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
-      </button>
     </section>
 
     <section id="module-04">
@@ -1745,10 +1731,6 @@
         <a class="scenario-card" href="./alex.html"><h3>Alex</h3><span class="author">by Payson WANG</span><span class="setting">NDIS · Assessment</span></a>
         <a class="scenario-card" href="./marko.html"><h3>Marko</h3><span class="author">by Joe ZHANG</span><span class="setting">Youth work · Care planning</span></a>
       </div>
-      <button class="module-collapse-toggle" type="button" aria-expanded="true">
-        <span class="module-collapse-label">Collapse module</span>
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
-      </button>
     </section>
 
     <section id="acknowledgement" aria-labelledby="acknowledgement-title">
@@ -1766,7 +1748,7 @@
       <details class="references-disclosure" open>
         <summary id="references-title">References</summary>
         <div class="references-body">
-          <ol>
+          <ul>
             <li>Australian Association of Social Workers. (2020). <em>Code of ethics 2020</em>. <a href="https://www.aasw.asn.au/about-aasw/ethics-standards/code-of-ethics/" target="_blank" rel="noopener noreferrer">https://www.aasw.asn.au/about-aasw/ethics-standards/code-of-ethics/</a></li>
             <li>Butler, K., MacDonald, J. B., Helprin, H., Dobud, W., &amp; Willoughby, M. (2025). <em>Trauma-informed practice in family mental health support services</em> (Practice guide). Australian Institute of Family Studies. <a href="https://aifs.gov.au/resources/practice-guides/trauma-informed-practice-family-mental-health-support-services" target="_blank" rel="noopener noreferrer">https://aifs.gov.au/resources/practice-guides/trauma-informed-practice-family-mental-health-support-services</a></li>
             <li>Goldsworthy, K. (2005). Grief and loss theory in social work practice: All changes involve loss, just as all losses require change. <em>Australian Social Work, 58</em>(2), 167–178. <a href="https://doi.org/10.1111/j.1447-0748.2005.00201.x" target="_blank" rel="noopener noreferrer">https://doi.org/10.1111/j.1447-0748.2005.00201.x</a></li>
@@ -1780,7 +1762,7 @@
             <li>Substance Abuse and Mental Health Services Administration. (2014). <em>SAMHSA's concept of trauma and guidance for a trauma-informed approach</em> (HHS Publication No. (SMA) 14-4884). <a href="https://library.samhsa.gov/sites/default/files/sma14-4884.pdf" target="_blank" rel="noopener noreferrer">https://library.samhsa.gov/sites/default/files/sma14-4884.pdf</a></li>
             <li>Sweeney, A., Filson, B., Kennedy, A., Collinson, L., &amp; Gillard, S. (2018). A paradigm shift: Relationships in trauma-informed mental health services. <em>BJPsych Advances, 24</em>(5), 319–333. <a href="https://doi.org/10.1192/bja.2018.29" target="_blank" rel="noopener noreferrer">https://doi.org/10.1192/bja.2018.29</a></li>
             <li>Sweeney, A., White, S., Kelly, K., Faulkner, A., Papoulias, S., &amp; Gillard, S. (2022). Survivor-led guidelines for conducting trauma-informed psychological therapy assessments: Development and modified Delphi study. <em>Health Expectations, 25</em>(6), 2818–2827. <a href="https://doi.org/10.1111/hex.13585" target="_blank" rel="noopener noreferrer">https://doi.org/10.1111/hex.13585</a></li>
-          </ol>
+          </ul>
         </div>
       </details>
     </section>
@@ -1788,27 +1770,6 @@
   <footer><div class="wrap">An Interactive Learning Tool for Trauma-Informed Social Work Practice</div></footer>
   <script>
     (() => {
-      document.querySelectorAll('#module-01, #module-02, #module-03, #module-04').forEach((section) => {
-        const heading = section.querySelector(':scope > .section-head');
-        const button = section.querySelector(':scope > .module-collapse-toggle');
-        if (!heading || !button) return;
-
-        const content = document.createElement('div');
-        content.className = 'module-collapse-content';
-        content.id = `${section.id}-content`;
-        Array.from(section.children).forEach((child) => {
-          if (child !== heading && child !== button) content.appendChild(child);
-        });
-        section.insertBefore(content, button);
-        button.setAttribute('aria-controls', content.id);
-        button.addEventListener('click', () => {
-          const expanded = button.getAttribute('aria-expanded') === 'true';
-          content.hidden = expanded;
-          button.setAttribute('aria-expanded', String(!expanded));
-          button.querySelector('.module-collapse-label').textContent = expanded ? 'Expand module' : 'Collapse module';
-        });
-      });
-
       const form = document.getElementById('m1s1-reflection-form');
       const input = document.getElementById('m1s1-reflection-input');
       const stepOne = document.getElementById('m1s1-step-one');
@@ -1860,10 +1821,30 @@
 
         const closeGroup = () => {
           cards.forEach((item) => item.setAttribute('aria-expanded', 'false'));
-          panels.forEach((panel) => { panel.hidden = true; });
+          panels.forEach((panel) => {
+            panel.hidden = true;
+            const collapseButton = panel.querySelector('.submodule-collapse-button');
+            if (collapseButton) collapseButton.setAttribute('aria-expanded', 'false');
+          });
           activeCard = null;
           restoreContent();
         };
+
+        panels.forEach((panel) => {
+          const collapseButton = document.createElement('button');
+          collapseButton.className = 'submodule-collapse-button';
+          collapseButton.type = 'button';
+          collapseButton.setAttribute('aria-expanded', 'false');
+          collapseButton.setAttribute('aria-controls', panel.id);
+          collapseButton.innerHTML = '<span>Collapse submodule</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>';
+          collapseButton.addEventListener('click', (event) => {
+            event.stopPropagation();
+            closeGroup();
+            const menuCard = cards.find((card) => card.dataset.target === panel.id);
+            if (menuCard) menuCard.focus();
+          });
+          panel.appendChild(collapseButton);
+        });
 
         cards.forEach((card) => {
           card.addEventListener('click', () => {
@@ -1873,11 +1854,17 @@
             }
 
             cards.forEach((item) => item.setAttribute('aria-expanded', String(item === card)));
-            panels.forEach((panel) => { panel.hidden = true; });
+            panels.forEach((panel) => {
+              panel.hidden = true;
+              const collapseButton = panel.querySelector('.submodule-collapse-button');
+              if (collapseButton) collapseButton.setAttribute('aria-expanded', 'false');
+            });
 
             const target = document.getElementById(card.dataset.target);
             if (!target) return;
             target.hidden = false;
+            const collapseButton = target.querySelector('.submodule-collapse-button');
+            if (collapseButton) collapseButton.setAttribute('aria-expanded', 'true');
 
             const columns = Math.max(1, getComputedStyle(menu).gridTemplateColumns.split(/\s+/).length);
             const cardIndex = cards.indexOf(card);
