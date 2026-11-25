@@ -146,20 +146,21 @@
       cursor: pointer; transition: transform .18s ease, box-shadow .18s ease, background-color .18s ease, border-color .18s ease;
     }
     .m1s3-option { display: flex; flex-direction: column; align-items: flex-start; justify-content: space-between; gap: 12px; }
+    .m1s3-option:nth-child(1), .m1s3-option:nth-child(3) { position: relative; left: -8px; }
     .m1s3-option:hover, .m1s4-lens:hover { transform: translateY(-2px) scale(1.01); box-shadow: var(--shadow); }
     .m1s3-option:focus-visible, .m1s4-lens:focus-visible { outline: 3px solid #7a895d; outline-offset: 3px; }
     .m1s3-option[aria-pressed="true"], .m1s4-lens[aria-pressed="true"] { border: 2px solid var(--ink); background: var(--sage); }
     .m1s3-option-title, .m1s4-lens-title { display: block; font-size: 18px; font-weight: 650; line-height: 1.35; }
     .m1s3-icon, .m1s4-icon { display: block; width: 30px; height: 30px; }
     .m1s3-icon svg, .m1s4-icon svg { display: block; width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
-    .m1s3-panel, .m1s4-panel, .m1s3-resilience, .m1s4-scenario {
+    .m1s3-panel, .m1s4-panel, .m1s4-scenario {
       margin-top: 18px; padding: 20px; border: 1px solid var(--line); border-radius: 12px; background: var(--sage);
     }
+    .m1s3-resilience { margin-top: 22px; padding: 0; border: 0; border-radius: 0; background: transparent; }
     .m1s3-panel { min-height: 132px; }
     .m1s3-panel h5, .m1s4-panel h5, .m1s3-resilience h5, .m1s4-scenario h5 { margin: 0 0 8px; font-size: 21px; }
     .m1s3-panel p, .m1s3-resilience p, .m1s4-panel p, .m1s4-scenario p { margin: 0; font-size: 18px; }
     .m1s3-citation { margin: 14px 0 0; }
-    .m1s3-resilience { background: #f6f5ef; }
     .m1s4-definitions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
     .m1s4-definition { padding: 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--surface); }
     .m1s4-definition h5 { margin: 0 0 8px; font-size: 21px; }
@@ -197,6 +198,16 @@
     }
     .module-expansion-slot { grid-column: 1 / -1; width: 100%; min-width: 0; }
     .module-expansion-slot[hidden] { display: none; }
+    .module-collapse-content[hidden] { display: none !important; }
+    .module-collapse-toggle {
+      display: flex; align-items: center; gap: 9px; margin: 26px 0 0 auto; padding: 10px 16px;
+      border: 1px solid var(--line); border-radius: 999px; background: var(--surface); color: var(--ink);
+      font: inherit; font-size: 16px; font-weight: 650; cursor: pointer; transition: background-color .18s ease, border-color .18s ease;
+    }
+    .module-collapse-toggle:hover { border-color: var(--accent); background: var(--sage); }
+    .module-collapse-toggle:focus-visible { outline: 3px solid #216b84; outline-offset: 3px; }
+    .module-collapse-toggle svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .18s ease; }
+    .module-collapse-toggle[aria-expanded="false"] svg { transform: rotate(180deg); }
     .panel {
       padding: 26px; border: 1px solid var(--line); border-radius: 14px;
       background: var(--surface); box-shadow: var(--shadow);
@@ -270,6 +281,7 @@
       .module-grid { grid-template-columns: 1fr; }
       .m1s2-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .m1s3-options { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .m1s3-option:nth-child(1), .m1s3-option:nth-child(3) { left: 0; }
       .m1-submodule-menu { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
       .scenario-card { min-height: 145px; }
       .blank-row { grid-template-columns: 1fr; gap: 8px; }
@@ -432,7 +444,7 @@
       .m1s1-button.secondary { background: transparent; color: var(--ink); }
       .empty { background: rgba(35,42,39,.6); }
       .m1s1-textarea, .m1s1-response, .m1s4-scenario { background: var(--surface); color: var(--ink); }
-      .m1s1-reflection, .m1s3-resilience { background: var(--sage); }
+      .m1s1-reflection { background: var(--sage); }
       .m2-intake-card.routine:hover { background: #293440; border-color: #8297a5; }
       .m2-intake-card.informed:hover { background: #263a33; border-color: #83aa98; }
       .m2s2-card:hover { background: #30313d; border-color: #a6a6c2; }
@@ -577,7 +589,7 @@
       </div>
       <div class="submodule-grid">
         <article class="submodule-card m1s1-card" id="m1s1" hidden>
-          <p class="eyebrow">Submodule 1 · Reflection activity</p>
+          <p class="eyebrow">Submodule 1</p>
           <h3 tabindex="-1">What is Trauma?</h3>
           <div class="m1s1-step" id="m1s1-step-one" aria-labelledby="m1s1-step-one-title">
             <p class="m1s1-progress" id="m1s1-progress" aria-live="polite">Step 1 of 2</p>
@@ -633,7 +645,7 @@
           </div>
         </article>
         <article class="submodule-card m1s2-card" id="m1s2" hidden>
-          <p class="eyebrow">Submodule 2 · Information cards</p>
+          <p class="eyebrow">Submodule 2</p>
           <h3 id="m1s2-heading" tabindex="-1">Types and Sources of Trauma</h3>
           <p class="m1s2-intro">Trauma can take different forms depending on the nature, duration, and context of traumatic experiences.</p>
           <div class="m1s2-group">
@@ -692,7 +704,7 @@
           </div>
         </article>
         <article class="submodule-card m1s3-card" id="m1s3" hidden>
-          <p class="eyebrow">Submodule 3 · Interactive impact explorer</p>
+          <p class="eyebrow">Submodule 3</p>
           <h3 id="m1s3-heading" tabindex="-1">Impacts of Trauma on Individuals and Relationships</h3>
           <p class="m1s3-intro">Trauma can influence multiple aspects of a person's life, extending beyond immediate emotional distress.</p>
           <h4>Explore the Impacts</h4>
@@ -732,7 +744,7 @@
           </div>
         </article>
         <article class="submodule-card m1s4-card" id="m1s4" hidden>
-          <p class="eyebrow">Submodule 4 · One Story, Three Lenses</p>
+          <p class="eyebrow">Submodule 4</p>
           <h3 id="m1s4-heading" tabindex="-1">Trauma, Loss and Grief</h3>
           <p class="m1s4-copy">Trauma, loss and grief are closely connected because traumatic experiences may involve significant losses, while some experiences of loss may also be traumatic. However, these are distinct concepts and should not be treated as interchangeable.</p>
           <h4>Understanding Loss and Grief</h4>
@@ -780,6 +792,10 @@
           
         </article>
       </div>
+      <button class="module-collapse-toggle" type="button" aria-expanded="true">
+        <span class="module-collapse-label">Collapse module</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
+      </button>
     </section>
 
     <section id="module-02">
@@ -1013,6 +1029,10 @@
         </article>
         
       </div>
+      <button class="module-collapse-toggle" type="button" aria-expanded="true">
+        <span class="module-collapse-label">Collapse module</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
+      </button>
     </section>
 
     <section id="module-03">
@@ -1709,6 +1729,10 @@
           
         </article>
       </div>
+      <button class="module-collapse-toggle" type="button" aria-expanded="true">
+        <span class="module-collapse-label">Collapse module</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
+      </button>
     </section>
 
     <section id="module-04">
@@ -1721,6 +1745,10 @@
         <a class="scenario-card" href="./alex.html"><h3>Alex</h3><span class="author">by Payson WANG</span><span class="setting">NDIS · Assessment</span></a>
         <a class="scenario-card" href="./marko.html"><h3>Marko</h3><span class="author">by Joe ZHANG</span><span class="setting">Youth work · Care planning</span></a>
       </div>
+      <button class="module-collapse-toggle" type="button" aria-expanded="true">
+        <span class="module-collapse-label">Collapse module</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>
+      </button>
     </section>
 
     <section id="acknowledgement" aria-labelledby="acknowledgement-title">
@@ -1760,6 +1788,27 @@
   <footer><div class="wrap">An Interactive Learning Tool for Trauma-Informed Social Work Practice</div></footer>
   <script>
     (() => {
+      document.querySelectorAll('#module-01, #module-02, #module-03, #module-04').forEach((section) => {
+        const heading = section.querySelector(':scope > .section-head');
+        const button = section.querySelector(':scope > .module-collapse-toggle');
+        if (!heading || !button) return;
+
+        const content = document.createElement('div');
+        content.className = 'module-collapse-content';
+        content.id = `${section.id}-content`;
+        Array.from(section.children).forEach((child) => {
+          if (child !== heading && child !== button) content.appendChild(child);
+        });
+        section.insertBefore(content, button);
+        button.setAttribute('aria-controls', content.id);
+        button.addEventListener('click', () => {
+          const expanded = button.getAttribute('aria-expanded') === 'true';
+          content.hidden = expanded;
+          button.setAttribute('aria-expanded', String(!expanded));
+          button.querySelector('.module-collapse-label').textContent = expanded ? 'Expand module' : 'Collapse module';
+        });
+      });
+
       const form = document.getElementById('m1s1-reflection-form');
       const input = document.getElementById('m1s1-reflection-input');
       const stepOne = document.getElementById('m1s1-step-one');
